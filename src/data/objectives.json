@@ -1,0 +1,1506 @@
+{
+  "masterObjectives": [
+    {
+      "id": "obj-01",
+      "title": "Establish GenAI talent advisory as the market-leading offering",
+      "owner": "Carolee Friedlander",
+      "targetDate": "2026-09-30",
+      "targetQuarter": "Q4 FY26",
+      "status": "on_track",
+      "progress": 48,
+      "description": "Position Accenture as the definitive leader in GenAI-driven talent transformation advisory, with differentiated methodology, proven client outcomes, and market recognition."
+    },
+    {
+      "id": "obj-02",
+      "title": "Expand presence and revenue in APAC and LATAM markets",
+      "owner": "Carolee Friedlander",
+      "targetDate": "2026-06-30",
+      "targetQuarter": "Q3 FY26",
+      "status": "at_risk",
+      "progress": 35,
+      "description": "Accelerate growth in underpenetrated APAC and LATAM markets through targeted hiring, local partnerships, and adapted offering portfolio."
+    },
+    {
+      "id": "obj-03",
+      "title": "Drive 15% profitability improvement across all offerings",
+      "owner": "Carolee Friedlander",
+      "targetDate": "2026-09-30",
+      "targetQuarter": "Q4 FY26",
+      "status": "on_track",
+      "progress": 52,
+      "description": "Improve margin performance through delivery optimization, pricing discipline, and strategic use of delivery centers and managed services."
+    },
+    {
+      "id": "obj-04",
+      "title": "Build and launch next-gen workforce planning capability",
+      "owner": "Carolee Friedlander",
+      "targetDate": "2025-12-31",
+      "targetQuarter": "Q2 FY26",
+      "status": "delayed",
+      "progress": 72,
+      "description": "Develop and productize an AI-powered workforce planning platform that integrates skills data, demand forecasting, and scenario modeling."
+    },
+    {
+      "id": "obj-05",
+      "title": "Unify talent strategy messaging and methodology globally",
+      "owner": "Carolee Friedlander",
+      "targetDate": "2026-06-30",
+      "targetQuarter": "Q3 FY26",
+      "status": "on_track",
+      "progress": 58,
+      "description": "Create a single, consistent talent strategy methodology and brand narrative that all markets and industries deploy, replacing fragmented local approaches."
+    },
+    {
+      "id": "obj-06",
+      "title": "Increase client retention and expansion revenue by 20%",
+      "owner": "Carolee Friedlander",
+      "targetDate": "2026-09-30",
+      "targetQuarter": "Q4 FY26",
+      "status": "on_track",
+      "progress": 44,
+      "description": "Grow existing client accounts through proactive relationship management, cross-sell of new offerings, and measurable outcome tracking."
+    }
+  ],
+  "keyResults": [
+    {
+      "id": "kr-01",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-01",
+      "description": "Develop GenAI workforce transformation playbook with 5 industry variants",
+      "progress": 55,
+      "status": "on_track",
+      "startDate": "2026-01-06",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Core playbook framework approved", "date": "2026-02-15", "completed": true},
+        {"name": "FSI and Health variants drafted", "date": "2026-03-31", "completed": false},
+        {"name": "All 5 variants complete and tested", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["GenAI", "Methodology", "WorkforcePlanning"]
+    },
+    {
+      "id": "kr-02",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-01",
+      "description": "Train 200 consultants on GenAI talent advisory methodology",
+      "progress": 35,
+      "status": "on_track",
+      "startDate": "2026-02-01",
+      "targetDate": "2026-07-31",
+      "milestones": [
+        {"name": "Training curriculum designed", "date": "2026-03-01", "completed": true},
+        {"name": "First 80 consultants certified", "date": "2026-04-30", "completed": false},
+        {"name": "Full 200 cohort certified", "date": "2026-07-31", "completed": false}
+      ],
+      "tags": ["GenAI", "Upskilling", "Methodology"]
+    },
+    {
+      "id": "kr-03",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-01",
+      "description": "Increase workforce transformation offering margin from 28% to 33%",
+      "progress": 60,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Delivery model optimization plan approved", "date": "2025-11-30", "completed": true},
+        {"name": "Offshore delivery ratio increased to 40%", "date": "2026-03-31", "completed": true},
+        {"name": "Target margin achieved", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Profitability", "WorkforcePlanning", "Delivery"]
+    },
+    {
+      "id": "kr-04",
+      "masterObjectiveId": "obj-05",
+      "leaderId": "leader-02",
+      "description": "Align leadership advisory methodology with unified global framework",
+      "progress": 45,
+      "status": "on_track",
+      "startDate": "2026-01-15",
+      "targetDate": "2026-05-31",
+      "milestones": [
+        {"name": "Gap analysis vs. global framework complete", "date": "2026-02-28", "completed": true},
+        {"name": "Revised methodology draft circulated", "date": "2026-04-15", "completed": false},
+        {"name": "Full alignment and rollout", "date": "2026-05-31", "completed": false}
+      ],
+      "tags": ["Methodology", "Leadership", "GlobalAlignment"]
+    },
+    {
+      "id": "kr-05",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-02",
+      "description": "Launch executive coaching retainer program for top 20 clients",
+      "progress": 30,
+      "status": "behind",
+      "startDate": "2026-01-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Program design and pricing approved", "date": "2026-02-15", "completed": true},
+        {"name": "Pilot with 5 clients launched", "date": "2026-04-15", "completed": false},
+        {"name": "Scale to 20 clients", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["Retention", "Leadership", "ClientExpansion"]
+    },
+    {
+      "id": "kr-06",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-03",
+      "description": "Integrate GenAI capabilities into HR Technology platform suite",
+      "progress": 65,
+      "status": "on_track",
+      "startDate": "2025-11-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "GenAI feature roadmap approved", "date": "2025-12-15", "completed": true},
+        {"name": "Skills intelligence module live in beta", "date": "2026-03-15", "completed": true},
+        {"name": "Full GenAI suite GA release", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["GenAI", "HRTech", "Analytics"]
+    },
+    {
+      "id": "kr-07",
+      "masterObjectiveId": "obj-04",
+      "leaderId": "leader-03",
+      "description": "Deliver AI-powered workforce planning module to 8 enterprise clients",
+      "progress": 80,
+      "status": "on_track",
+      "startDate": "2025-08-01",
+      "targetDate": "2026-03-31",
+      "milestones": [
+        {"name": "Module v1 shipped to first 3 clients", "date": "2025-11-30", "completed": true},
+        {"name": "Feedback incorporated, v1.5 released", "date": "2026-02-15", "completed": true},
+        {"name": "8 clients live on platform", "date": "2026-03-31", "completed": false}
+      ],
+      "tags": ["WorkforcePlanning", "HRTech", "Analytics", "GenAI"]
+    },
+    {
+      "id": "kr-08",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-03",
+      "description": "Achieve 95% platform uptime and reduce support cost by 20%",
+      "progress": 70,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "SRE team established", "date": "2025-11-15", "completed": true},
+        {"name": "Automated monitoring deployed", "date": "2026-01-31", "completed": true},
+        {"name": "Target metrics sustained for 3 months", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["HRTech", "Profitability", "Delivery"]
+    },
+    {
+      "id": "kr-09",
+      "masterObjectiveId": "obj-05",
+      "leaderId": "leader-04",
+      "description": "Publish unified Talent Strategy methodology v3.0 for global adoption",
+      "progress": 50,
+      "status": "on_track",
+      "startDate": "2025-12-01",
+      "targetDate": "2026-05-31",
+      "milestones": [
+        {"name": "Methodology review workshops complete", "date": "2026-02-15", "completed": true},
+        {"name": "v3.0 draft reviewed by all market leads", "date": "2026-04-15", "completed": false},
+        {"name": "v3.0 published and training launched", "date": "2026-05-31", "completed": false}
+      ],
+      "tags": ["Methodology", "GlobalAlignment", "TalentStrategy"]
+    },
+    {
+      "id": "kr-10",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-04",
+      "description": "Define GenAI talent maturity model with 4 assessment tiers",
+      "progress": 40,
+      "status": "behind",
+      "startDate": "2026-01-15",
+      "targetDate": "2026-05-31",
+      "milestones": [
+        {"name": "Maturity model framework designed", "date": "2026-02-28", "completed": true},
+        {"name": "Tier definitions and assessment tools drafted", "date": "2026-04-15", "completed": false},
+        {"name": "Model validated with 3 pilot clients", "date": "2026-05-31", "completed": false}
+      ],
+      "tags": ["GenAI", "Methodology", "Assessment", "TalentStrategy"]
+    },
+    {
+      "id": "kr-11",
+      "masterObjectiveId": "obj-05",
+      "leaderId": "leader-05",
+      "description": "Create standardized change management toolkit for talent transformations",
+      "progress": 62,
+      "status": "on_track",
+      "startDate": "2025-11-15",
+      "targetDate": "2026-04-30",
+      "milestones": [
+        {"name": "Toolkit scope and components defined", "date": "2025-12-31", "completed": true},
+        {"name": "Core toolkit modules developed", "date": "2026-03-15", "completed": true},
+        {"name": "Toolkit piloted with 4 active engagements", "date": "2026-04-30", "completed": false}
+      ],
+      "tags": ["ChangeManagement", "Methodology", "GlobalAlignment"]
+    },
+    {
+      "id": "kr-12",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-05",
+      "description": "Embed change management into 80% of talent strategy engagements",
+      "progress": 48,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Cross-sell playbook developed with sales", "date": "2026-01-15", "completed": true},
+        {"name": "50% embed rate achieved", "date": "2026-04-30", "completed": false},
+        {"name": "80% embed rate sustained", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["ChangeManagement", "Retention", "ClientExpansion"]
+    },
+    {
+      "id": "kr-13",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-06",
+      "description": "Launch GenAI readiness assessment tool for 3 FSI clients in Americas",
+      "progress": 60,
+      "status": "on_track",
+      "startDate": "2026-01-15",
+      "targetDate": "2026-05-30",
+      "milestones": [
+        {"name": "Framework design complete", "date": "2026-02-28", "completed": true},
+        {"name": "Pilot with Citi launched", "date": "2026-04-15", "completed": false},
+        {"name": "Scale to 3 FSI clients", "date": "2026-05-30", "completed": false}
+      ],
+      "tags": ["GenAI", "FSI", "Assessment", "Americas"]
+    },
+    {
+      "id": "kr-14",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-06",
+      "description": "Grow Americas top-10 client revenue by 25% through cross-sell",
+      "progress": 42,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Account growth plans for top 10 approved", "date": "2025-12-15", "completed": true},
+        {"name": "Cross-sell opportunities identified for 8 accounts", "date": "2026-03-31", "completed": true},
+        {"name": "25% revenue growth achieved", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Retention", "ClientExpansion", "Americas"]
+    },
+    {
+      "id": "kr-15",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-06",
+      "description": "Win 3 new Fortune 100 talent strategy engagements in Americas",
+      "progress": 33,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Target list of 15 prospects identified", "date": "2025-11-30", "completed": true},
+        {"name": "First Fortune 100 engagement signed", "date": "2026-03-31", "completed": false},
+        {"name": "3 engagements signed and staffed", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["Americas", "ClientExpansion", "TalentStrategy"]
+    },
+    {
+      "id": "kr-16",
+      "masterObjectiveId": "obj-02",
+      "leaderId": "leader-07",
+      "description": "Hire 40 senior consultants in APAC markets by end of Q3",
+      "progress": 25,
+      "status": "at_risk",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Hiring plan and budget approved", "date": "2025-11-15", "completed": true},
+        {"name": "First 15 hires onboarded", "date": "2026-03-31", "completed": false},
+        {"name": "Full 40 hires onboarded", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["APAC", "Hiring", "Capacity"]
+    },
+    {
+      "id": "kr-17",
+      "masterObjectiveId": "obj-02",
+      "leaderId": "leader-07",
+      "description": "Establish partnerships with 3 APAC regional consulting firms",
+      "progress": 30,
+      "status": "behind",
+      "startDate": "2026-01-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Partner shortlist approved", "date": "2026-02-15", "completed": true},
+        {"name": "First partnership MOU signed", "date": "2026-04-15", "completed": false},
+        {"name": "3 partnerships formalized", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["APAC", "Partnerships", "MarketExpansion"]
+    },
+    {
+      "id": "kr-18",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-07",
+      "description": "Launch GenAI talent advisory pilot with 2 APAC enterprise clients",
+      "progress": 20,
+      "status": "at_risk",
+      "startDate": "2026-02-01",
+      "targetDate": "2026-07-31",
+      "milestones": [
+        {"name": "APAC GenAI market sizing complete", "date": "2026-03-15", "completed": false},
+        {"name": "First pilot client signed", "date": "2026-05-15", "completed": false},
+        {"name": "Second pilot launched", "date": "2026-07-31", "completed": false}
+      ],
+      "tags": ["GenAI", "APAC", "Assessment"]
+    },
+    {
+      "id": "kr-19",
+      "masterObjectiveId": "obj-05",
+      "leaderId": "leader-08",
+      "description": "Deploy unified talent methodology across all EMEA sub-markets",
+      "progress": 65,
+      "status": "on_track",
+      "startDate": "2025-11-01",
+      "targetDate": "2026-05-31",
+      "milestones": [
+        {"name": "EMEA methodology localization complete", "date": "2026-01-31", "completed": true},
+        {"name": "Training rolled out to 6 sub-markets", "date": "2026-03-31", "completed": true},
+        {"name": "Full adoption measured at 85%+", "date": "2026-05-31", "completed": false}
+      ],
+      "tags": ["Methodology", "GlobalAlignment", "EMEA"]
+    },
+    {
+      "id": "kr-20",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-08",
+      "description": "Increase EMEA client NPS from 42 to 55",
+      "progress": 50,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "NPS baseline measurement complete", "date": "2025-11-30", "completed": true},
+        {"name": "Client experience improvement plan launched", "date": "2026-02-15", "completed": true},
+        {"name": "NPS target of 55 achieved", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Retention", "EMEA", "ClientExpansion"]
+    },
+    {
+      "id": "kr-21",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-08",
+      "description": "Improve EMEA delivery margin from 30% to 34%",
+      "progress": 55,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Cost optimization levers identified", "date": "2025-12-15", "completed": true},
+        {"name": "Nearshore delivery model expanded", "date": "2026-03-31", "completed": true},
+        {"name": "34% margin sustained for 2 quarters", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Profitability", "EMEA", "Delivery"]
+    },
+    {
+      "id": "kr-22",
+      "masterObjectiveId": "obj-02",
+      "leaderId": "leader-09",
+      "description": "Grow LATAM revenue by 40% through new market entry in Colombia and Chile",
+      "progress": 18,
+      "status": "at_risk",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Market entry strategy approved", "date": "2025-12-15", "completed": true},
+        {"name": "Local teams established in Bogota and Santiago", "date": "2026-04-30", "completed": false},
+        {"name": "First 5 LATAM clients won", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["LATAM", "MarketExpansion", "Hiring"]
+    },
+    {
+      "id": "kr-23",
+      "masterObjectiveId": "obj-02",
+      "leaderId": "leader-09",
+      "description": "Localize 3 core offerings for LATAM market requirements",
+      "progress": 22,
+      "status": "behind",
+      "startDate": "2026-01-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Localization requirements gathered", "date": "2026-02-28", "completed": true},
+        {"name": "First offering localized and approved", "date": "2026-04-30", "completed": false},
+        {"name": "3 offerings market-ready", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["LATAM", "Methodology", "GlobalAlignment"]
+    },
+    {
+      "id": "kr-24",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-10",
+      "description": "Expand top 5 UK accounts with new talent analytics offering",
+      "progress": 58,
+      "status": "on_track",
+      "startDate": "2025-11-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Account expansion plans approved", "date": "2025-12-31", "completed": true},
+        {"name": "Analytics offering presented to 5 accounts", "date": "2026-03-15", "completed": true},
+        {"name": "3 accounts signed for analytics engagement", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["Analytics", "Retention", "ClientExpansion", "UKI"]
+    },
+    {
+      "id": "kr-25",
+      "masterObjectiveId": "obj-05",
+      "leaderId": "leader-10",
+      "description": "Achieve 90% UK&I team adoption of global methodology by Q3",
+      "progress": 72,
+      "status": "on_track",
+      "startDate": "2025-11-15",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "UK-specific adaptation approved", "date": "2026-01-15", "completed": true},
+        {"name": "Training delivered to 80% of team", "date": "2026-03-31", "completed": true},
+        {"name": "90% adoption measured and sustained", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["Methodology", "GlobalAlignment", "UKI"]
+    },
+    {
+      "id": "kr-26",
+      "masterObjectiveId": "obj-02",
+      "leaderId": "leader-11",
+      "description": "Launch 2 Japan-specific talent offerings for enterprise segment",
+      "progress": 40,
+      "status": "on_track",
+      "startDate": "2025-12-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Japan market research and offering design", "date": "2026-02-28", "completed": true},
+        {"name": "First offering piloted with NTT", "date": "2026-04-30", "completed": false},
+        {"name": "Both offerings generally available", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["APAC", "Methodology", "Japan"]
+    },
+    {
+      "id": "kr-27",
+      "masterObjectiveId": "obj-05",
+      "leaderId": "leader-11",
+      "description": "Translate and adapt unified methodology for Japanese market",
+      "progress": 55,
+      "status": "on_track",
+      "startDate": "2025-12-15",
+      "targetDate": "2026-05-31",
+      "milestones": [
+        {"name": "Translation of core materials complete", "date": "2026-02-28", "completed": true},
+        {"name": "Cultural adaptation review by local advisory board", "date": "2026-04-15", "completed": false},
+        {"name": "Adapted methodology deployed", "date": "2026-05-31", "completed": false}
+      ],
+      "tags": ["Methodology", "GlobalAlignment", "Japan", "APAC"]
+    },
+    {
+      "id": "kr-28",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-12",
+      "description": "Publish GenAI readiness methodology v2 for banking sector",
+      "progress": 45,
+      "status": "on_track",
+      "startDate": "2026-01-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "v1 banking methodology reviewed and gaps identified", "date": "2026-02-15", "completed": true},
+        {"name": "v2 draft with GenAI components circulated", "date": "2026-04-30", "completed": false},
+        {"name": "v2 published and available for all markets", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["GenAI", "FSI", "Methodology", "Assessment"]
+    },
+    {
+      "id": "kr-29",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-12",
+      "description": "Retain and expand 5 top banking clients with GenAI talent advisory",
+      "progress": 38,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "GenAI expansion proposals sent to 5 clients", "date": "2026-02-28", "completed": true},
+        {"name": "3 clients signed expansion contracts", "date": "2026-06-30", "completed": false},
+        {"name": "All 5 clients retained with expanded scope", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["GenAI", "FSI", "Retention", "ClientExpansion"]
+    },
+    {
+      "id": "kr-30",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-12",
+      "description": "Reduce banking delivery costs by leveraging standardized GenAI toolkits",
+      "progress": 35,
+      "status": "behind",
+      "startDate": "2026-01-15",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Toolkit requirements gathered from delivery teams", "date": "2026-03-15", "completed": false},
+        {"name": "First toolkit deployed on active engagement", "date": "2026-06-15", "completed": false},
+        {"name": "15% cost reduction measured", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["FSI", "Profitability", "GenAI", "Delivery"]
+    },
+    {
+      "id": "kr-31",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-13",
+      "description": "Develop GenAI talent framework for health sector workforce transformation",
+      "progress": 52,
+      "status": "on_track",
+      "startDate": "2026-01-01",
+      "targetDate": "2026-07-31",
+      "milestones": [
+        {"name": "Health sector GenAI use cases catalogued", "date": "2026-02-28", "completed": true},
+        {"name": "Framework v1 drafted and peer-reviewed", "date": "2026-04-30", "completed": false},
+        {"name": "Framework piloted with 2 health system clients", "date": "2026-07-31", "completed": false}
+      ],
+      "tags": ["GenAI", "Health", "WorkforcePlanning"]
+    },
+    {
+      "id": "kr-32",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-13",
+      "description": "Achieve 90% renewal rate across health industry accounts",
+      "progress": 68,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Account health assessment for all clients", "date": "2025-12-31", "completed": true},
+        {"name": "At-risk accounts stabilized", "date": "2026-03-31", "completed": true},
+        {"name": "90% renewal rate achieved", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Health", "Retention", "ClientExpansion"]
+    },
+    {
+      "id": "kr-33",
+      "masterObjectiveId": "obj-04",
+      "leaderId": "leader-13",
+      "description": "Deploy workforce planning platform to 4 health system clients",
+      "progress": 75,
+      "status": "on_track",
+      "startDate": "2025-09-01",
+      "targetDate": "2026-03-31",
+      "milestones": [
+        {"name": "Health-specific configuration complete", "date": "2025-11-30", "completed": true},
+        {"name": "3 clients live on platform", "date": "2026-02-28", "completed": true},
+        {"name": "4th client onboarded and live", "date": "2026-03-31", "completed": false}
+      ],
+      "tags": ["WorkforcePlanning", "Health", "HRTech"]
+    },
+    {
+      "id": "kr-34",
+      "masterObjectiveId": "obj-05",
+      "leaderId": "leader-14",
+      "description": "Adapt unified methodology for public service sector compliance requirements",
+      "progress": 30,
+      "status": "behind",
+      "startDate": "2026-01-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Regulatory and compliance mapping complete", "date": "2026-03-15", "completed": false},
+        {"name": "Public service variant approved by legal", "date": "2026-05-15", "completed": false},
+        {"name": "Methodology deployed to PS teams", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["Methodology", "PublicService", "GlobalAlignment"]
+    },
+    {
+      "id": "kr-35",
+      "masterObjectiveId": "obj-04",
+      "leaderId": "leader-14",
+      "description": "Implement workforce planning solution for 3 federal agencies",
+      "progress": 55,
+      "status": "on_track",
+      "startDate": "2025-08-01",
+      "targetDate": "2026-04-30",
+      "milestones": [
+        {"name": "FedRAMP compliance requirements addressed", "date": "2025-12-31", "completed": true},
+        {"name": "2 agencies in production", "date": "2026-03-15", "completed": true},
+        {"name": "3rd agency live", "date": "2026-04-30", "completed": false}
+      ],
+      "tags": ["WorkforcePlanning", "PublicService", "HRTech"]
+    },
+    {
+      "id": "kr-36",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-15",
+      "description": "Improve resources industry offering margins from 29% to 33%",
+      "progress": 58,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Pricing review and adjustment complete", "date": "2026-01-15", "completed": true},
+        {"name": "Delivery efficiency improvements implemented", "date": "2026-04-30", "completed": false},
+        {"name": "33% margin target sustained", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Profitability", "Resources"]
+    },
+    {
+      "id": "kr-37",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-15",
+      "description": "Win 2 new energy sector talent transformation engagements",
+      "progress": 50,
+      "status": "on_track",
+      "startDate": "2025-11-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Energy sector talent pitch deck finalized", "date": "2026-01-31", "completed": true},
+        {"name": "First engagement with Shell signed", "date": "2026-04-15", "completed": false},
+        {"name": "Second engagement signed", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["Resources", "ClientExpansion", "WorkforcePlanning"]
+    },
+    {
+      "id": "kr-38",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-16",
+      "description": "Develop GenAI content workforce transformation offering for media clients",
+      "progress": 35,
+      "status": "behind",
+      "startDate": "2026-01-15",
+      "targetDate": "2026-07-31",
+      "milestones": [
+        {"name": "Media sector GenAI impact assessment complete", "date": "2026-03-15", "completed": true},
+        {"name": "Offering design and pricing approved", "date": "2026-05-15", "completed": false},
+        {"name": "First pilot engagement launched", "date": "2026-07-31", "completed": false}
+      ],
+      "tags": ["GenAI", "Media", "WorkforcePlanning"]
+    },
+    {
+      "id": "kr-39",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-16",
+      "description": "Retain 8 of 10 top media industry accounts through proactive engagement",
+      "progress": 45,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Account health reviews completed", "date": "2025-12-31", "completed": true},
+        {"name": "Retention action plans executed for at-risk accounts", "date": "2026-04-30", "completed": false},
+        {"name": "8 of 10 accounts renewed", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Media", "Retention", "ClientExpansion"]
+    },
+    {
+      "id": "kr-40",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-16",
+      "description": "Reduce media offering delivery costs by standardizing engagement models",
+      "progress": 28,
+      "status": "behind",
+      "startDate": "2026-01-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Current engagement model analysis complete", "date": "2026-03-15", "completed": false},
+        {"name": "Standardized model designed and approved", "date": "2026-06-15", "completed": false},
+        {"name": "15% cost reduction achieved", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Media", "Profitability", "Delivery"]
+    },
+    {
+      "id": "kr-41",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-17",
+      "description": "Reverse declining consumer goods client retention trend from 72% to 85%",
+      "progress": 20,
+      "status": "at_risk",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Root cause analysis of client churn completed", "date": "2026-01-31", "completed": true},
+        {"name": "Client recovery plans executed for top 5 at-risk accounts", "date": "2026-04-30", "completed": false},
+        {"name": "85% retention rate achieved", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Retention", "ConsumerGoods", "ClientExpansion"]
+    },
+    {
+      "id": "kr-42",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-17",
+      "description": "Improve consumer goods offering profitability from 17% to 24%",
+      "progress": 15,
+      "status": "at_risk",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Profitability improvement plan approved", "date": "2026-01-15", "completed": true},
+        {"name": "Pricing and scoping adjustments implemented", "date": "2026-04-30", "completed": false},
+        {"name": "24% margin target achieved", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Profitability", "ConsumerGoods"]
+    },
+    {
+      "id": "kr-43",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-17",
+      "description": "Launch GenAI supply chain talent advisory for consumer goods",
+      "progress": 12,
+      "status": "at_risk",
+      "startDate": "2026-02-01",
+      "targetDate": "2026-08-31",
+      "milestones": [
+        {"name": "Supply chain talent GenAI use cases identified", "date": "2026-03-31", "completed": false},
+        {"name": "Offering prototype developed", "date": "2026-06-15", "completed": false},
+        {"name": "First client engagement launched", "date": "2026-08-31", "completed": false}
+      ],
+      "tags": ["GenAI", "ConsumerGoods", "WorkforcePlanning"]
+    },
+    {
+      "id": "kr-44",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-18",
+      "description": "Increase delivery center utilization from 82% to 90%",
+      "progress": 55,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Demand forecasting model implemented", "date": "2026-01-15", "completed": true},
+        {"name": "Cross-center resource sharing protocol launched", "date": "2026-03-31", "completed": true},
+        {"name": "90% utilization sustained for 2 months", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["Delivery", "Profitability", "Analytics"]
+    },
+    {
+      "id": "kr-45",
+      "masterObjectiveId": "obj-04",
+      "leaderId": "leader-18",
+      "description": "Deploy workforce planning platform in 4 delivery centers",
+      "progress": 68,
+      "status": "on_track",
+      "startDate": "2025-09-01",
+      "targetDate": "2026-03-31",
+      "milestones": [
+        {"name": "Platform configured for delivery center use", "date": "2025-12-15", "completed": true},
+        {"name": "3 centers live", "date": "2026-02-28", "completed": true},
+        {"name": "4th center live and all reporting operational", "date": "2026-03-31", "completed": false}
+      ],
+      "tags": ["WorkforcePlanning", "Delivery", "HRTech"]
+    },
+    {
+      "id": "kr-46",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-18",
+      "description": "Build GenAI delivery accelerator team of 30 specialists across centers",
+      "progress": 42,
+      "status": "on_track",
+      "startDate": "2026-01-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Role profiles and hiring plan approved", "date": "2026-02-15", "completed": true},
+        {"name": "15 specialists hired and trained", "date": "2026-04-15", "completed": false},
+        {"name": "Full team of 30 operational", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["GenAI", "Delivery", "Hiring", "Upskilling"]
+    },
+    {
+      "id": "kr-47",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-19",
+      "description": "Achieve 95% SLA compliance across all managed services contracts",
+      "progress": 78,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "SLA monitoring dashboard deployed", "date": "2025-12-31", "completed": true},
+        {"name": "Remediation plans for underperforming contracts", "date": "2026-02-28", "completed": true},
+        {"name": "95% compliance sustained for 3 months", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["Delivery", "Profitability", "ManagedServices"]
+    },
+    {
+      "id": "kr-48",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-19",
+      "description": "Expand managed services portfolio to 5 new client accounts",
+      "progress": 60,
+      "status": "on_track",
+      "startDate": "2025-11-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Go-to-market materials for managed services updated", "date": "2026-01-15", "completed": true},
+        {"name": "3 new accounts signed", "date": "2026-03-31", "completed": true},
+        {"name": "5 new accounts signed and onboarding", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["ManagedServices", "ClientExpansion", "Retention"]
+    },
+    {
+      "id": "kr-49",
+      "masterObjectiveId": "obj-04",
+      "leaderId": "leader-19",
+      "description": "Integrate workforce planning into managed services delivery model",
+      "progress": 62,
+      "status": "on_track",
+      "startDate": "2025-09-01",
+      "targetDate": "2026-04-30",
+      "milestones": [
+        {"name": "Integration architecture designed", "date": "2025-11-30", "completed": true},
+        {"name": "Pilot integration with 2 contracts", "date": "2026-02-28", "completed": true},
+        {"name": "Standard integration for all new contracts", "date": "2026-04-30", "completed": false}
+      ],
+      "tags": ["WorkforcePlanning", "ManagedServices", "HRTech"]
+    },
+    {
+      "id": "kr-50",
+      "masterObjectiveId": "obj-02",
+      "leaderId": "leader-20",
+      "description": "Establish APAC delivery hub in Manila with 50-person team",
+      "progress": 35,
+      "status": "behind",
+      "startDate": "2025-11-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Manila office space secured", "date": "2026-01-31", "completed": true},
+        {"name": "First 20 team members hired", "date": "2026-04-15", "completed": false},
+        {"name": "Full 50-person team operational", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["APAC", "Delivery", "Hiring", "Capacity"]
+    },
+    {
+      "id": "kr-51",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-20",
+      "description": "Reduce global delivery network costs by 12% through automation",
+      "progress": 40,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Automation opportunity assessment complete", "date": "2026-01-15", "completed": true},
+        {"name": "First wave of automation deployed", "date": "2026-04-30", "completed": false},
+        {"name": "12% cost reduction verified", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Delivery", "Profitability", "GenAI", "Analytics"]
+    },
+    {
+      "id": "kr-52",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-21",
+      "description": "Secure 3 strategic GenAI technology partnerships for talent advisory",
+      "progress": 67,
+      "status": "on_track",
+      "startDate": "2025-11-01",
+      "targetDate": "2026-05-31",
+      "milestones": [
+        {"name": "Partner evaluation and shortlist complete", "date": "2026-01-15", "completed": true},
+        {"name": "First 2 partnerships signed (Microsoft, Workday)", "date": "2026-03-15", "completed": true},
+        {"name": "Third partnership formalized", "date": "2026-05-31", "completed": false}
+      ],
+      "tags": ["GenAI", "Partnerships", "HRTech"]
+    },
+    {
+      "id": "kr-53",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-21",
+      "description": "Generate $8M in partner-sourced pipeline for talent offerings",
+      "progress": 55,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Partner co-sell program launched", "date": "2026-01-31", "completed": true},
+        {"name": "$4M partner pipeline generated", "date": "2026-04-30", "completed": false},
+        {"name": "$8M partner pipeline achieved", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Partnerships", "ClientExpansion", "GenAI"]
+    },
+    {
+      "id": "kr-54",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-22",
+      "description": "Develop 3 GenAI talent innovation prototypes for client demos",
+      "progress": 48,
+      "status": "on_track",
+      "startDate": "2025-12-01",
+      "targetDate": "2026-05-31",
+      "milestones": [
+        {"name": "Innovation sprint themes selected", "date": "2026-01-15", "completed": true},
+        {"name": "First 2 prototypes demo-ready", "date": "2026-03-31", "completed": true},
+        {"name": "3rd prototype complete and all refined", "date": "2026-05-31", "completed": false}
+      ],
+      "tags": ["GenAI", "Innovation", "Assessment"]
+    },
+    {
+      "id": "kr-55",
+      "masterObjectiveId": "obj-04",
+      "leaderId": "leader-22",
+      "description": "Research and validate next-gen workforce planning AI capabilities",
+      "progress": 58,
+      "status": "on_track",
+      "startDate": "2025-09-01",
+      "targetDate": "2026-04-30",
+      "milestones": [
+        {"name": "AI capability landscape analysis complete", "date": "2025-12-15", "completed": true},
+        {"name": "3 capability POCs developed", "date": "2026-03-15", "completed": true},
+        {"name": "Recommended capabilities validated and prioritized", "date": "2026-04-30", "completed": false}
+      ],
+      "tags": ["WorkforcePlanning", "Innovation", "GenAI", "Analytics"]
+    },
+    {
+      "id": "kr-56",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-22",
+      "description": "Publish 4 thought leadership pieces on GenAI and talent transformation",
+      "progress": 50,
+      "status": "on_track",
+      "startDate": "2025-11-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "First 2 articles published", "date": "2026-02-28", "completed": true},
+        {"name": "Research paper submitted to industry conference", "date": "2026-04-30", "completed": false},
+        {"name": "4th piece published", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["GenAI", "Innovation", "ThoughtLeadership"]
+    },
+    {
+      "id": "kr-57",
+      "masterObjectiveId": "obj-05",
+      "leaderId": "leader-23",
+      "description": "Launch unified go-to-market campaign for talent strategy practice",
+      "progress": 25,
+      "status": "at_risk",
+      "startDate": "2026-01-01",
+      "targetDate": "2026-05-31",
+      "milestones": [
+        {"name": "Campaign strategy and messaging approved", "date": "2026-02-28", "completed": false},
+        {"name": "Campaign materials produced", "date": "2026-04-15", "completed": false},
+        {"name": "Campaign launched across all channels", "date": "2026-05-31", "completed": false}
+      ],
+      "tags": ["GoToMarket", "GlobalAlignment", "Methodology"]
+    },
+    {
+      "id": "kr-58",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-23",
+      "description": "Generate $15M in qualified pipeline through new GTM motions",
+      "progress": 18,
+      "status": "at_risk",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "GTM motion playbooks developed", "date": "2026-01-31", "completed": true},
+        {"name": "$7.5M pipeline generated", "date": "2026-04-30", "completed": false},
+        {"name": "$15M pipeline target achieved", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["GoToMarket", "ClientExpansion"]
+    },
+    {
+      "id": "kr-59",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-23",
+      "description": "Create GenAI talent advisory market positioning and sales enablement",
+      "progress": 22,
+      "status": "behind",
+      "startDate": "2026-01-15",
+      "targetDate": "2026-05-31",
+      "milestones": [
+        {"name": "Competitive analysis and positioning complete", "date": "2026-03-15", "completed": false},
+        {"name": "Sales enablement materials produced", "date": "2026-04-30", "completed": false},
+        {"name": "Sales team trained and materials deployed", "date": "2026-05-31", "completed": false}
+      ],
+      "tags": ["GenAI", "GoToMarket", "Methodology"]
+    },
+    {
+      "id": "kr-60",
+      "masterObjectiveId": "obj-05",
+      "leaderId": "leader-24",
+      "description": "Finalize and communicate global talent strategy practice vision and OKRs",
+      "progress": 85,
+      "status": "on_track",
+      "startDate": "2025-09-01",
+      "targetDate": "2026-03-31",
+      "milestones": [
+        {"name": "Vision document drafted and reviewed", "date": "2025-11-30", "completed": true},
+        {"name": "OKRs aligned with all 27 leaders", "date": "2026-02-15", "completed": true},
+        {"name": "Vision and OKRs communicated to full practice", "date": "2026-03-31", "completed": false}
+      ],
+      "tags": ["GlobalAlignment", "TalentStrategy", "Leadership"]
+    },
+    {
+      "id": "kr-61",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-24",
+      "description": "Secure executive sponsorship and $5M investment for GenAI talent initiative",
+      "progress": 90,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-03-31",
+      "milestones": [
+        {"name": "Business case approved by group CEO", "date": "2025-12-15", "completed": true},
+        {"name": "$5M budget allocated", "date": "2026-02-01", "completed": true},
+        {"name": "Governance and reporting cadence established", "date": "2026-03-31", "completed": false}
+      ],
+      "tags": ["GenAI", "Leadership", "Investment"]
+    },
+    {
+      "id": "kr-62",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-24",
+      "description": "Establish quarterly client advisory board with 10 Fortune 500 CHROs",
+      "progress": 60,
+      "status": "on_track",
+      "startDate": "2025-11-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Advisory board charter and member list approved", "date": "2026-01-31", "completed": true},
+        {"name": "First advisory board meeting held", "date": "2026-03-31", "completed": false},
+        {"name": "Quarterly cadence established with 10 CHROs", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["Retention", "Leadership", "ClientExpansion"]
+    },
+    {
+      "id": "kr-63",
+      "masterObjectiveId": "obj-05",
+      "leaderId": "leader-25",
+      "description": "Rationalize offering portfolio from 42 to 25 distinct offerings",
+      "progress": 40,
+      "status": "behind",
+      "startDate": "2025-11-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Offering portfolio audit complete", "date": "2026-01-31", "completed": true},
+        {"name": "Consolidation plan approved by offering leads", "date": "2026-04-15", "completed": false},
+        {"name": "Rationalized portfolio published", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["Methodology", "GlobalAlignment", "Profitability"]
+    },
+    {
+      "id": "kr-64",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-25",
+      "description": "Develop GenAI offering development fast-track process",
+      "progress": 38,
+      "status": "on_track",
+      "startDate": "2026-01-15",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Fast-track process designed", "date": "2026-03-15", "completed": true},
+        {"name": "Process piloted with 2 new GenAI offerings", "date": "2026-05-15", "completed": false},
+        {"name": "Process standardized and published", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["GenAI", "Methodology", "Innovation"]
+    },
+    {
+      "id": "kr-65",
+      "masterObjectiveId": "obj-02",
+      "leaderId": "leader-26",
+      "description": "Scale APAC delivery capacity by 35% to support market expansion",
+      "progress": 28,
+      "status": "behind",
+      "startDate": "2025-11-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Capacity scaling plan approved", "date": "2026-01-15", "completed": true},
+        {"name": "First wave of 40 hires onboarded", "date": "2026-04-15", "completed": false},
+        {"name": "Full 35% capacity increase achieved", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["APAC", "Delivery", "Hiring", "Capacity"]
+    },
+    {
+      "id": "kr-66",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-26",
+      "description": "Improve APAC delivery margin from 21% to 27%",
+      "progress": 30,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Margin improvement levers identified", "date": "2026-01-31", "completed": true},
+        {"name": "Process efficiency improvements deployed", "date": "2026-05-31", "completed": false},
+        {"name": "27% margin sustained", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["APAC", "Profitability", "Delivery"]
+    },
+    {
+      "id": "kr-67",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-27",
+      "description": "Implement client health scoring system across all major accounts",
+      "progress": 15,
+      "status": "at_risk",
+      "startDate": "2026-01-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Health scoring methodology designed", "date": "2026-02-28", "completed": false},
+        {"name": "Scoring applied to top 50 accounts", "date": "2026-04-30", "completed": false},
+        {"name": "Full rollout to all major accounts", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["Retention", "Analytics", "ClientExpansion"]
+    },
+    {
+      "id": "kr-68",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-27",
+      "description": "Reduce client churn rate from 18% to 10% across practice",
+      "progress": 10,
+      "status": "at_risk",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Churn analysis and root causes identified", "date": "2026-01-31", "completed": true},
+        {"name": "Retention playbook deployed to account teams", "date": "2026-04-30", "completed": false},
+        {"name": "10% churn rate achieved", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Retention", "ClientExpansion", "Analytics"]
+    },
+    {
+      "id": "kr-69",
+      "masterObjectiveId": "obj-04",
+      "leaderId": "leader-03",
+      "description": "Complete workforce planning platform API integration with SAP SuccessFactors",
+      "progress": 72,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-04-30",
+      "milestones": [
+        {"name": "API design and SAP review complete", "date": "2026-01-15", "completed": true},
+        {"name": "Integration testing with 2 clients", "date": "2026-03-15", "completed": true},
+        {"name": "GA release of SAP integration", "date": "2026-04-30", "completed": false}
+      ],
+      "tags": ["HRTech", "WorkforcePlanning", "Partnerships"]
+    },
+    {
+      "id": "kr-70",
+      "masterObjectiveId": "obj-02",
+      "leaderId": "leader-07",
+      "description": "Achieve $5M quarterly revenue in APAC by Q3 FY26",
+      "progress": 32,
+      "status": "at_risk",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Revenue acceleration plan approved", "date": "2025-12-15", "completed": true},
+        {"name": "Pipeline coverage reaches 2.0x", "date": "2026-04-15", "completed": false},
+        {"name": "$5M quarterly revenue achieved", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["APAC", "MarketExpansion", "Revenue"]
+    },
+    {
+      "id": "kr-71",
+      "masterObjectiveId": "obj-02",
+      "leaderId": "leader-09",
+      "description": "Build LATAM sales team of 8 senior consultants",
+      "progress": 20,
+      "status": "at_risk",
+      "startDate": "2025-11-01",
+      "targetDate": "2026-05-31",
+      "milestones": [
+        {"name": "Job descriptions and compensation benchmarks approved", "date": "2026-01-31", "completed": true},
+        {"name": "First 4 hires onboarded", "date": "2026-04-15", "completed": false},
+        {"name": "Full team of 8 operational", "date": "2026-05-31", "completed": false}
+      ],
+      "tags": ["LATAM", "Hiring", "Capacity"]
+    },
+    {
+      "id": "kr-72",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-04",
+      "description": "Improve talent strategy offering utilization rate from 78% to 88%",
+      "progress": 35,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Demand-supply matching process redesigned", "date": "2026-01-31", "completed": true},
+        {"name": "83% utilization achieved", "date": "2026-04-30", "completed": false},
+        {"name": "88% utilization sustained", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Profitability", "TalentStrategy", "Delivery"]
+    },
+    {
+      "id": "kr-73",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-05",
+      "description": "Develop GenAI change management framework for enterprise transformations",
+      "progress": 42,
+      "status": "on_track",
+      "startDate": "2026-01-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "GenAI-specific change challenges mapped", "date": "2026-02-28", "completed": true},
+        {"name": "Framework v1 drafted and reviewed", "date": "2026-04-30", "completed": false},
+        {"name": "Framework piloted with 2 clients", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["GenAI", "ChangeManagement", "Methodology"]
+    },
+    {
+      "id": "kr-74",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-10",
+      "description": "Grow UK&I managed services revenue by 30%",
+      "progress": 45,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Managed services expansion strategy for UK approved", "date": "2026-01-15", "completed": true},
+        {"name": "3 new managed services contracts signed", "date": "2026-04-30", "completed": false},
+        {"name": "30% revenue growth achieved", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["UKI", "ManagedServices", "ClientExpansion"]
+    },
+    {
+      "id": "kr-75",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-06",
+      "description": "Improve Americas practice margin from 28% to 32%",
+      "progress": 38,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Margin improvement plan finalized", "date": "2025-12-31", "completed": true},
+        {"name": "Pricing adjustments implemented on new engagements", "date": "2026-03-31", "completed": true},
+        {"name": "32% margin target achieved", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Americas", "Profitability"]
+    },
+    {
+      "id": "kr-76",
+      "masterObjectiveId": "obj-05",
+      "leaderId": "leader-06",
+      "description": "Roll out unified methodology to Americas practice of 142 consultants",
+      "progress": 52,
+      "status": "on_track",
+      "startDate": "2025-12-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Americas-specific use cases added to methodology", "date": "2026-02-15", "completed": true},
+        {"name": "First 80 consultants trained", "date": "2026-04-15", "completed": false},
+        {"name": "Full practice trained and certified", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["Americas", "Methodology", "GlobalAlignment", "Upskilling"]
+    },
+    {
+      "id": "kr-77",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-12",
+      "description": "Win GenAI talent advisory engagement with top 3 global bank",
+      "progress": 50,
+      "status": "on_track",
+      "startDate": "2026-01-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Shortlisted for 2 RFPs at JP Morgan and HSBC", "date": "2026-02-28", "completed": true},
+        {"name": "Proposal submitted with differentiated GenAI approach", "date": "2026-04-15", "completed": false},
+        {"name": "Engagement won and staffed", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["GenAI", "FSI", "ClientExpansion"]
+    },
+    {
+      "id": "kr-78",
+      "masterObjectiveId": "obj-04",
+      "leaderId": "leader-14",
+      "description": "Complete workforce planning platform security certification for government use",
+      "progress": 65,
+      "status": "on_track",
+      "startDate": "2025-08-01",
+      "targetDate": "2026-03-31",
+      "milestones": [
+        {"name": "Security audit complete", "date": "2025-12-15", "completed": true},
+        {"name": "Remediation items addressed", "date": "2026-02-28", "completed": true},
+        {"name": "Certification granted", "date": "2026-03-31", "completed": false}
+      ],
+      "tags": ["PublicService", "HRTech", "WorkforcePlanning"]
+    },
+    {
+      "id": "kr-79",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-15",
+      "description": "Develop GenAI skills transition framework for energy sector workforce",
+      "progress": 32,
+      "status": "on_track",
+      "startDate": "2026-02-01",
+      "targetDate": "2026-08-31",
+      "milestones": [
+        {"name": "Energy sector GenAI skills gap analysis complete", "date": "2026-04-15", "completed": false},
+        {"name": "Framework v1 developed", "date": "2026-06-30", "completed": false},
+        {"name": "Framework validated with Shell and BP", "date": "2026-08-31", "completed": false}
+      ],
+      "tags": ["GenAI", "Resources", "WorkforcePlanning", "Upskilling"]
+    },
+    {
+      "id": "kr-80",
+      "masterObjectiveId": "obj-04",
+      "leaderId": "leader-20",
+      "description": "Implement workforce planning platform across global delivery network",
+      "progress": 50,
+      "status": "on_track",
+      "startDate": "2025-09-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Platform deployment plan for 8 delivery centers", "date": "2025-12-31", "completed": true},
+        {"name": "5 centers live", "date": "2026-03-31", "completed": true},
+        {"name": "All 8 centers live and reporting", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["WorkforcePlanning", "Delivery", "HRTech", "Analytics"]
+    },
+    {
+      "id": "kr-81",
+      "masterObjectiveId": "obj-05",
+      "leaderId": "leader-21",
+      "description": "Align partner ecosystem offerings with unified methodology",
+      "progress": 45,
+      "status": "on_track",
+      "startDate": "2025-12-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Partner offering alignment gaps identified", "date": "2026-02-15", "completed": true},
+        {"name": "Joint offering playbooks created with top 5 partners", "date": "2026-04-30", "completed": false},
+        {"name": "Full partner ecosystem aligned", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["Partnerships", "Methodology", "GlobalAlignment"]
+    },
+    {
+      "id": "kr-82",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-05",
+      "description": "Reduce change management engagement delivery time by 20%",
+      "progress": 48,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Process bottlenecks identified and prioritized", "date": "2026-01-15", "completed": true},
+        {"name": "Accelerated delivery playbook deployed", "date": "2026-03-31", "completed": true},
+        {"name": "20% time reduction verified across engagements", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["ChangeManagement", "Profitability", "Delivery"]
+    },
+    {
+      "id": "kr-83",
+      "masterObjectiveId": "obj-02",
+      "leaderId": "leader-11",
+      "description": "Grow Japan market revenue from $7.6M to $10M quarterly",
+      "progress": 30,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Japan growth strategy approved", "date": "2025-12-31", "completed": true},
+        {"name": "Pipeline built to 2.0x coverage", "date": "2026-04-30", "completed": false},
+        {"name": "$10M quarterly revenue achieved", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Japan", "APAC", "MarketExpansion"]
+    },
+    {
+      "id": "kr-84",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-11",
+      "description": "Improve Japan offering profitability from 27% to 31%",
+      "progress": 35,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Japan pricing and delivery model reviewed", "date": "2026-01-31", "completed": true},
+        {"name": "Adjusted pricing implemented", "date": "2026-04-15", "completed": false},
+        {"name": "31% margin sustained", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Japan", "Profitability"]
+    },
+    {
+      "id": "kr-85",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-13",
+      "description": "Cross-sell workforce planning platform to existing health clients",
+      "progress": 55,
+      "status": "on_track",
+      "startDate": "2025-11-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Cross-sell target list of 12 clients identified", "date": "2026-01-15", "completed": true},
+        {"name": "Platform demos delivered to 8 clients", "date": "2026-03-31", "completed": true},
+        {"name": "5 clients signed for platform", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["Health", "WorkforcePlanning", "ClientExpansion", "HRTech"]
+    },
+    {
+      "id": "kr-86",
+      "masterObjectiveId": "obj-01",
+      "leaderId": "leader-08",
+      "description": "Launch GenAI talent advisory pilot across 3 EMEA markets",
+      "progress": 40,
+      "status": "on_track",
+      "startDate": "2026-01-15",
+      "targetDate": "2026-07-31",
+      "milestones": [
+        {"name": "EMEA GenAI market assessment complete", "date": "2026-03-15", "completed": true},
+        {"name": "First pilot launched in Germany", "date": "2026-05-15", "completed": false},
+        {"name": "3 EMEA market pilots running", "date": "2026-07-31", "completed": false}
+      ],
+      "tags": ["GenAI", "EMEA", "Assessment"]
+    },
+    {
+      "id": "kr-87",
+      "masterObjectiveId": "obj-04",
+      "leaderId": "leader-01",
+      "description": "Define next-gen workforce planning product requirements with 10 enterprise clients",
+      "progress": 70,
+      "status": "on_track",
+      "startDate": "2025-09-01",
+      "targetDate": "2026-03-31",
+      "milestones": [
+        {"name": "Client advisory panel established", "date": "2025-11-15", "completed": true},
+        {"name": "Requirements from 8 clients gathered and synthesized", "date": "2026-02-28", "completed": true},
+        {"name": "Final requirements document published", "date": "2026-03-31", "completed": false}
+      ],
+      "tags": ["WorkforcePlanning", "Innovation", "ClientExpansion"]
+    },
+    {
+      "id": "kr-88",
+      "masterObjectiveId": "obj-06",
+      "leaderId": "leader-15",
+      "description": "Expand Santos Energy account from $2M to $5M annual revenue",
+      "progress": 42,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-09-30",
+      "milestones": [
+        {"name": "Account expansion plan approved with client sponsor", "date": "2026-01-15", "completed": true},
+        {"name": "New engagement scope signed for $1.5M", "date": "2026-04-30", "completed": false},
+        {"name": "$5M annual run rate achieved", "date": "2026-09-30", "completed": false}
+      ],
+      "tags": ["Resources", "ClientExpansion", "Retention"]
+    },
+    {
+      "id": "kr-89",
+      "masterObjectiveId": "obj-03",
+      "leaderId": "leader-19",
+      "description": "Reduce managed services delivery overhead by 18%",
+      "progress": 52,
+      "status": "on_track",
+      "startDate": "2025-10-01",
+      "targetDate": "2026-06-30",
+      "milestones": [
+        {"name": "Overhead reduction opportunities identified", "date": "2026-01-15", "completed": true},
+        {"name": "Automation of reporting and billing deployed", "date": "2026-03-31", "completed": true},
+        {"name": "18% overhead reduction verified", "date": "2026-06-30", "completed": false}
+      ],
+      "tags": ["ManagedServices", "Profitability", "Delivery"]
+    },
+    {
+      "id": "kr-90",
+      "masterObjectiveId": "obj-02",
+      "leaderId": "leader-26",
+      "description": "Deploy APAC-localized talent offerings in 4 markets",
+      "progress": 25,
+      "status": "behind",
+      "startDate": "2026-01-01",
+      "targetDate": "2026-07-31",
+      "milestones": [
+        {"name": "Localization requirements for 4 markets gathered", "date": "2026-03-15", "completed": true},
+        {"name": "Offerings localized for Singapore and Australia", "date": "2026-05-31", "completed": false},
+        {"name": "All 4 market offerings live", "date": "2026-07-31", "completed": false}
+      ],
+      "tags": ["APAC", "Methodology", "GlobalAlignment", "Delivery"]
+    }
+  ]
+}

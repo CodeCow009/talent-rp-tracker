@@ -1,0 +1,532 @@
+ 
+Key Points  
+
+Carolee's expanded leadership team spans five groups — offering leads, market leads, and industry experts — each needing to run independent strategies that must also roll up into a unified Talent RP strategy trackable by Emily and Steve.  
+
+Two core problems identified: (1) establishing regular operating cadences with structured and qualitative strategy tracking across ~30 MDs, and (2) improving consistency in messaging and content accessibility across the broader Talent organization.  
+
+Steve emphasized any solution must be low-burden for leaders — front-and-center in Teams or SharePoint, not resembling timesheet-style reporting — and easily delegable to deputies.  
+
+Pedro and Luca demoed a locally hosted task manager prototype as a proof-of-concept for capturing meeting notes, categorizing them, and generating structured action items in a single dashboard.  
+
+A role-based dashboard was proposed — different views for Steve, Emily, and individual leads — fed by structured financial data and unstructured qualitative updates from MDs.  
+
+Steve raised a critical security concern: revenue, sales, and profitability data cannot leave Accenture's walls, requiring any real solution to be hosted behind Accenture's firewall, not on third-party platforms like Netlify.  
+
+Pedro and Luca clarified the demo is illustrative only; a production-ready version would require IT involvement and internal hosting, with the near-term goal being a compelling demo to justify that investment.  
+
+Steve envisioned a single-page-per-leader format with four quadrants — financials, campaigns, strategic objectives, and qualitative narrative — surfaced in Teams or SharePoint, with structured data fed by his team and qualitative updates by the leads themselves.  
+
+Reducing leader burden is the top implementation risk — solutions should allow delegation to deputies and minimize manual input, ideally translating meeting outputs directly into trackable action items.  
+
+Emily highlighted the need for visual progress tracking (e.g., Gantt-style views) and cross-strategy intersection visibility, so interdependencies across markets, offerings, and industries can be identified.  
+
+Steve recommended researching Accenture's existing technology stack — including Digital Worker, Amethyst, Copilot Studio, Teams Planner, and SharePoint — before building anything new, noting similar solutions may already exist internally.  
+
+Post-call, Pedro and Luca identified three key technical blockers: Copilot Studio access for real agent integration, security and hosting compliance within Accenture's infrastructure, and Teams app embedding feasibility.  
+
+Both agreed the strategy is to build a functional demo showing what the solution could look like, then present the steps needed to make it Accenture-compliant — hooking stakeholders on the possibility before pursuing formal approval.  
+
+Luca to research Digital Worker and available internal tools; Pedro to investigate Copilot agent capabilities and security/hosting options; both to regroup mid-week with findings before the Wednesday meeting with Emily and Steve.  
+
+ 
+ 
+Action Items  
+
+Emily to work with Steve in working sessions to define the strategic quadrants and what needs to be tracked. - Emily 
+
+Pedro to send an update reflecting on the meeting by tomorrow. - Pedro 
+
+Emily to set up a one-hour meeting with Pedro and Luca for next Wednesday. - Emily 
+
+Luca to research the Digital Worker site and existing Accenture tools/technology stack. - Luca 
+
+Luca to run anti-gravity/Claude to generate multiple solution approaches for the problem. - Luca 
+
+Pedro to research Copilot agents and the security aspects of hosting a solution. - Pedro 
+
+ 
+ 
+Summary  
+
+Emily's Role and Responsibilities 
+
+Emily works within the talent business T&O and has been on and off the chief of staff for Carolee, their global lead, for the last couple of years 
+
+Emily supports Carolee with all client-facing, executive, and external activities. 
+
+ 
+
+Steve's Professional Background 
+
+Steve was a commercial director for Diamond healthcare accounts for a couple of years with a business operations lead role internally 
+
+Steve served as HR analytics and reporting lead for Accenture internally for about seven years 
+
+Steve then went client-facing again working in HR operations business closely with TNO and Irene Bletcher, who is now their America's Talent Lead 
+
+Steve has been the Director of Operations for TNO, now the Talent Reinvention Partner, for the past year supporting Carolee with internal running of the business and support functions. 
+
+ 
+
+Pedro and Luca's Technical Capabilities 
+
+Pedro and Luca are working on AI solutions and have developed a task manager demonstration 
+
+Pedro mentions they can develop infrastructure and present demos within a couple of days 
+
+Luca explains their task manager can categorize notes and create action items from meetings into a structured place for review. 
+
+ 
+
+Current Technology Stack and Workarounds 
+
+Emily and Steve currently use PowerPoint pages with different quadrants for financials, campaigns, and strategic objectives 
+
+They produce enablement packs today where leaders often delegate status reporting to their deputies 
+
+They use recaps and structured input but don't translate these into actionable plans 
+
+Steve mentions existing Accenture tools like digital worker, Amethyst, Teams Planner, and SharePoint. 
+
+ 
+
+Organizational Restructuring Challenges 
+
+Carolee is activating different groups of the business as they move towards the Re-Invention Services Model on April 1st 
+
+There are offering leads who look after what they sell to clients, people running markets, and industry experts within the challenge space 
+
+It's a bigger leadership team than before with lots of different pieces that need to run separately while tracking their own strategies 
+
+They want to bring everything together and roll it up into a talent RPE strategy that can be tracked from both Steve's and Emily's perspectives. 
+
+ 
+
+Status Reporting and Tracking Difficulties 
+
+They need to help five different groups of people set up regular cadences with recording and note-taking capabilities 
+
+Each group has big teams of 15-30 MDs under them requiring coordination 
+
+They want to roll up information from these groups into higher-level tracking 
+
+The new leadership team includes probably at least 30 people who will need updates 
+
+Leaders are extremely busy and anything that reduces the time they spend on status reporting would be helpful. 
+
+ 
+
+Content Consistency and Distribution Issues 
+
+They struggle with consistency in messaging and the things they tell people across such a big organization 
+
+There's inconsistency in the approach they use for work change or identifying talent strategy for clients 
+
+They want to take content and get it to places where everyone can use it 
+
+They need people to digest and interact with content in a dynamic way 
+
+They want to push updates out to people so they know when things are updated and can check relevant information at point of need. 
+
+ 
+
+Action Item Translation and Interconnection Visibility 
+
+They don't currently translate recaps and structured input into actionable plans 
+
+They want to translate action items into visual tracking pages showing how people are tracking against objectives 
+
+They need to see where things intersect across the matrix organization 
+
+Emily wants to know if what she's doing in banking is happening somewhere else within the talent RP 
+
+They struggle to identify interconnects of different strategies across various parts of talent due to the large number of people involved. 
+
+ 
+
+Data Security and Hosting Concerns 
+
+Steve asks where the solution would live and who would own the website or platform 
+
+Steve emphasizes that structured data like talent revenue, sales, and profitability is confidential and cannot leave Accenture's walls 
+
+Steve questions whether authentication is with Accenture or through a provided list of approved emails for third-party solutions 
+
+Steve stresses the need for Accenture-hosted solutions behind Accenture's firewalls 
+
+Steve warns about the complexity of getting IT approval for new systems and the need to work within existing tools and technology. 
+
+ 
+
+Implementation and Adoption Challenges 
+
+Steve emphasizes the solution must be easily accessible and not seen as an extra burden by leaders 
+
+Steve notes the challenge of getting people in leadership roles to pay attention to status reporting and filling in templates 
+
+Steve suggests it needs to be front and center, whether in Teams or another platform 
+
+Emily identifies leader time constraints as a major pain point requiring anything that reduces their reporting burden 
+
+Steve mentions leaders often delegate tasks to deputies, which the system needs to accommodate. 
+
+ 
+
+Scalability and Organizational Alignment 
+
+Steve notes this cannot be the only RP wanting such solutions and there needs to be a scalable approach 
+
+Steve emphasizes the need for Sissy and the growth and strategy team to understand what they're trying to do 
+
+Emily suggests even if this isn't the final solution, it could serve as inspiration for what it could look like 
+
+Steve mentions the solution needs to work for multiple RPs across the organization. 
+
+ 
+
+Immediate Implementation Timeline 
+
+Emily states they need to activate the first challenge with the most time pressure in the next few weeks 
+
+Emily suggests they need to know the key segments and quadrants by the middle of next week 
+
+Emily proposes working sessions over the next few days to define requirements before meeting again with Pedro and Luca 
+
+They schedule a follow-up meeting for next Wednesday for one hour. 
+
+ 
+
+Development and Demo Timeline 
+
+Pedro commits to presenting something within the next couple of days if there's value in implementation 
+
+Pedro suggests they can develop infrastructure and present demos quickly 
+
+Pedro and Luca commit to providing an update by tomorrow on their reflections from the meeting 
+
+Pedro mentions they'll have something to show by mid-week, definitely by Wednesday. 
+
+ 
+
+Research and Validation Phase 
+
+Steve suggests Pedro and Luca should research throughout the Accenture ecosystem to see if similar solutions already exist 
+
+Steve recommends investigating existing technology stack functionalities they might not be using 
+
+Pedro mentions they need to research Copilot Studio for real agents and integration capabilities 
+
+Luca acknowledges they need to work with Accenture resources to see what they can build over the next few days. 
+
+ 
+
+Meeting Scheduling and Preparation 
+
+Emily requests setting up one hour next Wednesday for follow-up discussion 
+
+Emily and Steve will work together over the next few days to define what the quadrants should look like 
+
+Emily will work with Sissy and Suzanne from the strategy side to understand business operations requirements 
+
+Emily plans to examine what offer leads are submitting and plans from market leads to understand required formats. 
+
+ 
+
+Research and Development Tasks 
+
+Pedro will investigate Copilot agents and security aspects of potential solutions 
+
+Luca will research Digital Worker and existing Accenture tools mentioned by Steve 
+
+Pedro and Luca will brainstorm and categorize different capability buckets from current state to additional features 
+
+They will provide an update by tomorrow on their reflections and mid-week deliverables. 
+
+ 
+
+Solution Architecture Planning 
+
+Pedro and Luca will determine acceptable security levels and authentication requirements 
+
+They need to research Teams integration possibilities since they don't currently have access to agents 
+
+They will investigate what existing Accenture tools like Amethyst, Teams Planner, and SharePoint can provide 
+
+Pedro mentions building a demo to show what's possible rather than the final solution in one week. 
+
+ 
+
+Technical Demonstration Challenges 
+
+Pedro's task manager demo was running slowly because it was built for fun with cost-effective development 
+
+The backend was loading slowly during the screen share demonstration 
+
+Pedro explains the solution is currently running locally on his computer and could be hosted on Netlify with Accenture email authentication. 
+
+ 
+
+Post-Meeting Technical Discussion 
+
+Pedro and Luca discussed the daunting nature of the project timeline after Emily and Steve left the call 
+
+They identified three main research areas needed: Teams and Copilot possibilities, hosting solutions, and security requirements 
+
+Luca expressed concern about any third-party hosting solutions being rejected by Accenture 
+
+Pedro suggested building a demo to show possibilities and then determining steps for Accenture compliance if there's interest. 
+
+Emily | 00:02  
+I sit within our talent business T&O currently and I've been on and off the chief of staff for Carolee, our global lead for the last couple of years as she joined and so that's what I'm Like your intros make me so excited to tell you my problems. I should have brought along the list. That is Nick.  
+Luca B | 00:28  
+Can I turn on co-pilot, by the way? Sorry, so that we can get it.  
+And then see how we can use our tool in the future.  
+Steve | 00:39  
+Thanks for making the time and Emily, thanks for including me.  
+I was a commercial director for a couple of our... Diamond healthcare accounts for a couple of years as well, which is I had like a business operations lead role internal.  
+And then I was our HR analytics and reporting lead for Accenture internally for about seven years. I then went client-facing again and was in our HR operations business working closely with TNO and Irene Bletcher, who's now our America's Talent Lead.  
+And then most recently now for the past year, I have been the Director of Operations for TNO, now the Talent Reinvention Partner. So I, like Emily and I, work in complementary ways.  
+So she supports Carolee with all Carolee's sort of Client-facing, executive, external stuff, and I support Carolee with all the internal running of the business and all those sort of support functions that need to come together to help run that. Talent business.  
+So I'm excited to hear. I know a little bit about what Emily's got in mind, but this is a little bit new to me too and excited to hear about what you guys think you can do to help. I think it's really about getting us prepared with a good foundation for how to keep Carolee's new, now expanded, many-person leadership team. Accountable and working ahead to the same set of objectives and keeping ourselves honest on how we're doing.  
+So. Thanks for coming to the call.  
+Emily | 02:18  
+Amazing. So, Pedro, Luca, do you want me to give you a bit of context? Steve did a good job of doing it, like, the 30,000 foot there and I can just show you something that just starts to dive into it in a little bit more detail and then I don't want to in any way solution so I will just tell you what we're looking to do with what populations and then it would be great to hear like thoughts from the two of you.  
+Pedro | 02:48  
+Absolutely.  
+Emily | 02:50  
+Absolutely. Good. So, You've just mentioned it there, but as we move towards the Re-Invention Services Model on April 1st, Carolee, currently the T&O lead, Seem to be the talent RP lead is at the moment activating her different groups of the business.  
+So there are offering leads who look after what it is we sell to clients, whether it's changing workforce, whether that's in the leadership space. There are people who are going to run our markets. There are people who are going to be our industry experts within the challenge space. I can show you an org chart in a bit that shows you all of the different groupings of people. That... Fundamentally. It's a bigger leadership theme than we had before with lots of different pieces in it. All of them need to run separately. Run their own strategies and track their own strategies continue to be aware of all of their actions, etc. But we want to bring it all together and roll it up into a talent RPE strategy that again we could track from Steve's perspective, from my perspective, so that we can see that we're moving to the business path.  
+So financials and numbers. And then... From a strategic plan, which is where I would be Looking at it wrong.  
+So... What would be What we're kind of looking to solve is how do we take these, let's call it five different groups of people, who all have big teams of, let's say, 15, 30 people of, like, 15, 30, like, MDs under them. How do we... Help them set up regular cadences like you were talking about with recording the copiloting the notes getting that into a different like way of tracking And how do we then roll that up? That's like one immediate thing that we need to activate in the next like weeks or so. But then there is a bit of a wider... I'm really curious to know what you think about this. I didn't know I could bring all my problems.  
+So my second thing, and we don't have to go into both today, but is. We're such a big part of the organization. There are so many people within the talent arc of our case. That sometimes it's really hard to get consistency, whether that's in messaging, the things that we tell people, and whether it's in like the approach that we use to do work, change or identifying a talent strategy for applying. As part of this, as we stand up these structures, this operating cadence, we want to think about how we can take content, Get it to places that everyone can use. And help people digest that and interact with that content in a dynamic way So those are the two. Two challenges. If we could start with the first one, just because that has the most time pressure associated with it, that would be great. But see if I missed anything.  
+Steve | 06:27  
+No, I think it's helpful that you distinguish that there's like structured data elements and there's more like qualitative strategic sort of elements all of that will be part of this For me, I guess, I'm looking for like structured, repeatable And it's got to be something that is easily accessible. I'm just thinking about like implementing this and executing it. It has to be something that people who are in leadership roles, and we know how challenging it can be to get them to pay attention to things like status reporting and filling in templates. It's got to be like, front and center, whether that's in some team's thing or whatever it is, right? But it has to be something that we think can, easily just actioned and something got they're not going to see as like an extra burden.  
+So it will be a priority of Carolee's, so everyone's going to need to do it. But to the extent we can make it not burdensome That's what comes to mind so far.  
+Luca B | 07:30  
+Less like reporting your timesheet and more just like a little task you do on the side.  
+Steve | 07:34  
+Yeah. Yep. And to the extent it can take, like, I like what you said about taking existing inputs, like meeting stuff and like translating that and carrying that through.  
+Cause we do those kinds of recaps today, but we don't, the thing we don't do with that is we don't take that, those recaps and that structure that, input and like translated into actionable plans. So that's probably one of the things that we're It would be good to have this new approach.  
+Pedro | 08:04  
+So, Luca, feel free to chime in. I'm just going to speak.  
+Well, firstly, I'm going to make sure that I understand what the situation is. Currently, as a part of the big reorg beginning on April 1st, Carol Lee is activating different parts of the business. And so there are going to be like different tiers of the structure. And we're needing a way to capture both the structured and the unstructured data.  
+So structured data being like in terms of meeting like numbers, financials and unstructured is in terms of how these different MDs are working towards like meeting the goals being set by Carol Lee. Is that pretty much?  
+Luca B | 09:00  
+That's.  
+Emily | 09:01  
+Exactly right. That's a great description.  
+Pedro | 09:03  
+Interesting. There are so many things I kind of jump immediately to mind. And I think, One thing that would be helpful to help you both kind of contextualize internally what is possible, because I don't want to over-promise and under-deliver, but with AI, literally anything is possible that you can think of. I'm going to go ahead and screen share something real quick to We will see if our first iterations of our task manager is working. But I think that this plays into a part of a solution here. I'm going to go ahead.  
+Luca B | 09:46  
+Absolutely. And as Pedro sharing his screen, you know, one of the things this task manager does very well, or we're hoping will do very well as we continue to iterate it is some take some of these structured items such as taking these notes, categorizing these notes, More importantly, creating action items from these meetings and then putting them into a structured but singular place where everybody can review and look at them. Now, the UI, I think Pedro would agree with this, the user interface is something that we're still working on, especially because we're trying to focus on the product before we focus on making it look pretty. I know we're consultants, so we always look pretty, but the product is very important here. And so this is something for us that as Pedro pulls it up. And shows it via his screen that I think could be very helpful, especially as we slowly begin to scale it.  
+Pedro | 10:45  
+So just kind of to chime in, the reason why this is like a slow and B is like a still working demo is because we were just working this like for the body, it's more for fun. So like working with like, try to keep, you know, costs and development as cheap as possible. But in terms of like, while we're kind of just waiting for the backend to load here, what kind of jumps at me is, I Personally, don't like to do any things on like any additional excels or forms. And so I imagine that any new tracker or status reporting solution needs to stay like as... As far away as possible from my kind of appearing to be one thing like Luca mentioned, like filling out a task, sorry, not a task manager, blue timesheet. And so what I'm thinking the most high value way here is just off the dome thinking like an agentic system that would essentially track and be able to synthesize the different work that each MD is doing, pulls that information and then populates some sort of dashboard that can then have a different view depending if Steve's looking at it, if Emily's looking at it, or whoever is looking at it. In terms of getting the data, we would just need the structured data to identify where that's coming from in order to map it onto this dashboard website.  
+And then the unstructured data is where we would then need to implement an additional way of working, I think. But I spoke very... At a super high level.  
+Steve | 12:33  
+Yeah. It's going to, and it's going to require input from the leaders so that we're not going to get around that. My question, We're... Where does this live?  
+Like where is, Who owns this sort of whatever this website is or wherever you're going? Is this Accenture?  
+Pedro | 12:50  
+Yeah. So this right here is just locally on my computer.  
+So it's living in like my code files. I could put it hypothetically like for the website that I created for the botany group, our AI group. This lives on just like a site that I have hosted Netlify, but it's authentication.  
+So you can only get in if you have an Accenture information So it was like deep.  
+Steve | 13:19  
+Are you authenticating with Accenture or did you provide a list of Accenture emails that are approved to access this? And this is totally third party.  
+Pedro | 13:26  
+Both. Both.  
+So for example, you can only log in if you have an Accenture, like you put in your Accenture email and then we'll like send you a request, like an email, like get sent to your Accenture email that you have to like log in. There's very like, lack of a better word, like low key.  
+So this was kind of just like put together. But those are ways that we can like quickly put stuff up in terms of officially.  
+Steve | 13:52  
+Let me tell you why I asked the Because of course, if I'm going to give you structured data like, You know, our talent, revenue, sales, profitability.  
+Pedro | 13:53  
+Question. Yeah, absolutely.  
+Steve | 14:02  
+Confidential. That clearly cannot leave the walls of Accenture.  
+So... That's why I ask like, Is that an Accenture hosted solution behind Accenture's firewalls or something else?  
+Pedro | 14:14  
+Great question. Great question. I think in terms of like, Accenture, like an Accenture doc org domain. That's something we would probably need to get IT to host. But in terms of infrastructure that we can stand up, we can develop it and then present it to the both of you within the next couple of days.  
+And then if there is like, okay, this actually would be a solution that would be implementable, then we can take it to help make it real. But I think what we can do is probably present a demo of it so that there can be value on whether or not it's worth going through with that.  
+Steve | 14:54  
+I think that's great. I think we just all need to be realistic. I think it's really funny. You say take it to IT. It's so complex to get stuff like that to the ground here.  
+So I just want to be super realistic that as we're thinking about this, working within the bounds of the tools and technology that we already know exist and you know, we'll just have to see. I think Emily to like if this is something that's very much a priority this is what you and I sort of told you this too I think we need to make sure that like Sissy and the growth and strategy team understand what we're trying to do because yeah Obviously, we're not going to be the only RP wanting to do stuff like this, and there does need to be a solution. But it has to be something that's scalable, secured on our- posting all that stuff so.  
+Emily | 15:46  
+Yeah. And even if, like, from this isn't the way something like this gets built to a point, like, it's going to have to exist at some point.  
+Yeah. Even if this is, like, the... The inspiration for like what it actually could look like that would be helpful.  
+And then maybe there are bits and pieces of it that we could implement in the meantime. Absolutely.  
+Like status reporting on say like qualitative no sorry Yeah.  
+Luca B | 16:16  
+Absolutely.  
+Pedro | 16:17  
+Yeah, go for it, Luca.  
+Luca B | 16:19  
+All I was going to add was, Steve, Emily, you guys bring up an excellent point, right? We are dealing with Accenture information. We are dealing with Accenture-specific data, and we cannot necessarily trust a third party with that. What we are using this local host and Netlify as is an example for you guys to see how something might work, right? And as Pedro was discussing, right, we would have to go internally and create that process, Eve. But It seems like the way that AI is completely revolutionizing day after day, it seems like we're kind of the guinea pigs in this, where some of the first people were trying to implement a system like this. And so there will be a few growing pains as we work with Accenture. I understand that some people just got – it just rolled out quickly. Chat gbt enterprise for strategy consulting right so it clearly that development might take a while but what pedro and i can really show you is what a system could look like and how we could implement that and then The back end in terms of building the system with Accenture might not be something we are as capable to help with as analysts, but Pedro, if I'm wrong, by all means.  
+You know, shoot me in the foot, but we can definitely build you something that'll look presentable and look usable. That makes, yeah.  
+Pedro | 17:40  
+I would say just to kind of go like drill down a little deeper, while we still have the both of you for three minutes, what are some more like pain points that you anticipate? Like a, like, well, I guess what I'm curious is like, what would be your like knee jerk reaction?  
+Like, okay, if I have to improve, implement some sort of status reporting right now to support the current objectives, what would it kind of look like? And then what do you anticipate as being problems with it?  
+Steve | 18:09  
+Emily, do you have any view today on what the key segments are that Carol leaves? Because let me just tell you, the way that I... Would envision this working. This is very low tech, but it would be a single PowerPoint page with different, like four quadrants and you got financials, you got campaigns, you've got whatever it is, strategic objectives, whatever, that care, you know, what are the things Carly talks about each lead gets a page. And it's got indicators, it's got updated metrics, it's got qualitative narrative information. Text updates, whatever. And there's some way, obviously, we would be able to pull that up in a meeting, we'd be able to go to it and say, okay, last per change, what's your update? For Irene for the America's Market. What's your update? Blah. The key would be how do we get that information flowing into it And in a way that's easy to do and the leads can feed their qualitative updates. My team can feed the structured data.  
+Yeah. I mind that's kind of how this comes together. And we would do that in an embedded in a teams you know, application that sits in teams or something like SharePoint or, you know, whatever. Using AI, using whatever, but Yeah.  
+But I haven't seen anything, Emily, that you're thinking about in terms of what you were looking to track, but that's how I was thinking about.  
+Emily | 19:31  
+Yeah, I think that makes sense. I think there's a couple, I think, You asked about the problems. It's going to be, and Steve talked about it earlier, it's going to be the time it takes leaders to do this. Anything we can do to reduce that. Or enable them to even like push it to members of their team so they are not the ones actually filling out doing like, for example, status reporting, like would be helpful because that's a huge pain point. It's just how busy they are.  
+Steve | 20:04  
+It's how we do the enablement pack that we produce today. Where they a lot of them delegate that to their deputy or whatever which is fine but we just to work with.  
+Emily | 20:15  
+Yeah. Yeah, exactly. And I think the other thing is, in like Even like putting stuff on Translating like actionists into like almost like found on pages so that we can see like how people are tracking against things like are things like not happening in the speed that we need them to so that it's like an easy visual like some kind of gantt based on Firstly, that strategy, which will have to mock up what we think each strategic page looks like. And secondly, like the action tracking. I think that would be helpful because the thing we don't see a lot of is where do things intersect? And, like, that's a longer term, like, so... But. Because everything's matrix.  
+Like, if what I want to be able to know, I want to know if what I'm doing in banking is happening somewhere else within the talent RP moving forwards. So I think it's like, what are the interconnects of all those different strategies that will get made for the different parts of talent? And how do they come together? Because I think that's, What is very hard. To do just because of the level of number of people.  
+Steve | 21:41  
+Yeah, because there's like The new leadership team is, I don't know that she'll need updates from all these people, but, you know, there's probably at least 30 people. That are going to happen.  
+You know, page or whatever it ends up looking like. Each market MU offering industry.  
+Emily | 22:01  
+Yeah.  
+Steve | 22:01  
+And the engines.  
+Emily | 22:03  
+Yeah it's gonna be a lot and then one more thing is pushing it out to people so that they know that things are updated, that they can go in and check stuff in a part way so that Again, they don't have to go in and check or they don't have to wait until the end of the week and review the whole thing. If it can give the relevant updates for them. I don't know what they would be in this scenario. We'd be able to work through that, but that would make a really big difference, I think, to the leaders. Who are they engaging with us? Because I think people like Steve and I will be like, It's like day to day. Looking at like how the business is running but for the leads I think Coming in at point of need. It's like a big difference for them. Consciously aware at times, sorry, I continued talking, but...  
+So I could give you the problems.  
+Pedro | 23:09  
+No, that was super helpful.  
+Luca B | 23:14  
+That was extremely helpful. It was a very great way to understand the scope of what the problem is.  
+And then Steve, I really appreciate you bringing in the input about being careful about how we manage and leverage Accenture specific information. But I think Unless Pedro has any, this for me is something that I feel like I can go back and work with and kind of use the resources that we have through Accenture and just see what we can build over these next few days. I feel like there may be a few more questions that I have that come up as the system itself is being built or as we try and find new ways to implement it, whether it's in Teams or SharePoint or whether we're able to create a completely separate system that would align with the ideas of Accenture. But I think, you know, Emily, I think it's incredible. I think this is a really cool problem to look at. I think it's really fun. I think it has a lot of different avenues and aspects that you might not normally see. And, you know, I can just, I'm envisioning, I'm trying to envision, my mom worked in business. I'm trying to envision her like looking at something like, okay, how would my mom want to look at this so that she understands it right? And that way it makes sense. And so And honestly, it looks awesome. I'm not going to lie. It looks really awesome.  
+So I appreciate you sharing that with.  
+Steve | 24:32  
+Us. Well, both Emily and I, I'll speak for her. We love your enthusiasm. And I wish we don't always feel that level of positivity and enthusiasm in our roles.  
+So that's really great to hear. Emily, when do you think we would have, like, as these guys are maybe thinking about what structurally this could look like in a process and how to get inputs to output? When's your sense that we would know from Carolee what are the, like, I'm just going to use my example, the quadrants, what is she going to be looking for? When do you think we would know that? Because that would be the next step to plugging in what is it that we're going to be trying to report on.  
+Emily | 25:04  
+Agreed. I wonder if we need to see it towards, and tell me if this is reasonable, but like the middle of next week to know a level of like, what are the quadras? I think we can work with Sissy, Suzanne from the Greatest Rastry side of things. You mentioned but like the like how the business is like running I can start looking at stuff that the offer leads are submitting and like the plans from the market leads and what they need to look like because then I think if you and I do some working sessions on that over the next few days then when we get to meet again with Pedro and Luca we can see the what it could do And that we can say though, What would need to be in it? Peace.  
+You know, Maybe we spend an hour together doing so we get a chance to cover like both pieces next week.  
+Steve | 25:57  
+And Luca and Pedro, for you, this cannot be a unique problem that we're trying to solve. So just As you're taking the next few days to think about this, go and just do some deep research throughout the Accenture ecosystem, because I'm guessing something like this already exists. Is being addressed somewhere.  
+So it would be helpful just to sort of see and what are the functionalities of our existing technology stack that we're not maybe using? Like, I don't know if you used to go to ever go to digital worker, but the digital worker.eccenture.com site is really good to use. Show you all the different tools that we have. We have Amethyst, like can we use Amethyst for some of this stuff or like building agents there or, you know, something embedded in Teams like Planner or, you know what I mean?  
+Yeah. Like stuff, So just. All of those things should, I think, be in consideration.  
+Pedro | 26:46  
+Yeah. Thank you for the suggestion for digital worker.  
+Well, what we'll do is we'll think and we'll brainstorm and we'll try to categorize like different buckets from like what we have right now to like additional capabilities building outwards. But I think with the next few days, like definitely by mid week, we'll have something for you guys to look at. And we could probably shoot an update by like tomorrow and kind of like where we have reflected, after today.  
+So this is definitely a really exciting problem. And I'm curious to see what we can cook up.  
+Emily | 27:20  
+Yeah, this is very good. Thank you for, and you're right, the enthusiasm and, like, excitement to solve a problem is making my day.  
+So thank you all.  
+Luca B | 27:32  
+I was going to say, thank you guys for coming to us to help with the problem. You know, this is what we love to do. This is what we really enjoy about Accenture is we have this opportunity and the resources to do this.  
+So again, at least for me, and I'm sure Pedro's in the same boat, we really appreciate the opportunity. Show you guys what we might be able to build.  
+Emily | 27:51  
+It's going to be fun. Okay. Can we set up some time next Wednesday? An hour that would be really helpful and then yeah let's stay connected by paying in the meantime Thank you.  
+Pedro | 28:03  
+All right. Absolutely. We'll get that set up. Thank you.  
+Emily | 28:08  
+Bye.  
+Pedro | 28:13  
+Get these copilot notes.  
+Luca B | 28:16  
+What are we thinking, brother?  
+Pedro | 28:18  
+? It's definitely a very. Big project to say the least I mean, it's...  
+Luca B | 28:26  
+It's daunting i'm not gonna lie well it's daunting in the time frames.  
+Pedro | 28:34  
+It's daunting because if you think about it, I mean, there's only like two obstacles or like two things here that I don't like. Is the first is we're going to need to do research into Copilot Studio because Copilot Studio, which we don't have access to right now, gives more integration and like is real, like it's real agents, right?  
+So we would need to investigate that because real Copilot agents might be able to do a lot more closer to what we want, what we would envision. So we would just need to research that.  
+I mean, From a...  
+Luca B | 29:27  
+What's up? Do we use like flawed code work or create agents through Cod code.  
+Pedro | 29:32  
+We can create agents through cloud code. We can create agents through anything and everything. I'm just thinking about it's like the access, right? It's the access to the information.  
+And then the second thing that I don't like, but we'll need to really look into is like the security aspect of it. And so it's like if we were to put it on like, I guess we would need to figure out like what's the acceptable level of security and if that is just like, okay, we'll just put it on our website. We'll just like have like two layers of authentication. And like, if that's, if that is enough, because I imagine it's like, Off the top of my head, and I can't speak on this too much because I don't really super know it's like, What we would just having good authentication should be enough because the databases themselves are secure. Then I guess it's like, do you put on what, Where do you host it? That's probably the one thing. I don't know. We'll just have to do research into that. But. But... In terms of, they mentioned a good point. This is the third thing is like, ideally like a team's agent or like trying to make it as easy as possible to..  
+So that is on a website. That is a web app or that's inside of Teams. We would need to research what the Teams possibility looks like because that's not something we're privy to because we just don't have access to agents, so we don't really know what they look like or do.  
+Luca B | 31:23  
+I mean, I think you bring up a good point there. I think the, Listen, I'm going to on the side of caution here. I think they're going to shut down anything that's not internal. We can't go to a third party. If we were to build a website, it'd have to be an internal build. I don't know how we do. I don't think they'd be okay with a Netlify.  
+Pedro | 31:45  
+Yeah, nullify solution.  
+Luca B | 31:46  
+Even if there's three-factor authentication, I think if there's anywhere that Accenture's information is going that's not within Accenture, they're not going to... They're not going to approve. Hold on. Let me go grab a protein shake because I need to eat food. I'm leaving the call. I'm letting go of that thing.  
+Pedro | 32:05  
+Yeah, same. I need to grab the copilot notes.  
+Luca B | 32:45  
+Yes, you can call me for all the good and the bad of it.  
+It doesn't matter. So I'm thinking about this.  
+So I honestly, when they were talking about task stuff, I thought of tasks.  
+Pedro | 33:06  
+Yeah, I thought, I visualized task, task.org in my head. I mean, that's...  
+Luca B | 33:12  
+I immediately thought of tasks, and instead of the notification thing we have through Slack, it's a little bit, it's not necessarily better, but it's... It's better at scale. Does that make sense? Where it's like, if you're working on a project, right, like, You'll get the notifications, but then, you know, at like noon, it'll be like, okay, here's a, like, let's get a checklist of what you've done for the day. Do you know what I mean?  
+Like an unskippable cutscene type beat, which I know sounds crazy, but like... -.  
+Pedro | 34:00  
+Well, I think we have our three things that we need to figure out, which is... The ...teams and co-pilot possibilities... And where we would host this I mean, what do they currently use?  
+Like, I mean, it sounds like they want like a Jira... For the work stream that's more integrated with like AI.  
+I mean, right.  
+Luca B | 34:35  
+Yeah, I don't know. I mean, let's be real. For most of this stuff, people use OneNote, SharePoint, and then they write notes themselves.  
+Like, there is no... There's no set thing for this. And yeah, we don't have access to Copilot in that studio.  
+Pedro | 34:56  
+And we could probably, I mean, we could probably. I mean, we can build...  
+I mean, we can build whatever, but as long as we have a plan to then be like, okay, then we'll transfer this into this, that we'll use Microsoft CodePod Studio for this, and then we'll do this for that. This for that. In terms of just building a demo, what it could look like is we're not building the solution, in a week, but we're building on what the solution could look like.  
+Luca B | 35:27  
+Yeah.  
+Pedro | 35:28  
+Me.  
+Luca B | 35:29  
+I'm trying to think... So. The pain point I'm running into is absolutely... The fact that If we build anything outside of What could be in the domains of Accenture? They're going to shut it down. The problem is the best solution is that it's not necessarily using like you know, a net lapod, but at least...  
+Something similar. You know, and maybe we do that within Accenture. Because if you have a website for it or an app for it that you can download, on your.  
+Pedro | 36:15  
+Luca, I think the problem, well, the solution here is the following. We build something that we think is a decent middle ground. We show them what it looks like. We show them, okay, if you want to make this real, and Accenture compliant, these are the steps. And like, these are the services that we need approval for.  
+And then if they really want it and we don't really know, then, you know, It's on... If they really want it, if they see the value in it helping them and making them look good to the top boss of talent organization, then they will figure out some way, maybe add a little bit more flexibility. I don't know. But as long as it's possible, you just got to hook them on the possibility is what it sounds like. Because we're not doing this for a project code, we're not doing this for anything.  
+So it's like we're presenting what we like to them at the end of the day. Taking measures to be reasonable.  
+Luca B | 37:11  
+- I think you bring up a good point there. I think I'm overthinking.  
+Pedro | 37:14  
+It. Yeah, let's not cut.  
+I mean, let's just be let's be cautious, but not like overly cautious where we don't do anything. I think we know what our research is and we just now need to run some props into like co-pilot. And so on. It's like, what does a co-pilot agent do Because I think we're still, the qualitative data aspect is the interesting one. Because... What sounds to me like being perfect, like is if there was a, if there was the task recorder stuff, because then you can really build a lot of good data with that and really track everything granularly, which would be the ideal view. But then that wouldn't be the solution in of itself.  
+Cause then we would need the quantitative data structure as well. I mean, I'm just thinking from like an enterprise B2B perspective, not necessarily Accenture. It's like, The solution would be a task manager where then there's a higher level of orchestration where you take everybody's action items, you a synthesis, like you synthesize them to like objectives that is directly what's being shown and reported by like similar to task.org. And then...  
+Yeah. Just the qualitative. Qualitative and the hosting. And what we would use as the agent process. Okay, so let's break that I think let's break this up into like action items so that we can kind of go from here. Do you want to, I guess, like do the research into like the digital worker, like what the guy shouted out?  
+Luca B | 39:14  
+Yeah.  
+Pedro | 39:15  
+Okay, sick. Get some prompts in here. Do you have any good meeting prompts? I never bothered to really fix the meeting prompt that I used to ask.  
+Luca B | 39:31  
+I used the one that we were given Botany.  
+Pedro | 39:40  
+Bye.  
+Luca B | 39:43  
+He does a great job because he gives me what I need.  
+Pedro | 39:50  
+This does not tell me what it can do at all.  
+Luca B | 40:04  
+You can't use Amethyst. Not a shot. I am not touching an amethyst with a 10-foot pole. I'm getting as far away from that as possible.  
+Pedro | 40:15  
+Dude, for real. Dude, that's how you know they're not dialed in to AI if you hear the word amethyst.  
+Luca B | 40:24  
+- Even like co-pilot, like If they knew what we had available, then they would know that we can't do shit with Copilot.  
+Pedro | 40:36  
+Yeah, we literally can't. It's like, ooh. Cassandra uses the transcribe feature. I think where we have that. Copilot and whiteboard.- I need to contemplate. I need to contemplate. On the functionalities okay how do you suggest we approach working on this I'm going to look.  
+Luca B | 41:10  
+Over the next day on what we have and it's similar to how i run anti-gravity on my computer I'm going to be running it because I'm having anti-gravity run right now and getting cloud code. I'm going to be getting... A lot of code and anti-gay and being saying like, listen, like we need to figure out Figure this out.  
+Like here's our problem Here's what we need to solve. Here are our pain points. Give me six different solutions. Right, because I want to see what it'll say as well on how we can go about it on building something.  
+And then from there, we can come back together and say, hey, we got this, and this. Okay, we think this is possible, this isn't, this is. How can we bring it all together? Can we build the system? Can we at least build a road map?  
+Pedro | 41:55  
+Because look.  
+Well, To respond to you, I like that. My second question item here is the following. If you really think about it, I'm going to speak at a high level. Our pod is tasked with project management, right? What we're kind of doing is like, personal management.  
+So What came to mind before this meeting was like, what we're doing is very entrepreneurial, where the only group that's probably going out and talking to stakeholders, and we can turn our thing from like a botany pod project into something us solving an actual estate, a client's us solving a client's problem and then this becomes the like The fucking... Story that everybody Fucking botany new group and every fucking Accenture tells every fucking, you know, year to everybody, right? It's like, a group of, you know, these analysts and their AI tools redesigned the operation process for the fucking... And they just love that shit right but what i'm thinking is we can then bring in fucking adamia and whatever Becca, and then like...  
+Luca B | 43:24  
+By the way, the only people I think about bringing in on this... - Are Ethan. Mia and Max. I wouldn't touch. I know, like, I know this is a botany thing, but I'm saying if we actually wanted to get this done, I'm not trusting Adam or Becca to help us.  
+The only one I've seen take initiative in our group is Mia. And that's not to say that Adam wouldn't. Adam totally would. But Adam's more of a, you tell him exactly what you need to do, he'll get it done, and he'll do that and that. Becca, it's not even that I feel, I don't trust, there's something off about Becca. I'm not even like, Becca's really nice, but there's something that I can, there's something that feels off.  
+Like, not that she's a bad person. I don't know. I just feel like it's like a... She's a social climber. Does that make sense?-  
+I mean, you went to Cornell, you see it, you still, you saw it all the time.  
+Pedro | 44:24  
+I know. So... I hear you. I hear you. I think in terms of who is getting brought and we were to talk about people getting brought on, right? I don't think it would shift unless, It wouldn't shift. Much depending who is brought on Because there is no real, there's no incentive here outside of glory. And so the work distribution wouldn't really gift.  
+So when I was thinking about like Becca, Adam and Mia, it was less about. OK, they can really accelerate us and more so it's like the value we can get about saying that or our pod. Led by Pedro. And I mean, we're not, I think we're putting the cart before the horse. We just need to figure this out ourselves. Nobody will... Give any good input into it without Us laying it down.  
+Luca B | 45:30  
+That's fair. That is fair.  
+Pedro | 45:34  
+So, yeah, I will. What I will do is I will look into copilot agents and I will look into the security aspect of it.  
+Like, if there was a case, even if it's like a paid service, 'cause I think hypothetically, and we can really justify any hypothetical costs for hypothetically anything here, given that this would, in effect, really run the fucking multi-billion dollar organization arm, it would be nothing. But I will still look into it because I'm curious.  
+So action item. I'm.  
+Luca B | 46:16  
+Going to look into Digital Worker and then I'm going to I'm not going to throw this into it. I see what anti-gravity is giving me so far. Let's see how. How good this is. It's still running. Please fix my cloth. Please just fix my cloth. Because if it fixes my clot, I'm not even going to tell Mia to fix it herself. I'm just going to give her... I'm going to say download antigravity. Give it this prompt and then it'll fix it for you.  
+Pedro | 46:42  
+Dude.  
+Luca B | 46:43  
+Based. Anti-gravity. Anti-gravity is going to be, it's like, anti-gravity and Claude are my two best friends, bro.  
+Pedro | 46:49  
+I know how it, dude, I mean, that relationship you have with anti-gravity is what I had with Bursar and Windsor back in the day, the first time I had like a chat interface instead of the bullshit terminal. Really?- I will say... I whipped out the... 
