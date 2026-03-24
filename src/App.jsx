@@ -8,6 +8,8 @@ import LeaderPage from './views/LeaderPage';
 import AllLeaders from './views/AllLeaders';
 import StrategyMap from './views/StrategyMap';
 import ActionItemsView from './views/ActionItemsView';
+import CadencesView from './views/CadencesView';
+import ContentHub from './views/ContentHub';
 
 const PERSONAS = [
   { id: 'carolee', name: 'Carolee Friedlander', role: 'Executive', label: 'Executive View' },
@@ -58,6 +60,8 @@ export default function App() {
           <Route path="/leaders/:leaderId" element={<LeaderPage persona={persona} />} />
           <Route path="/strategy-map" element={<StrategyMap />} />
           <Route path="/action-items" element={<ActionItemsView />} />
+          <Route path="/cadences" element={<CadencesView />} />
+          <Route path="/content" element={<ContentHub />} />
         </Routes>
       </main>
     </div>

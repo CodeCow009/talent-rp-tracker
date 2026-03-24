@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { LineChart, Line, ResponsiveContainer, Tooltip } from 'recharts';
 import StatusChip from '../components/StatusChip';
 import ProgressBar from '../components/ProgressBar';
 import {
@@ -24,11 +25,12 @@ export default function LeaderPage({ persona }) {
   const camp = getLeaderCampaigns(leaderId);
   const krs = getLeaderKeyResults(leaderId);
   const baseNarratives = getLeaderNarratives(leaderId);
-  const actions = getLeaderActionItems(leaderId);
+  const baseActions = getLeaderActionItems(leaderId);
   const connections = getLeaderIntersections(leaderId);
 
-  // Local state for submitted narratives
+  // Local state for submitted narratives and toggled actions
   const [localNarratives, setLocalNarratives] = useState([]);
+  const [toggledActions, setToggledActions] = useState(new Set());
 
   // Narrative form state
   const [topic, setTopic] = useState('');
@@ -44,10 +46,27 @@ export default function LeaderPage({ persona }) {
 
   const days = daysSinceUpdate(leader.lastUpdated);
   const allNarratives = [...localNarratives, ...baseNarratives];
+
+  // Actions with local toggle state
+  const actions = baseActions.map(a => ({
+    ...a,
+    status: toggledActions.has(a.id) ? 'completed' : a.status,
+  }));
   const overdue = actions.filter(a => a.status === 'overdue');
   const inProgress = actions.filter(a => a.status === 'in_progress');
   const open = actions.filter(a => a.status === 'open');
   const completed = actions.filter(a => a.status === 'completed');
+
+  const handleToggleAction = (id) => {
+    setToggledActions(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      return next;
+    });
+  };
+
+  // Sparkline data
+  const sparkData = fin?.revenueTrend?.map((v, i) => ({ q: `Q${i + 1}`, value: v })) || [];
 
   const isDeputy = persona?.role === 'Deputy';
   const authorName = isDeputy ? persona.name.split('(')[0].trim() : leader.name;
@@ -146,6 +165,17 @@ export default function LeaderPage({ persona }) {
                 <div><div className="text-xs text-gray-400">Headcount</div><div className="text-lg font-semibold text-gray-800">{fin.headcount}</div></div>
                 <div><div className="text-xs text-gray-400">Open Roles</div><div className="text-lg font-semibold text-gray-800">{fin.openRoles}</div></div>
               </div>
+              {sparkData.length > 0 && (
+                <div className="mt-4 pt-3 border-t border-gray-100">
+                  <div className="text-xs text-gray-400 mb-1">Revenue Trend (Last 4 Quarters)</div>
+                  <ResponsiveContainer width="100%" height={50}>
+                    <LineChart data={sparkData}>
+                      <Line type="monotone" dataKey="value" stroke="#2563EB" strokeWidth={2} dot={{ r: 3, fill: '#2563EB' }} />
+                      <Tooltip formatter={v => fmt(v)} labelFormatter={l => l} contentStyle={{ fontSize: 11 }} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              )}
             </div>
           ) : <p className="text-sm text-gray-400">No financial data.</p>}
         </div>
@@ -407,7 +437,7 @@ export default function LeaderPage({ persona }) {
             <div className={`text-xs font-semibold ${g.color} mb-1.5`}>{g.label} ({g.items.length})</div>
             {g.items.map(a => (
               <div key={a.id} className="flex items-center gap-3 py-1.5 text-sm">
-                <input type="checkbox" className="rounded" readOnly />
+                <input type="checkbox" className="rounded cursor-pointer" onChange={() => handleToggleAction(a.id)} />
                 <StatusChip status={a.status} />
                 <span className="text-gray-700 flex-1">{a.description}</span>
                 <span className="text-xs text-gray-400 shrink-0">Due: {a.dueDate}</span>

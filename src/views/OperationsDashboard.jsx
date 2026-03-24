@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, ScatterChart, Scatter, ZAxis, Cell, CartesianGrid, Legend, ReferenceLine } from 'recharts';
 import KPICard from '../components/KPICard';
 import ProgressBar from '../components/ProgressBar';
-import { leaders, financials, fmt, GROUPS } from '../data';
+import StatusChip from '../components/StatusChip';
+import { leaders, financials, narratives, fmt, GROUPS } from '../data';
 
 const GROUP_COLORS = {
   Offerings: '#2563EB', Markets: '#7C3AED', Industries: '#059669',
@@ -132,6 +133,32 @@ export default function OperationsDashboard() {
               </Scatter>
             </ScatterChart>
           </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Escalation & Risk Feed */}
+      <div className="bg-white rounded-xl border border-gray-200 p-5 mt-6">
+        <h3 className="text-sm font-semibold text-gray-700 mb-4">Escalations & Risks from Leaders</h3>
+        <div className="grid grid-cols-2 gap-3">
+          {narratives
+            .filter(n => n.sentiment === 'escalation' || n.sentiment === 'cautious')
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .map(n => {
+              const leader = leaders.find(l => l.id === n.leaderId);
+              const f = financials.find(x => x.leaderId === n.leaderId);
+              return (
+                <Link key={n.id} to={`/leaders/${n.leaderId}`} className="border border-gray-100 rounded-lg p-3 hover:bg-gray-50 transition-colors">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-sm font-medium text-gray-800">{leader?.name}</span>
+                    <StatusChip status={n.sentiment} />
+                    {f && <span className="text-[10px] text-gray-400">Rev: {f.revenuePctToTarget}%</span>}
+                  </div>
+                  <div className="text-[10px] text-accent/60 font-medium">{n.topic}</div>
+                  <p className="text-xs text-gray-600 line-clamp-2 mt-0.5">{n.content}</p>
+                  <div className="text-[10px] text-gray-300 mt-1">{n.date}</div>
+                </Link>
+              );
+            })}
         </div>
       </div>
     </div>
