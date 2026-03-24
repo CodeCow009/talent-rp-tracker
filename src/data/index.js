@@ -46,7 +46,7 @@ export function getLeaderActionItems(leaderId) {
 }
 
 export function getLeaderIntersections(leaderId) {
-  return intersections.filter(i => i.leaderA === leaderId || i.leaderB === leaderId);
+  return intersections.filter(i => i.leaderAId === leaderId || i.leaderBId === leaderId);
 }
 
 export function getKeyResultsForObjective(objId) {

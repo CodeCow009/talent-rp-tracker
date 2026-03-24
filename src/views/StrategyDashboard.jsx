@@ -5,12 +5,17 @@ import ProgressBar from '../components/ProgressBar';
 import { leaders, masterObjectives, keyResults, narratives, getKeyResultsForObjective, getLeader } from '../data';
 
 const TOPICS = ['All', 'Client Developments', 'Strategic Progress', 'Risks & Blockers', 'Cross-Team Needs', 'Team & Capability'];
+const SENTIMENTS = ['all', 'escalation', 'cautious', 'positive', 'neutral'];
+const SENTIMENT_LABELS = { all: 'All', escalation: 'Escalation', cautious: 'Cautious', positive: 'Positive', neutral: 'Neutral' };
 
 export default function StrategyDashboard() {
   const [topicFilter, setTopicFilter] = useState('All');
+  const [sentimentFilter, setSentimentFilter] = useState('all');
   const [expandedObj, setExpandedObj] = useState(null);
 
-  const filteredNarratives = (topicFilter === 'All' ? narratives : narratives.filter(n => n.topic === topicFilter))
+  const filteredNarratives = narratives
+    .filter(n => topicFilter === 'All' || n.topic === topicFilter)
+    .filter(n => sentimentFilter === 'all' || n.sentiment === sentimentFilter)
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
@@ -69,15 +74,36 @@ export default function StrategyDashboard() {
       <div className="grid grid-cols-[1fr_1fr] gap-6">
         {/* Narrative Feed */}
         <div>
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-sm font-semibold text-gray-700">Latest Narrative Updates</h2>
-            <select
-              value={topicFilter}
-              onChange={e => setTopicFilter(e.target.value)}
-              className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-accent"
-            >
-              {TOPICS.map(t => <option key={t}>{t}</option>)}
-            </select>
+          <div className="mb-3">
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-sm font-semibold text-gray-700">Latest Narrative Updates</h2>
+              <select
+                value={topicFilter}
+                onChange={e => setTopicFilter(e.target.value)}
+                className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-accent"
+              >
+                {TOPICS.map(t => <option key={t}>{t}</option>)}
+              </select>
+            </div>
+            <div className="flex gap-1.5 flex-wrap">
+              {SENTIMENTS.map(s => (
+                <button
+                  key={s}
+                  onClick={() => setSentimentFilter(sentimentFilter === s ? 'all' : s)}
+                  className={`text-[10px] font-semibold px-2 py-1 rounded-full transition-all ${
+                    sentimentFilter === s && s !== 'all'
+                      ? s === 'escalation' ? 'bg-red-100 text-red-700 ring-1 ring-offset-1 ring-red-200'
+                      : s === 'cautious' ? 'bg-amber-100 text-amber-700 ring-1 ring-offset-1 ring-amber-200'
+                      : s === 'positive' ? 'bg-green-100 text-green-700 ring-1 ring-offset-1 ring-green-200'
+                      : 'bg-gray-200 text-gray-600 ring-1 ring-offset-1 ring-gray-300'
+                    : sentimentFilter === s ? 'bg-accent text-white' : 'bg-gray-50 text-gray-400 hover:bg-gray-100'
+                  }`}
+                >
+                  {SENTIMENT_LABELS[s]}
+                  {s !== 'all' && <span className="ml-1 opacity-70">({narratives.filter(n => n.sentiment === s).length})</span>}
+                </button>
+              ))}
+            </div>
           </div>
           <div className="space-y-3 max-h-[600px] overflow-y-auto pr-1">
             {filteredNarratives.map(n => {

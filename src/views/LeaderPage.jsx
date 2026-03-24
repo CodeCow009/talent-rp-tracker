@@ -1,13 +1,21 @@
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import StatusChip from '../components/StatusChip';
 import ProgressBar from '../components/ProgressBar';
 import {
   getLeader, getFinancials, getLeaderCampaigns, getLeaderKeyResults,
   getLeaderNarratives, getLeaderActionItems, getLeaderIntersections,
-  masterObjectives, leaders, daysSinceUpdate, fmt,
+  masterObjectives, daysSinceUpdate, fmt,
 } from '../data';
 
 const STATUS_MAP = { active: 'on_track', at_risk: 'at_risk', behind: 'behind', completed: 'completed' };
+const TOPICS = ['Client Developments', 'Strategic Progress', 'Risks & Blockers', 'Team & Capability', 'Cross-Team Needs', 'General Update'];
+const SENTIMENTS = [
+  { value: 'positive', label: 'Positive' },
+  { value: 'neutral', label: 'Neutral' },
+  { value: 'cautious', label: 'Cautious' },
+  { value: 'escalation', label: 'Escalation' },
+];
 
 export default function LeaderPage({ persona }) {
   const { leaderId } = useParams();
@@ -15,17 +23,77 @@ export default function LeaderPage({ persona }) {
   const fin = getFinancials(leaderId);
   const camp = getLeaderCampaigns(leaderId);
   const krs = getLeaderKeyResults(leaderId);
-  const narr = getLeaderNarratives(leaderId);
+  const baseNarratives = getLeaderNarratives(leaderId);
   const actions = getLeaderActionItems(leaderId);
   const connections = getLeaderIntersections(leaderId);
+
+  // Local state for submitted narratives
+  const [localNarratives, setLocalNarratives] = useState([]);
+
+  // Narrative form state
+  const [topic, setTopic] = useState('');
+  const [content, setContent] = useState('');
+  const [sentiment, setSentiment] = useState('neutral');
+  const [linkedCampaigns, setLinkedCampaigns] = useState([]);
+  const [linkedActions, setLinkedActions] = useState([]);
+  const [linkedObjectives, setLinkedObjectives] = useState([]);
+  const [showLinker, setShowLinker] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   if (!leader) return <div className="p-6 text-gray-500">Leader not found.</div>;
 
   const days = daysSinceUpdate(leader.lastUpdated);
+  const allNarratives = [...localNarratives, ...baseNarratives];
   const overdue = actions.filter(a => a.status === 'overdue');
   const inProgress = actions.filter(a => a.status === 'in_progress');
   const open = actions.filter(a => a.status === 'open');
   const completed = actions.filter(a => a.status === 'completed');
+
+  const isDeputy = persona?.role === 'Deputy';
+  const authorName = isDeputy ? persona.name.split('(')[0].trim() : leader.name;
+
+  const handleSubmit = () => {
+    if (!topic || !content.trim()) return;
+
+    const newNarrative = {
+      id: `local-${Date.now()}`,
+      leaderId,
+      author: authorName,
+      authorType: isDeputy ? 'Deputy' : 'Leader',
+      date: '2026-03-24',
+      topic,
+      content: content.trim(),
+      sentiment,
+      tags: [],
+      linkedObjective: linkedObjectives[0] || null,
+      linkedCampaignIds: linkedCampaigns,
+      linkedActionIds: linkedActions,
+      linkedObjectiveIds: linkedObjectives,
+    };
+
+    setLocalNarratives(prev => [newNarrative, ...prev]);
+    setTopic('');
+    setContent('');
+    setSentiment('neutral');
+    setLinkedCampaigns([]);
+    setLinkedActions([]);
+    setLinkedObjectives([]);
+    setShowLinker(false);
+    setSubmitSuccess(true);
+    setTimeout(() => setSubmitSuccess(false), 3000);
+  };
+
+  const toggleLinked = (list, setList, id) => {
+    setList(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
+  };
+
+  // Helpers to resolve linked items on a narrative
+  const getLinkedCampaignNames = (n) => (n.linkedCampaignIds || []).map(id => camp.find(c => c.id === id)?.name).filter(Boolean);
+  const getLinkedActionDescs = (n) => (n.linkedActionIds || []).map(id => actions.find(a => a.id === id)?.description).filter(Boolean);
+  const getLinkedObjNames = (n) => (n.linkedObjectiveIds || []).map(id => {
+    const kr = krs.find(k => k.id === id);
+    return kr?.description;
+  }).filter(Boolean);
 
   return (
     <div className="p-6 max-w-[1400px] mx-auto">
@@ -129,35 +197,167 @@ export default function LeaderPage({ persona }) {
           </div>
         </div>
 
-        {/* Q4: Narrative */}
+        {/* Q4: Narrative & Commentary — FUNCTIONAL */}
         <div className="bg-white rounded-xl border border-gray-200 p-5">
           <h2 className="text-sm font-semibold text-gray-700 mb-4">Narrative & Commentary</h2>
 
-          {/* Input */}
+          {/* Input Form */}
           <div className="border border-gray-200 rounded-lg p-3 mb-4 bg-gray-50/50">
+            {/* Topic + Sentiment row */}
             <div className="flex items-center gap-2 mb-2">
-              <select className="text-xs border border-gray-200 rounded px-2 py-1 bg-white focus:outline-none">
-                <option>Select topic...</option>
-                <option>Client Developments</option>
-                <option>Strategic Progress</option>
-                <option>Risks & Blockers</option>
-                <option>Team & Capability</option>
-                <option>Cross-Team Needs</option>
-                <option>General Update</option>
+              <select
+                value={topic}
+                onChange={e => setTopic(e.target.value)}
+                className={`text-xs border rounded px-2 py-1.5 bg-white focus:outline-none focus:ring-1 focus:ring-accent flex-1 ${!topic ? 'border-red-200 text-gray-400' : 'border-gray-200 text-gray-700'}`}
+              >
+                <option value="">Select topic...</option>
+                {TOPICS.map(t => <option key={t} value={t}>{t}</option>)}
+              </select>
+              <select
+                value={sentiment}
+                onChange={e => setSentiment(e.target.value)}
+                className="text-xs border border-gray-200 rounded px-2 py-1.5 bg-white focus:outline-none"
+              >
+                {SENTIMENTS.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
               </select>
             </div>
+
+            {/* Text area */}
             <textarea
-              className="w-full text-sm border border-gray-200 rounded-lg p-2 h-16 resize-none focus:outline-none focus:ring-1 focus:ring-accent bg-white"
-              placeholder="Type your update..."
+              value={content}
+              onChange={e => setContent(e.target.value)}
+              className={`w-full text-sm border rounded-lg p-2.5 h-20 resize-none focus:outline-none focus:ring-1 focus:ring-accent bg-white ${!content.trim() && topic ? 'border-red-200' : 'border-gray-200'}`}
+              placeholder="Share progress updates, client developments, risks, or pain points..."
             />
-            <div className="flex justify-end mt-1">
-              <button className="text-xs bg-accent text-white px-3 py-1.5 rounded-lg hover:bg-accent/90 font-medium">Submit Update</button>
+
+            {/* Link to items toggle */}
+            <button
+              onClick={() => setShowLinker(!showLinker)}
+              className="text-[11px] text-accent hover:underline mt-1 mb-1 font-medium"
+            >
+              {showLinker ? 'Hide linked items' : 'Link to campaigns, actions, or objectives...'}
+            </button>
+
+            {/* Linker panel */}
+            {showLinker && (
+              <div className="border border-gray-200 rounded-lg p-3 mt-1 bg-white space-y-3 max-h-[240px] overflow-y-auto">
+                {/* Link campaigns */}
+                {camp.length > 0 && (
+                  <div>
+                    <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Campaigns & Initiatives</div>
+                    {camp.map(c => (
+                      <label key={c.id} className="flex items-start gap-2 py-1 cursor-pointer hover:bg-gray-50 -mx-1 px-1 rounded">
+                        <input
+                          type="checkbox"
+                          checked={linkedCampaigns.includes(c.id)}
+                          onChange={() => toggleLinked(linkedCampaigns, setLinkedCampaigns, c.id)}
+                          className="rounded mt-0.5 shrink-0"
+                        />
+                        <div className="min-w-0">
+                          <div className="text-xs text-gray-700 line-clamp-1">{c.name}</div>
+                          <div className="text-[10px] text-gray-400">{c.type} &middot; {c.progress}%</div>
+                        </div>
+                      </label>
+                    ))}
+                  </div>
+                )}
+
+                {/* Link action items */}
+                {actions.filter(a => a.status !== 'completed').length > 0 && (
+                  <div>
+                    <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Action Items</div>
+                    {actions.filter(a => a.status !== 'completed').map(a => (
+                      <label key={a.id} className="flex items-start gap-2 py-1 cursor-pointer hover:bg-gray-50 -mx-1 px-1 rounded">
+                        <input
+                          type="checkbox"
+                          checked={linkedActions.includes(a.id)}
+                          onChange={() => toggleLinked(linkedActions, setLinkedActions, a.id)}
+                          className="rounded mt-0.5 shrink-0"
+                        />
+                        <div className="min-w-0">
+                          <div className="text-xs text-gray-700 line-clamp-1">{a.description}</div>
+                          <div className="text-[10px] text-gray-400">
+                            <StatusChip status={a.status} /> &middot; Due: {a.dueDate}
+                          </div>
+                        </div>
+                      </label>
+                    ))}
+                  </div>
+                )}
+
+                {/* Link objectives / key results */}
+                {krs.length > 0 && (
+                  <div>
+                    <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Strategic Objectives</div>
+                    {krs.map(kr => (
+                      <label key={kr.id} className="flex items-start gap-2 py-1 cursor-pointer hover:bg-gray-50 -mx-1 px-1 rounded">
+                        <input
+                          type="checkbox"
+                          checked={linkedObjectives.includes(kr.id)}
+                          onChange={() => toggleLinked(linkedObjectives, setLinkedObjectives, kr.id)}
+                          className="rounded mt-0.5 shrink-0"
+                        />
+                        <div className="min-w-0">
+                          <div className="text-xs text-gray-700 line-clamp-1">{kr.description}</div>
+                          <div className="text-[10px] text-gray-400">{kr.progress}% &middot; {kr.status.replace('_', ' ')}</div>
+                        </div>
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Selected links summary */}
+            {(linkedCampaigns.length + linkedActions.length + linkedObjectives.length > 0) && (
+              <div className="flex flex-wrap gap-1 mt-2">
+                {linkedCampaigns.map(id => {
+                  const c = camp.find(x => x.id === id);
+                  return <span key={id} className="text-[10px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded font-medium">Campaign: {c?.name?.slice(0, 25)}...</span>;
+                })}
+                {linkedActions.map(id => {
+                  const a = actions.find(x => x.id === id);
+                  return <span key={id} className="text-[10px] bg-amber-50 text-amber-600 px-1.5 py-0.5 rounded font-medium">Action: {a?.description?.slice(0, 25)}...</span>;
+                })}
+                {linkedObjectives.map(id => {
+                  const kr = krs.find(x => x.id === id);
+                  return <span key={id} className="text-[10px] bg-green-50 text-green-600 px-1.5 py-0.5 rounded font-medium">Objective: {kr?.description?.slice(0, 25)}...</span>;
+                })}
+              </div>
+            )}
+
+            {/* Submit row */}
+            <div className="flex items-center justify-between mt-2">
+              <div className="text-[10px] text-gray-400">
+                Posting as: <span className="font-medium text-gray-600">{authorName}</span>
+                {isDeputy && <span className="text-amber-600"> (Deputy)</span>}
+              </div>
+              <button
+                onClick={handleSubmit}
+                disabled={!topic || !content.trim()}
+                className={`text-xs font-medium px-4 py-1.5 rounded-lg transition-colors ${
+                  topic && content.trim()
+                    ? 'bg-accent text-white hover:bg-accent/90 cursor-pointer'
+                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                }`}
+              >
+                Submit Update
+              </button>
             </div>
           </div>
 
-          <div className="space-y-3 max-h-[200px] overflow-y-auto pr-1">
-            {narr.map(n => (
-              <div key={n.id} className="border-l-2 border-accent/20 pl-3 py-1">
+          {/* Success toast */}
+          {submitSuccess && (
+            <div className="bg-green-50 border border-green-200 rounded-lg px-3 py-2 mb-3 text-xs text-green-700 font-medium flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+              Update submitted successfully
+            </div>
+          )}
+
+          {/* Narrative Feed */}
+          <div className="space-y-3 max-h-[300px] overflow-y-auto pr-1">
+            {allNarratives.map(n => (
+              <div key={n.id} className="border-l-2 border-accent/20 pl-3 py-1.5">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-xs font-medium text-gray-700">
                     {n.authorType === 'Deputy' ? `${n.author} (Deputy)` : n.author}
@@ -167,9 +367,28 @@ export default function LeaderPage({ persona }) {
                 </div>
                 <div className="text-xs font-medium text-accent/60 mb-0.5">{n.topic}</div>
                 <p className="text-xs text-gray-600 leading-relaxed">{n.content}</p>
-                <div className="flex gap-1 mt-1 flex-wrap">
-                  {n.tags.map(t => <span key={t} className="text-[10px] bg-gray-50 text-gray-400 px-1 py-0.5 rounded">{t}</span>)}
-                </div>
+
+                {/* Show linked items */}
+                {(getLinkedCampaignNames(n).length > 0 || getLinkedActionDescs(n).length > 0 || getLinkedObjNames(n).length > 0) && (
+                  <div className="flex flex-wrap gap-1 mt-1.5">
+                    {getLinkedCampaignNames(n).map(name => (
+                      <span key={name} className="text-[10px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">Campaign: {name.slice(0, 30)}{name.length > 30 ? '...' : ''}</span>
+                    ))}
+                    {getLinkedActionDescs(n).map(desc => (
+                      <span key={desc} className="text-[10px] bg-amber-50 text-amber-600 px-1.5 py-0.5 rounded">Action: {desc.slice(0, 30)}{desc.length > 30 ? '...' : ''}</span>
+                    ))}
+                    {getLinkedObjNames(n).map(name => (
+                      <span key={name} className="text-[10px] bg-green-50 text-green-600 px-1.5 py-0.5 rounded">Obj: {name.slice(0, 30)}{name.length > 30 ? '...' : ''}</span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Tags from original data */}
+                {n.tags?.length > 0 && (
+                  <div className="flex gap-1 mt-1 flex-wrap">
+                    {n.tags.map(t => <span key={t} className="text-[10px] bg-gray-50 text-gray-400 px-1 py-0.5 rounded">{t}</span>)}
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -215,7 +434,8 @@ export default function LeaderPage({ persona }) {
           <h2 className="text-sm font-semibold text-gray-700 mb-3">Strategy Connections</h2>
           <div className="space-y-3">
             {connections.map(c => {
-              const otherId = c.leaderA === leaderId ? c.leaderB : c.leaderA;
+              const otherId = c.leaderAId === leaderId ? c.leaderBId : c.leaderAId;
+              const otherName = c.leaderAId === leaderId ? c.leaderBName : c.leaderAName;
               const other = getLeader(otherId);
               return (
                 <div key={c.id} className="flex items-start gap-3 border border-gray-100 rounded-lg p-3">
@@ -226,7 +446,7 @@ export default function LeaderPage({ persona }) {
                   </Link>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <Link to={`/leaders/${otherId}`} className="text-sm font-medium text-accent hover:underline">{other?.name}</Link>
+                      <Link to={`/leaders/${otherId}`} className="text-sm font-medium text-accent hover:underline">{otherName || other?.name}</Link>
                       <span className="text-[10px] text-gray-400">{other?.group}</span>
                     </div>
                     <p className="text-xs text-gray-600 mt-0.5">{c.description}</p>

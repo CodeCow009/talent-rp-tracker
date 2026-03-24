@@ -12,8 +12,17 @@ function getGroupHealth(group) {
   return { avgRev, leaders: gl.length, health: avgRev >= 85 ? 'green' : avgRev >= 70 ? 'watch' : 'risk' };
 }
 
+const SENTIMENT_FILTERS = [
+  { value: 'all', label: 'All Updates' },
+  { value: 'escalation', label: 'Escalation', color: 'bg-red-100 text-red-700' },
+  { value: 'cautious', label: 'Cautious', color: 'bg-amber-100 text-amber-700' },
+  { value: 'positive', label: 'Positive', color: 'bg-green-100 text-green-700' },
+  { value: 'neutral', label: 'Neutral', color: 'bg-gray-100 text-gray-600' },
+];
+
 export default function ExecutiveDashboard() {
   const [groupFilter, setGroupFilter] = useState('All');
+  const [sentimentFilter, setSentimentFilter] = useState('all');
 
   const activeLeaders = leaders.filter(l => l.id !== 'leader-24');
   const totalRevTarget = financials.reduce((s, f) => s + f.revenueTarget, 0);
@@ -69,6 +78,52 @@ export default function ExecutiveDashboard() {
         </div>
 
         <div className="space-y-4">
+          {/* Narrative Feed with Sentiment Filters */}
+          <div className="bg-white rounded-xl border border-gray-200 p-4">
+            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Leader Updates</h3>
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              {SENTIMENT_FILTERS.map(sf => (
+                <button
+                  key={sf.value}
+                  onClick={() => setSentimentFilter(sentimentFilter === sf.value ? 'all' : sf.value)}
+                  className={`text-[10px] font-semibold px-2 py-1 rounded-full transition-all ${
+                    sentimentFilter === sf.value
+                      ? (sf.color || 'bg-accent text-white') + ' ring-1 ring-offset-1 ring-gray-300'
+                      : 'bg-gray-50 text-gray-400 hover:bg-gray-100'
+                  }`}
+                >
+                  {sf.label}
+                  {sf.value !== 'all' && (
+                    <span className="ml-1 opacity-70">
+                      ({narratives.filter(n => n.sentiment === sf.value).length})
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
+            <div className="space-y-2 max-h-[320px] overflow-y-auto pr-1">
+              {narratives
+                .filter(n => sentimentFilter === 'all' || n.sentiment === sentimentFilter)
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 15)
+                .map(n => {
+                  const leader = leaders.find(l => l.id === n.leaderId);
+                  return (
+                    <Link key={n.id} to={`/leaders/${n.leaderId}`} className="block py-2 hover:bg-gray-50 -mx-2 px-2 rounded border-l-2 border-transparent hover:border-accent/30">
+                      <div className="flex items-center gap-1.5 mb-0.5">
+                        <span className="text-sm font-medium text-gray-700">{leader?.name}</span>
+                        <StatusChip status={n.sentiment} />
+                      </div>
+                      <div className="text-[10px] text-accent/60 font-medium">{n.topic}</div>
+                      <div className="text-xs text-gray-500 line-clamp-2 mt-0.5">{n.content}</div>
+                      <div className="text-[10px] text-gray-300 mt-0.5">{n.date}</div>
+                    </Link>
+                  );
+                })}
+            </div>
+          </div>
+
+          {/* Stale Updates */}
           <div className="bg-white rounded-xl border border-gray-200 p-4">
             <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Stale Updates</h3>
             {staleLeaders.slice(0, 5).map(l => (
@@ -79,22 +134,10 @@ export default function ExecutiveDashboard() {
             ))}
           </div>
 
-          <div className="bg-white rounded-xl border border-gray-200 p-4">
-            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Escalations</h3>
-            {escalations.map(n => {
-              const leader = leaders.find(l => l.id === n.leaderId);
-              return (
-                <Link key={n.id} to={`/leaders/${n.leaderId}`} className="block py-2 hover:bg-gray-50 -mx-2 px-2 rounded">
-                  <div className="text-sm font-medium text-gray-700">{leader?.name}</div>
-                  <div className="text-xs text-gray-500 line-clamp-2 mt-0.5">{n.content.slice(0, 90)}...</div>
-                </Link>
-              );
-            })}
-          </div>
-
+          {/* Intersections */}
           <div className="bg-white rounded-xl border border-gray-200 p-4">
             <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Strategy Intersections</h3>
-            <p className="text-sm text-gray-600">15 connections detected across leaders.</p>
+            <p className="text-sm text-gray-600">18 connections detected across leaders.</p>
             <Link to="/strategy-map" className="text-sm text-accent font-medium mt-2 inline-block hover:underline">View Strategy Map &rarr;</Link>
           </div>
         </div>
