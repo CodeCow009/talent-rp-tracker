@@ -12,6 +12,7 @@ export default function MyConnections({ persona }) {
   const myCampaigns = getLeaderCampaigns(leaderId);
   const myFin = getFinancials(leaderId);
   const [expandedId, setExpandedId] = useState(null);
+  const [kpiFilter, setKpiFilter] = useState('all');
 
   if (!leader) return <div className="p-6 text-gray-500">Leader not found.</div>;
 
@@ -33,35 +34,35 @@ export default function MyConnections({ persona }) {
         <p className="text-sm text-gray-500 mt-0.5">{leader.name} &middot; {leader.group} &middot; {connections.length} connections with other leaders</p>
       </div>
 
-      {/* Summary */}
+      {/* Summary — clickable cards */}
       <div className="grid grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <button onClick={() => setKpiFilter('all')} className={`bg-white rounded-xl border p-4 text-left transition-all hover:shadow-sm ${kpiFilter === 'all' ? 'ring-2 ring-accent border-accent' : 'border-gray-200'}`}>
           <div className="text-xs font-semibold text-gray-400 uppercase">Connections</div>
           <div className="text-2xl font-bold text-gray-900 mt-1">{connections.length}</div>
           <div className="text-xs text-gray-500">with {connectedLeaders.length} leaders</div>
-        </div>
-        <div className="bg-white rounded-xl border border-red-100 p-4">
+        </button>
+        <button onClick={() => setKpiFilter(kpiFilter === 'identified' ? 'all' : 'identified')} className={`bg-white rounded-xl border p-4 text-left transition-all hover:shadow-sm ${kpiFilter === 'identified' ? 'ring-2 ring-red-400 border-red-200' : 'border-red-100'}`}>
           <div className="text-xs font-semibold text-red-400 uppercase">Needs Coordination</div>
           <div className="text-2xl font-bold text-red-600 mt-1">{uncoordinated.length}</div>
-          <div className="text-xs text-gray-500">overlaps not yet aligned</div>
-        </div>
-        <div className="bg-white rounded-xl border border-green-100 p-4">
+          <div className="text-xs text-gray-500">click to filter</div>
+        </button>
+        <button onClick={() => setKpiFilter(kpiFilter === 'coordinating' ? 'all' : 'coordinating')} className={`bg-white rounded-xl border p-4 text-left transition-all hover:shadow-sm ${kpiFilter === 'coordinating' ? 'ring-2 ring-green-400 border-green-200' : 'border-green-100'}`}>
           <div className="text-xs font-semibold text-green-500 uppercase">Coordinating</div>
           <div className="text-2xl font-bold text-green-600 mt-1">{coordinating.length}</div>
-          <div className="text-xs text-gray-500">actively working together</div>
-        </div>
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+          <div className="text-xs text-gray-500">click to filter</div>
+        </button>
+        <button onClick={() => setKpiFilter('all')} className={`bg-white rounded-xl border p-4 text-left transition-all hover:shadow-sm border-gray-200`}>
           <div className="text-xs font-semibold text-gray-400 uppercase">Shared Themes</div>
           <div className="text-2xl font-bold text-gray-900 mt-1">{allThemes.length}</div>
           <div className="flex gap-1 mt-1 flex-wrap">{allThemes.slice(0, 4).map(t => <span key={t} className="text-[9px] bg-accent/5 text-accent px-1 py-0.5 rounded">{t}</span>)}</div>
-        </div>
+        </button>
       </div>
 
       <div className="grid grid-cols-[1fr_340px] gap-6">
         {/* Connection Cards */}
         <div>
-          {/* Needs Coordination — priority */}
-          {uncoordinated.length > 0 && (
+          {/* Filtered by KPI card clicks */}
+          {(kpiFilter === 'all' || kpiFilter === 'identified') && uncoordinated.length > 0 && (
             <div className="mb-6">
               <h2 className="text-sm font-semibold text-red-600 mb-3 flex items-center gap-2">
                 <div className="w-2 h-2 bg-red-500 rounded-full" /> Needs Your Coordination ({uncoordinated.length})
@@ -72,7 +73,7 @@ export default function MyConnections({ persona }) {
             </div>
           )}
 
-          {coordinating.length > 0 && (
+          {(kpiFilter === 'all' || kpiFilter === 'coordinating') && coordinating.length > 0 && (
             <div className="mb-6">
               <h2 className="text-sm font-semibold text-green-600 mb-3 flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full" /> Actively Coordinating ({coordinating.length})
@@ -83,7 +84,7 @@ export default function MyConnections({ persona }) {
             </div>
           )}
 
-          {acknowledged.length > 0 && (
+          {kpiFilter === 'all' && acknowledged.length > 0 && (
             <div className="mb-6">
               <h2 className="text-sm font-semibold text-gray-500 mb-3 flex items-center gap-2">
                 <div className="w-2 h-2 bg-gray-400 rounded-full" /> Acknowledged ({acknowledged.length})

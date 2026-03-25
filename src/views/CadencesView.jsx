@@ -49,6 +49,8 @@ export default function CadencesView({ persona }) {
   const [confirmed, setConfirmed] = useState([]);
   const [pipelineText, setPipelineText] = useState(SAMPLE_TRANSCRIPT);
   const [expandedMeeting, setExpandedMeeting] = useState(null);
+  const [meetingStatusFilter, setMeetingStatusFilter] = useState('all');
+  const [transcriptSearch, setTranscriptSearch] = useState('');
 
   const isLeaderOrDeputy = persona?.role === 'Leader' || persona?.role === 'Deputy';
 
@@ -254,30 +256,40 @@ export default function CadencesView({ persona }) {
             </div>
           </div>
 
-          {/* Summary */}
+          {/* Summary — clickable cards */}
           <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className="bg-white rounded-xl border border-gray-200 p-4">
+            <button onClick={() => setMeetingStatusFilter(meetingStatusFilter === 'all' ? 'all' : 'all')}
+              className={`bg-white rounded-xl border p-4 text-left transition-all hover:shadow-sm ${meetingStatusFilter === 'all' ? 'ring-2 ring-accent border-accent' : 'border-gray-200'}`}>
               <div className="text-xs font-semibold text-gray-400 uppercase">Total Meetings</div>
               <div className="text-2xl font-bold text-gray-900 mt-1">{baseMeetings.length}</div>
               <div className="text-xs text-gray-500">{isLeaderOrDeputy ? 'you attend' : 'across 5 groups'}</div>
-            </div>
-            <div className="bg-white rounded-xl border border-gray-200 p-4">
+            </button>
+            <button onClick={() => setMeetingStatusFilter(meetingStatusFilter === 'processed' ? 'all' : 'processed')}
+              className={`bg-white rounded-xl border p-4 text-left transition-all hover:shadow-sm ${meetingStatusFilter === 'processed' ? 'ring-2 ring-accent border-accent' : 'border-gray-200'}`}>
               <div className="text-xs font-semibold text-gray-400 uppercase">Action Items Extracted</div>
               <div className="text-2xl font-bold text-accent mt-1">{totalExtracted}</div>
-              <div className="text-xs text-gray-500">from meeting notes via AI</div>
-            </div>
-            <div className="bg-white rounded-xl border border-gray-200 p-4">
-              <div className="text-xs font-semibold text-gray-400 uppercase">Pending Review</div>
+              <div className="text-xs text-gray-500">click to show processed only</div>
+            </button>
+            <button onClick={() => { setMeetingStatusFilter(meetingStatusFilter === 'pending_review' ? 'all' : 'pending_review'); }}
+              className={`bg-white rounded-xl border p-4 text-left transition-all hover:shadow-sm ${meetingStatusFilter === 'pending_review' ? 'ring-2 ring-amber-400 border-amber-200' : 'border-amber-100'}`}>
+              <div className="text-xs font-semibold text-amber-500 uppercase">Pending Review</div>
               <div className="text-2xl font-bold text-amber-600 mt-1">{baseMeetings.filter(m => m.status === 'pending_review').length}</div>
-              <div className="text-xs text-gray-500">meetings with unconfirmed items</div>
-            </div>
+              <div className="text-xs text-gray-500">click to show pending only</div>
+            </button>
           </div>
 
           {/* Recent Meetings */}
           <div className="bg-white rounded-xl border border-gray-200 p-5">
-            <h2 className="text-sm font-semibold text-gray-700 mb-4">Recent Meetings</h2>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-sm font-semibold text-gray-700">
+                {meetingStatusFilter === 'pending_review' ? 'Pending Review' : meetingStatusFilter === 'processed' ? 'Processed Meetings' : 'Recent Meetings'}
+              </h2>
+              {meetingStatusFilter !== 'all' && (
+                <button onClick={() => setMeetingStatusFilter('all')} className="text-xs text-accent hover:underline font-medium">Show all</button>
+              )}
+            </div>
             <div className="space-y-2">
-              {sortedMeetings.map(m => {
+              {sortedMeetings.filter(m => meetingStatusFilter === 'all' || m.status === meetingStatusFilter).map(m => {
                 const attendees = m.attendees.map(id => getLeader(id)).filter(Boolean);
                 const statusColor = m.status === 'processed' ? 'bg-green-50 text-green-600' : m.status === 'pending_review' ? 'bg-amber-50 text-amber-600' : 'bg-gray-50 text-gray-500';
                 const statusLabel = m.status === 'processed' ? 'Processed' : m.status === 'pending_review' ? 'Pending Review' : 'Scheduled';
@@ -317,6 +329,26 @@ export default function CadencesView({ persona }) {
         <div>
           <div className="bg-accent/5 border border-accent/10 rounded-lg p-3 mb-4 text-xs text-accent">
             This demo shows how meeting notes + AI transcript are merged and intelligently extracted into structured action items — reducing manual work for leaders.
+          </div>
+
+          {/* Transcript Search */}
+          <div className="bg-white rounded-xl border border-gray-200 p-4 mb-4">
+            <div className="flex items-center gap-3">
+              <svg className="w-5 h-5 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input type="text" value={transcriptSearch} onChange={e => setTranscriptSearch(e.target.value)}
+                placeholder="Search within meeting notes & transcript..."
+                className="flex-1 text-sm border-0 focus:outline-none focus:ring-0 placeholder-gray-400 text-gray-700" />
+              {transcriptSearch && (
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-accent font-medium">
+                    {(pipelineText.toLowerCase().match(new RegExp(transcriptSearch.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length} matches
+                  </span>
+                  <button onClick={() => setTranscriptSearch('')} className="text-xs text-gray-400 hover:text-gray-600">&times;</button>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Template selector + context */}

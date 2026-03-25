@@ -158,28 +158,32 @@ export default function StrategyMap() {
         </div>
       </div>
 
-      {/* KPI Cards */}
+      {/* KPI Cards — clickable to filter */}
       <div className="grid grid-cols-4 gap-3 mb-6">
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <button onClick={() => { setStatusFilter('All'); setSelectedNode(null); setSelectedEdge(null); }}
+          className={`bg-white rounded-xl border p-4 text-left transition-all hover:shadow-sm ${statusFilter === 'All' && !selectedNode ? 'ring-2 ring-accent border-accent' : 'border-gray-200'}`}>
           <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Total Connections</div>
           <div className="text-2xl font-bold text-gray-900 mt-1">{intersections.length}</div>
           <div className="text-xs text-gray-500 mt-0.5">across {involvedIds.length} leaders</div>
-        </div>
-        <div className="bg-white rounded-xl border border-red-100 p-4">
+        </button>
+        <button onClick={() => { setStatusFilter(statusFilter === 'identified' ? 'All' : 'identified'); setSelectedNode(null); setSelectedEdge(null); }}
+          className={`bg-white rounded-xl border p-4 text-left transition-all hover:shadow-sm ${statusFilter === 'identified' ? 'ring-2 ring-red-400 border-red-200' : 'border-red-100'}`}>
           <div className="text-xs font-semibold text-red-400 uppercase tracking-wider">Needs Coordination</div>
           <div className="text-2xl font-bold text-red-600 mt-1">{identifiedCount}</div>
-          <div className="text-xs text-gray-500 mt-0.5">connections not yet coordinated</div>
-        </div>
-        <div className="bg-white rounded-xl border border-green-100 p-4">
+          <div className="text-xs text-gray-500 mt-0.5">click to filter</div>
+        </button>
+        <button onClick={() => { setStatusFilter(statusFilter === 'coordinating' ? 'All' : 'coordinating'); setSelectedNode(null); setSelectedEdge(null); }}
+          className={`bg-white rounded-xl border p-4 text-left transition-all hover:shadow-sm ${statusFilter === 'coordinating' ? 'ring-2 ring-green-400 border-green-200' : 'border-green-100'}`}>
           <div className="text-xs font-semibold text-green-500 uppercase tracking-wider">Actively Coordinating</div>
           <div className="text-2xl font-bold text-green-600 mt-1">{coordinatingCount}</div>
-          <div className="text-xs text-gray-500 mt-0.5">teams aligned and working together</div>
-        </div>
-        <div className="bg-white rounded-xl border border-amber-100 p-4">
+          <div className="text-xs text-gray-500 mt-0.5">click to filter</div>
+        </button>
+        <button onClick={() => { setStatusFilter(statusFilter === 'identified' ? 'All' : 'identified'); setSelectedNode(null); setSelectedEdge(null); }}
+          className={`bg-white rounded-xl border p-4 text-left transition-all hover:shadow-sm ${statusFilter === 'identified' ? 'ring-2 ring-amber-400 border-amber-200' : 'border-amber-100'}`}>
           <div className="text-xs font-semibold text-amber-500 uppercase tracking-wider">Pipeline at Stake</div>
           <div className="text-2xl font-bold text-amber-600 mt-1">${(atRiskPipeline / 1e6).toFixed(0)}M</div>
-          <div className="text-xs text-gray-500 mt-0.5">combined pipeline of uncoordinated leaders</div>
-        </div>
+          <div className="text-xs text-gray-500 mt-0.5">from uncoordinated leaders</div>
+        </button>
       </div>
 
       {/* Filters */}

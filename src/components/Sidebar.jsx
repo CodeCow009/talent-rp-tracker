@@ -125,15 +125,16 @@ export default function Sidebar({ persona, personas, onPersonaChange, currentPat
         <div className="text-lg font-bold mt-0.5">Strategy Tracker</div>
       </div>
 
-      {/* Search */}
-      <form onSubmit={handleSearch} className="px-3 pt-3">
+      {/* Global Search */}
+      <form onSubmit={handleSearch} className="px-3 pt-4 pb-1">
+        <div className="text-[9px] uppercase tracking-wider text-white/30 font-semibold mb-1.5 px-1">Search Dashboard</div>
         <div className="relative">
-          <svg className="absolute left-2.5 top-2 w-4 h-4 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg className="absolute left-3 top-2.5 w-4 h-4 text-white/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-            placeholder="Search everything..."
-            className="w-full bg-white/10 text-white text-xs rounded-lg pl-8 pr-3 py-2 border border-white/10 placeholder-white/30 focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent" />
+            placeholder="Meetings, actions, leaders..."
+            className="w-full bg-white/10 text-white text-sm rounded-lg pl-9 pr-3 py-2.5 border border-white/15 placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent focus:bg-white/15 transition-all" />
         </div>
       </form>
 

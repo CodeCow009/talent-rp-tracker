@@ -171,6 +171,47 @@ export default function ActionItemsView({ persona }) {
         </div>
       </div>
 
+      {/* Executive Intelligence Summary */}
+      {persona?.role === 'Executive' && (() => {
+        const overdueByGroup = {};
+        GROUPS.forEach(g => { overdueByGroup[g] = enriched.filter(a => a.status === 'overdue' && a.leaderGroup === g).length; });
+        const worstGroup = Object.entries(overdueByGroup).sort((a, b) => b[1] - a[1])[0];
+        const highPriorityOverdue = enriched.filter(a => a.status === 'overdue' && a.priority === 'high');
+        const blockedLeaders = [...new Set(enriched.filter(a => a.status === 'overdue').map(a => a.leaderName))];
+        return (
+          <div className="bg-gradient-to-r from-purple-50 to-white rounded-xl border border-purple-100 p-5 mb-6">
+            <h3 className="text-sm font-semibold text-purple-800 mb-3">Executive Action Intelligence</h3>
+            <div className="grid grid-cols-3 gap-4">
+              <div>
+                <div className="text-[10px] font-semibold text-purple-400 uppercase mb-1">Escalation Summary</div>
+                <div className="text-xs text-gray-700 leading-relaxed">
+                  <strong>{highPriorityOverdue.length}</strong> high-priority items are overdue.
+                  {worstGroup && worstGroup[1] > 0 && <> <strong>{worstGroup[0]}</strong> has the most overdue items ({worstGroup[1]}).</>}
+                </div>
+              </div>
+              <div>
+                <div className="text-[10px] font-semibold text-purple-400 uppercase mb-1">Leaders Needing Attention</div>
+                <div className="flex flex-wrap gap-1">
+                  {blockedLeaders.slice(0, 6).map(name => (
+                    <span key={name} className="text-[10px] bg-red-50 text-red-600 px-1.5 py-0.5 rounded font-medium">{name?.split(' ').pop()}</span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <div className="text-[10px] font-semibold text-purple-400 uppercase mb-1">Recommended Focus</div>
+                <div className="text-xs text-gray-700 leading-relaxed">
+                  {highPriorityOverdue.length > 3
+                    ? 'Multiple critical items overdue — consider a leadership sync to unblock.'
+                    : highPriorityOverdue.length > 0
+                    ? 'A few items need executive nudges. Use the Nudge button on overdue items.'
+                    : 'Action items are mostly on track. Monitor at-risk items.'}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
       {/* Status + incomplete cards */}
       <div className="grid grid-cols-5 gap-3 mb-6">
         {Object.entries(counts).map(([status, count]) => (
@@ -282,8 +323,11 @@ export default function ActionItemsView({ persona }) {
 
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
-          <button onClick={() => setShowDuplicates(!showDuplicates)} className={`text-[10px] font-medium px-2 py-1 rounded ${showDuplicates ? 'bg-amber-100 text-amber-700' : 'text-gray-500 hover:bg-gray-100'}`}>
-            {showDuplicates ? `Duplicates: ${duplicates.length} found` : 'Check Duplicates'}
+          <button onClick={() => setShowDuplicates(!showDuplicates)} className={`text-sm font-medium px-4 py-2 rounded-lg transition-all ${showDuplicates ? 'bg-amber-100 text-amber-800 ring-2 ring-amber-300' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
+            <span className="flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+              {showDuplicates ? `${duplicates.length} Duplicate${duplicates.length !== 1 ? 's' : ''} Found` : 'Check for Duplicates'}
+            </span>
           </button>
         </div>
         <div className="flex gap-2">

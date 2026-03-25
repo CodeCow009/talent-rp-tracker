@@ -75,20 +75,25 @@ export default function StrategyDashboard() {
       {/* Master Objectives */}
       <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6">
         <h2 className="text-sm font-semibold text-gray-700 mb-4">Master Strategic Objectives</h2>
-        <div className="space-y-3">
+        <div className="space-y-1">
           {masterObjectives.map(obj => {
             const krs = getKeyResultsForObjective(obj.id);
             const onTrack = krs.filter(k => k.status === 'on_track' || k.status === 'completed').length;
+            const atRisk = krs.filter(k => k.status === 'at_risk' || k.status === 'behind').length;
             const avgProgress = krs.length ? Math.round(krs.reduce((s, k) => s + (k.progress || 0), 0) / krs.length) : obj.progress || 0;
             const expanded = expandedObj === obj.id;
             return (
               <div key={obj.id}>
-                <button onClick={() => setExpandedObj(expanded ? null : obj.id)} className="w-full text-left hover:bg-gray-50 rounded-lg p-3 -m-1 transition-colors">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="text-sm font-medium text-gray-800 pr-4">{obj.title}</div>
-                    <div className="text-xs text-gray-500 shrink-0">{krs.length > 0 ? `${onTrack}/${krs.length} KRs on track` : obj.targetQuarter}</div>
+                <button onClick={() => setExpandedObj(expanded ? null : obj.id)} className="w-full text-left hover:bg-gray-50 rounded-lg px-3 py-2 -mx-1 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <div className="w-32 shrink-0"><ProgressBar value={avgProgress} size="sm" /></div>
+                    <div className="text-sm font-medium text-gray-800 flex-1 line-clamp-1">{obj.title}</div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      {atRisk > 0 && <span className="text-[10px] text-red-500 font-semibold">{atRisk} at risk</span>}
+                      <span className="text-[10px] text-gray-400">{onTrack}/{krs.length} on track</span>
+                      <svg className={`w-3.5 h-3.5 text-gray-400 transition-transform ${expanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                    </div>
                   </div>
-                  <ProgressBar value={avgProgress} size="md" />
                 </button>
                 {expanded && krs.length > 0 && (
                   <div className="ml-6 mt-2 space-y-2 border-l-2 border-accent/20 pl-4 pb-2">
