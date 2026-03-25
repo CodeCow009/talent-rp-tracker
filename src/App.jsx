@@ -11,6 +11,7 @@ import MyConnections from './views/MyConnections';
 import ActionItemsView from './views/ActionItemsView';
 import CadencesView from './views/CadencesView';
 import ContentHub from './views/ContentHub';
+import SearchResults from './views/SearchResults';
 
 const PERSONAS = [
   { id: 'carolee', name: 'Carolee Friedlander', role: 'Executive', label: 'Executive View' },
@@ -74,6 +75,7 @@ export default function App() {
           <Route path="/action-items" element={<ActionItemsView persona={persona} />} />
           <Route path="/cadences" element={<CadencesView persona={persona} />} />
           <Route path="/content" element={<ContentHub persona={persona} />} />
+          <Route path="/search" element={<SearchResults />} />
         </Routes>
       </main>
     </div>

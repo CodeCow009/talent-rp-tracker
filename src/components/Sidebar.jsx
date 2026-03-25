@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { leaders, actionItems, intersections, keyResults, meetings, getLeaderActionItems, getLeaderIntersections, getLeaderKeyResults, daysSinceUpdate } from '../data';
 import NotificationBell from './NotificationBell';
 
@@ -106,6 +107,16 @@ export default function Sidebar({ persona, personas, onPersonaChange, currentPat
   const navItems = getNavItems(persona);
   const roleStyle = ROLE_STYLES[persona.role] || ROLE_STYLES.Leader;
   const isDeputy = persona.role === 'Deputy';
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim().length >= 2) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery('');
+    }
+  };
 
   return (
     <aside className="w-64 bg-sidebar text-white flex flex-col shrink-0 h-screen">
@@ -113,6 +124,18 @@ export default function Sidebar({ persona, personas, onPersonaChange, currentPat
         <div className="text-xs font-semibold tracking-widest text-white/50 uppercase">Talent RP</div>
         <div className="text-lg font-bold mt-0.5">Strategy Tracker</div>
       </div>
+
+      {/* Search */}
+      <form onSubmit={handleSearch} className="px-3 pt-3">
+        <div className="relative">
+          <svg className="absolute left-2.5 top-2 w-4 h-4 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
+            placeholder="Search everything..."
+            className="w-full bg-white/10 text-white text-xs rounded-lg pl-8 pr-3 py-2 border border-white/10 placeholder-white/30 focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent" />
+        </div>
+      </form>
 
       <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
         {navItems.map((item) => {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import StatusChip from '../components/StatusChip';
-import { getLeader, actionItems, leaders, meetings } from '../data';
+import { getLeader, actionItems, leaders, meetings, MEETING_TEMPLATES } from '../data';
 
 const GROUP_COLORS = {
   Offerings: 'bg-blue-100 text-blue-700 border-blue-200',
@@ -138,6 +138,39 @@ export default function CadencesView({ persona }) {
                     <button onClick={() => setExpandedMeeting(null)} className="text-xs text-gray-400 hover:text-gray-600">Close</button>
                   </div>
                 </div>
+                {/* Role-specific summary */}
+                {m.executiveSummary && (
+                  <div className="mb-4 bg-gray-50 rounded-lg p-3">
+                    <div className="flex gap-2 mb-2">
+                      {[
+                        { key: 'exec', label: 'Executive', show: persona?.role === 'Executive' || !persona },
+                        { key: 'ops', label: 'Operations', show: persona?.role === 'Operations' },
+                        { key: 'strategy', label: 'Strategy', show: persona?.role === 'Strategy' },
+                      ].map(v => v.show && (
+                        <span key={v.key} className="text-[9px] font-bold bg-accent/10 text-accent px-2 py-0.5 rounded-full">{v.label} Summary</span>
+                      ))}
+                    </div>
+                    <p className="text-xs text-gray-700 leading-relaxed">
+                      {persona?.role === 'Operations' ? m.operationsSummary : persona?.role === 'Strategy' ? m.strategySummary : m.executiveSummary}
+                    </p>
+                  </div>
+                )}
+
+                {/* Topic Segments */}
+                {m.topicSegments?.length > 0 && (
+                  <div className="mb-4">
+                    <div className="text-[10px] font-semibold text-gray-400 uppercase mb-2">Topic Segments</div>
+                    <div className="flex gap-2 flex-wrap">
+                      {m.topicSegments.map((seg, i) => (
+                        <div key={i} className="bg-white border border-gray-100 rounded-lg px-2.5 py-1.5 text-[10px]">
+                          <span className="text-gray-400 mr-1">{seg.startMin}-{seg.endMin}m</span>
+                          <span className="font-medium text-gray-700">{seg.topic}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-3 gap-4">
                   <div>
                     <div className="text-[10px] font-semibold text-gray-400 uppercase mb-2">Attendees ({attendees.length})</div>
@@ -149,6 +182,18 @@ export default function CadencesView({ persona }) {
                         </Link>
                       ))}
                     </div>
+                    {/* Communication Patterns */}
+                    {m.communicationPatterns && (
+                      <div className="mt-3 pt-2 border-t border-gray-100">
+                        <div className="text-[10px] font-semibold text-gray-400 uppercase mb-1">Engagement</div>
+                        <div className="flex items-center gap-2">
+                          <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                            <div className="h-full bg-accent rounded-full" style={{ width: `${(m.communicationPatterns.engagementScore || 0) * 100}%` }} />
+                          </div>
+                          <span className="text-[10px] text-gray-500">{Math.round((m.communicationPatterns.engagementScore || 0) * 100)}%</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <div>
                     <div className="text-[10px] font-semibold text-gray-400 uppercase mb-2">Key Decisions</div>
@@ -162,7 +207,14 @@ export default function CadencesView({ persona }) {
                     <div className="text-[10px] font-semibold text-gray-400 uppercase mb-2">Extracted Items</div>
                     <div className="text-2xl font-bold text-accent">{m.extractedActionItems}</div>
                     <div className="text-xs text-gray-500">action items extracted</div>
-                    <div className="text-xs text-gray-400 mt-1">Last meeting: {m.date}</div>
+                    {m.templateId && (
+                      <div className="mt-2 text-[10px] text-gray-400">
+                        Template: <span className="font-medium text-gray-600">{MEETING_TEMPLATES?.find(t => t.id === m.templateId)?.name || m.templateId}</span>
+                      </div>
+                    )}
+                    {m.seriesContext && (
+                      <div className="mt-1 text-[10px] text-gray-400 bg-accent/5 rounded px-2 py-1">{m.seriesContext}</div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -264,31 +316,85 @@ export default function CadencesView({ persona }) {
         /* Meeting → Action Item Pipeline Demo */
         <div>
           <div className="bg-accent/5 border border-accent/10 rounded-lg p-3 mb-4 text-xs text-accent">
-            This demo shows how meeting notes are captured and AI extracts structured action items — reducing manual work for leaders.
+            This demo shows how meeting notes + AI transcript are merged and intelligently extracted into structured action items — reducing manual work for leaders.
           </div>
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white rounded-xl border border-gray-200 p-5">
-              <h2 className="text-sm font-semibold text-gray-700 mb-3">Raw Meeting Notes</h2>
-              <div className="text-[10px] text-gray-400 mb-2">Leadership Cadence — Mar 24, 2026</div>
-              <textarea value={pipelineText} onChange={e => setPipelineText(e.target.value)}
-                className="w-full text-sm border border-gray-200 rounded-lg p-3 h-[420px] resize-none focus:outline-none focus:ring-1 focus:ring-accent bg-gray-50 leading-relaxed text-gray-700" />
+
+          {/* Template selector + context */}
+          <div className="flex items-center gap-4 mb-4">
+            <div>
+              <label className="text-[10px] text-gray-400 uppercase font-semibold block mb-1">Meeting Template</label>
+              <select className="text-sm border border-gray-200 rounded-lg px-3 py-2 bg-white">
+                {(MEETING_TEMPLATES || []).map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
+              </select>
             </div>
+            <div className="flex-1 bg-amber-50 border border-amber-100 rounded-lg px-3 py-2">
+              <div className="text-[10px] font-semibold text-amber-600 uppercase">Series Context (Auto-Injected)</div>
+              <div className="text-xs text-amber-700 mt-0.5">Previous meeting (Mar 20): 8 action items extracted, 3 still open. Open items: "Finalize FSI playbook variant", "Complete SAP integration testing", "Accelerate GenAI methodology v2"</div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-6">
+            {/* Left: Dual Input */}
+            <div className="space-y-4">
+              <div className="bg-white rounded-xl border border-gray-200 p-5">
+                <div className="flex items-center justify-between mb-2">
+                  <h2 className="text-sm font-semibold text-gray-700">Your Notes</h2>
+                  <span className="text-[10px] text-gray-400 bg-gray-50 px-2 py-0.5 rounded">Manual observations</span>
+                </div>
+                <textarea
+                  placeholder="Type your observations, key takeaways, and things the transcript might miss..."
+                  className="w-full text-sm border border-gray-200 rounded-lg p-3 h-[160px] resize-none focus:outline-none focus:ring-1 focus:ring-accent bg-blue-50/30 leading-relaxed text-gray-700"
+                  defaultValue="Client seemed hesitant on timeline — Irene thinks we need to reduce pilot scope. James was frustrated about methodology delays. Raj's team morale is high after Microsoft feedback. Sandra's messaging concern is bigger than she let on — I think this needs exec attention."
+                />
+              </div>
+              <div className="bg-white rounded-xl border border-gray-200 p-5">
+                <div className="flex items-center justify-between mb-2">
+                  <h2 className="text-sm font-semibold text-gray-700">AI Transcript</h2>
+                  <span className="text-[10px] text-gray-400 bg-gray-50 px-2 py-0.5 rounded">Copilot / transcription</span>
+                </div>
+                <textarea value={pipelineText} onChange={e => setPipelineText(e.target.value)}
+                  className="w-full text-sm border border-gray-200 rounded-lg p-3 h-[240px] resize-none focus:outline-none focus:ring-1 focus:ring-accent bg-gray-50 leading-relaxed text-gray-700" />
+              </div>
+            </div>
+
+            {/* Right: Enhanced extraction */}
             <div className="bg-white rounded-xl border border-gray-200 p-5">
               <div className="flex items-center justify-between mb-3">
-                <h2 className="text-sm font-semibold text-gray-700">AI-Extracted Action Items</h2>
-                <span className="text-xs text-accent font-medium">{EXTRACTED_ITEMS.length} items detected</span>
+                <h2 className="text-sm font-semibold text-gray-700">AI-Extracted Intelligence</h2>
+                <span className="text-xs text-accent font-medium">{EXTRACTED_ITEMS.length} items + 3 insights</span>
               </div>
-              <div className="space-y-2 mb-4">
+
+              {/* Meeting intelligence summary */}
+              <div className="bg-gray-50 rounded-lg p-3 mb-4 space-y-2">
+                <div className="text-[10px] font-semibold text-gray-500 uppercase">Meeting Intelligence</div>
+                <div className="text-xs text-gray-700"><span className="font-semibold text-accent">Executive:</span> Key decisions on GenAI methodology acceleration and Citi pilot scope. Cross-team alignment needed on messaging.</div>
+                <div className="text-xs text-gray-700"><span className="font-semibold text-blue-600">Operations:</span> GenAI methodology v2 delayed 2 weeks, impacting Citi pilot and Goldman proposal timelines. 35/50 consultants certified.</div>
+                <div className="text-xs text-gray-700"><span className="font-semibold text-emerald-600">Strategy:</span> 4 teams have fragmented GenAI messaging — alignment meeting needed. Citi pilot depends on methodology v2 completion.</div>
+              </div>
+
+              {/* Recurring blocker detection */}
+              <div className="bg-red-50 border border-red-100 rounded-lg p-2.5 mb-4">
+                <div className="text-[10px] font-semibold text-red-600 flex items-center gap-1">
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01" /></svg>
+                  Recurring Blocker Detected
+                </div>
+                <div className="text-xs text-red-700 mt-0.5">"GenAI methodology v2" has appeared as a blocker in 3 consecutive meetings. Escalating to recurring blocker status.</div>
+              </div>
+
+              {/* Action items */}
+              <div className="text-[10px] font-semibold text-gray-500 uppercase mb-2">Extracted Action Items</div>
+              <div className="space-y-2 mb-4 max-h-[240px] overflow-y-auto pr-1">
                 {EXTRACTED_ITEMS.map((item, idx) => (
                   <div key={idx} className={`border rounded-lg p-3 transition-all ${confirmed.includes(idx) ? 'border-green-200 bg-green-50/50' : 'border-gray-100'}`}>
                     <div className="flex items-start gap-2">
                       <input type="checkbox" checked={confirmed.includes(idx)} onChange={() => handleConfirm(idx)} className="rounded mt-0.5 shrink-0" />
                       <div className="flex-1">
                         <div className="text-sm text-gray-800">{item.description}</div>
-                        <div className="flex items-center gap-3 mt-1 text-xs text-gray-400">
+                        <div className="flex items-center gap-2 mt-1 text-xs text-gray-400 flex-wrap">
                           <span>Owner: <span className="text-gray-600 font-medium">{item.owner}</span></span>
                           <span>Due: {item.due}</span>
                           <span className="text-[10px] bg-gray-50 px-1.5 py-0.5 rounded">{item.topic}</span>
+                          <button className="text-[10px] text-accent hover:underline">Jump to source</button>
                         </div>
                       </div>
                     </div>

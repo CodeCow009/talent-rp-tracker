@@ -9,7 +9,19 @@
     "attendees": ["leader-01", "leader-02", "leader-03", "leader-04", "leader-05", "leader-25"],
     "status": "processed",
     "extractedActionItems": 8,
-    "keyDecisions": ["Approved GenAI playbook FSI variant timeline", "Prioritized SAP integration over new feature development", "Agreed to accelerate GenAI methodology v2 with dedicated resources"]
+    "keyDecisions": ["Approved GenAI playbook FSI variant timeline", "Prioritized SAP integration over new feature development", "Agreed to accelerate GenAI methodology v2 with dedicated resources"],
+    "templateId": "operating-cadence",
+    "executiveSummary": "Offering leads aligned on accelerating the GenAI methodology v2 with dedicated resources and approved the FSI variant timeline, positioning the practice to capture near-term demand in financial services. SAP integration was prioritized over new feature development to protect existing revenue streams.",
+    "operationsSummary": "Dedicated resources allocated to GenAI methodology v2 acceleration, with SAP integration taking priority in the development queue. FSI variant timeline approved, requiring coordination across Workforce Transformation and HR Technology teams.",
+    "strategySummary": "GenAI playbook FSI variant directly supports the Banking & Capital Markets industry pipeline, while SAP integration prioritization reinforces the HR Technology partnership strategy. Cross-offering alignment is strong with all five offering leads plus Offering Development represented.",
+    "topicSegments": [
+      {"topic": "GenAI Playbook FSI Variant", "startMin": 3, "endMin": 15, "summary": "Patel presented the FSI variant timeline and secured approval, with Williams confirming HR Technology integration dependencies."},
+      {"topic": "SAP Integration Prioritization", "startMin": 16, "endMin": 28, "summary": "Williams made the case for prioritizing SAP integration over new feature development, citing pipeline revenue at risk from delayed delivery."},
+      {"topic": "GenAI Methodology v2 Acceleration", "startMin": 29, "endMin": 42, "summary": "Team agreed to accelerate GenAI methodology v2 by allocating dedicated resources from Driscoll's Offering Development team."},
+      {"topic": "Action Item Review and Assignments", "startMin": 43, "endMin": 50, "summary": "Sharma and Chen took ownership of cross-offering dependencies, with next check-in scheduled for the following Wednesday."}
+    ],
+    "communicationPatterns": {"dominantSpeakers": ["leader-01", "leader-03"], "engagementScore": 0.85},
+    "seriesContext": "Recurring weekly cadence for Offering leads. Previous week focused on GenAI methodology v1 lessons learned and initial FSI variant scoping."
   },
   {
     "id": "meeting-02",
@@ -21,7 +33,18 @@
     "attendees": ["leader-06"],
     "status": "processed",
     "extractedActionItems": 5,
-    "keyDecisions": ["Approved Goldman Sachs proposal team formation", "Prioritized Citi pilot scope submission", "Deferred BofA discovery workshop to April"]
+    "keyDecisions": ["Approved Goldman Sachs proposal team formation", "Prioritized Citi pilot scope submission", "Deferred BofA discovery workshop to April"],
+    "templateId": "operating-cadence",
+    "executiveSummary": "Bletcher drove three critical pipeline decisions: Goldman Sachs proposal team formation approved to pursue a high-value engagement, Citi pilot scope prioritized for near-term revenue, and BofA discovery deferred to April to manage capacity constraints.",
+    "operationsSummary": "Goldman Sachs proposal team requires staffing from the Americas bench; Citi pilot scope submission is on a tight deadline. BofA deferral to April frees short-term capacity but creates a compressed Q2 pipeline.",
+    "strategySummary": "Americas pipeline decisions reinforce the Banking & Capital Markets must-win strategy, with Goldman Sachs and Citi representing top-tier targets. BofA deferral signals a need to balance growth ambition against current delivery capacity.",
+    "topicSegments": [
+      {"topic": "Goldman Sachs Proposal Team", "startMin": 2, "endMin": 12, "summary": "Bletcher outlined the Goldman Sachs engagement scope and approved the proposal team composition, targeting a late-March submission."},
+      {"topic": "Citi Pilot Scope", "startMin": 13, "endMin": 22, "summary": "Prioritized the Citi pilot scope submission due to client urgency, with Bletcher committing to personal involvement in the pitch."},
+      {"topic": "BofA Discovery Deferral", "startMin": 23, "endMin": 30, "summary": "Decision to defer BofA discovery workshop to April driven by resource constraints and the need to focus on higher-probability opportunities."}
+    ],
+    "communicationPatterns": {"dominantSpeakers": ["leader-06"], "engagementScore": 0.45},
+    "seriesContext": "Bi-weekly Americas cadence. Previous session reviewed Q2 pipeline targets and identified Goldman Sachs as the top priority pursuit."
   },
   {
     "id": "meeting-03",
@@ -33,7 +56,19 @@
     "attendees": ["leader-07", "leader-11", "leader-26"],
     "status": "processed",
     "extractedActionItems": 7,
-    "keyDecisions": ["Escalated APAC hiring compensation to Carolee", "Agreed to pursue NTT Data partnership model", "Deferred Philippines market entry to FY27"]
+    "keyDecisions": ["Escalated APAC hiring compensation to Carolee", "Agreed to pursue NTT Data partnership model", "Deferred Philippines market entry to FY27"],
+    "templateId": "operating-cadence",
+    "executiveSummary": "APAC leadership escalated the hiring compensation gap to Carolee as a critical blocker to growth targets, while advancing the NTT Data partnership as an alternative capacity model. Philippines market entry was deferred to FY27 to focus on stabilizing existing markets.",
+    "operationsSummary": "Compensation escalation affects 15+ open roles across APAC; without resolution, Q3-Q4 hiring targets are at risk. NTT Data partnership model could offset capacity gaps in the near term. Philippines deferral removes planned FY26 setup costs.",
+    "strategySummary": "APAC remains a critical intervention area as flagged in the Market Leads Monthly. NTT Data partnership aligns with the broader alliances strategy, and Philippines deferral reflects a pragmatic focus on Japan and broader APAC stabilization.",
+    "topicSegments": [
+      {"topic": "APAC Hiring Compensation Escalation", "startMin": 2, "endMin": 14, "summary": "Zhang outlined the compensation gap blocking APAC hiring and the team agreed to escalate to Carolee for executive intervention."},
+      {"topic": "NTT Data Partnership Model", "startMin": 15, "endMin": 26, "summary": "Nakamura presented the NTT Data partnership model as a way to build Japan delivery capacity without full-time hires."},
+      {"topic": "Philippines Market Entry", "startMin": 27, "endMin": 35, "summary": "Team agreed to defer Philippines market entry to FY27, citing insufficient bandwidth and the need to stabilize Japan and broader APAC operations first."},
+      {"topic": "Delivery Capacity Planning", "startMin": 36, "endMin": 43, "summary": "Ishikawa reviewed APAC delivery center utilization and flagged upcoming capacity risks for Q3 if hiring gaps persist."}
+    ],
+    "communicationPatterns": {"dominantSpeakers": ["leader-07", "leader-11"], "engagementScore": 0.78},
+    "seriesContext": "Bi-weekly APAC cadence. Previous session identified the compensation gap as a growing concern and initiated the NTT Data partnership exploration."
   },
   {
     "id": "meeting-04",
@@ -45,7 +80,18 @@
     "attendees": ["leader-08", "leader-10"],
     "status": "processed",
     "extractedActionItems": 6,
-    "keyDecisions": ["Confirmed Siemens Phase 1 kickoff date", "Approved Southern Europe methodology translation budget", "Launched GenAI advisory Germany pilot planning"]
+    "keyDecisions": ["Confirmed Siemens Phase 1 kickoff date", "Approved Southern Europe methodology translation budget", "Launched GenAI advisory Germany pilot planning"],
+    "templateId": "operating-cadence",
+    "executiveSummary": "EMEA leadership confirmed the Siemens Phase 1 kickoff and launched GenAI advisory pilot planning in Germany, signaling strong pipeline momentum in continental Europe. Southern Europe methodology translation budget was approved to expand addressable market.",
+    "operationsSummary": "Siemens Phase 1 kickoff date confirmed, requiring staffing alignment by early April. Southern Europe translation budget approved at the requested level. Germany GenAI pilot planning will require coordination with Offerings for methodology inputs.",
+    "strategySummary": "Siemens and the Germany GenAI pilot reinforce the EMEA growth strategy in key continental accounts. Southern Europe methodology translation supports market expansion beyond core UK&I and DACH markets, aligning with the practice's geographic diversification objectives.",
+    "topicSegments": [
+      {"topic": "Siemens Phase 1 Kickoff", "startMin": 3, "endMin": 14, "summary": "Hassan confirmed the Siemens kickoff date and reviewed the staffing plan, with Laurent providing UK-based resource availability."},
+      {"topic": "Southern Europe Translation Budget", "startMin": 15, "endMin": 23, "summary": "Approved the methodology translation budget for Southern Europe, targeting Spanish, Italian, and French localization of core deliverables."},
+      {"topic": "GenAI Advisory Germany Pilot", "startMin": 24, "endMin": 36, "summary": "Hassan presented the GenAI advisory pilot concept for Germany and launched formal planning, with delivery targeted for Q3."}
+    ],
+    "communicationPatterns": {"dominantSpeakers": ["leader-08"], "engagementScore": 0.72},
+    "seriesContext": "Bi-weekly EMEA cadence. Previous session reviewed Siemens contract negotiations and scoped the Southern Europe expansion opportunity."
   },
   {
     "id": "meeting-05",
@@ -57,7 +103,19 @@
     "attendees": ["leader-12", "leader-13", "leader-14", "leader-15", "leader-16", "leader-17"],
     "status": "processed",
     "extractedActionItems": 12,
-    "keyDecisions": ["Prioritized JPMorgan RFP as must-win deal", "Agreed to allocate innovation team support to media GenAI offering", "Approved consumer goods client recovery program escalation"]
+    "keyDecisions": ["Prioritized JPMorgan RFP as must-win deal", "Agreed to allocate innovation team support to media GenAI offering", "Approved consumer goods client recovery program escalation"],
+    "templateId": "operating-cadence",
+    "executiveSummary": "Industry leads designated the JPMorgan RFP as a must-win deal requiring cross-practice mobilization, allocated innovation resources to Bradley's media GenAI offering, and escalated the consumer goods client recovery program given Gupta's at-risk portfolio.",
+    "operationsSummary": "JPMorgan RFP requires a proposal team by end of month with cross-industry support from Banking. Innovation team allocation to media GenAI shifts two FTEs from Mitchell's bench. Consumer goods recovery program escalation triggers the formal client-at-risk protocol.",
+    "strategySummary": "JPMorgan must-win designation aligns with Banking & Capital Markets priority and the Americas pipeline strategy. Media GenAI offering investment positions the practice for high-growth digital media opportunities. Consumer goods escalation reflects the need for proactive client retention in underperforming verticals.",
+    "topicSegments": [
+      {"topic": "JPMorgan RFP Must-Win Designation", "startMin": 2, "endMin": 15, "summary": "Park presented the JPMorgan RFP scope and the group agreed to designate it as a must-win deal with cross-industry resource commitments."},
+      {"topic": "Media GenAI Offering Support", "startMin": 16, "endMin": 26, "summary": "Bradley requested and received innovation team support for the media GenAI offering, with two dedicated resources allocated from Mitchell's team."},
+      {"topic": "Consumer Goods Client Recovery", "startMin": 27, "endMin": 38, "summary": "Gupta flagged deteriorating client relationships in consumer goods and the group approved escalation to the formal recovery program protocol."},
+      {"topic": "Cross-Industry Pipeline Review", "startMin": 39, "endMin": 50, "summary": "Okonkwo and Santos shared health and public service pipeline updates, with 12 action items captured across all verticals."}
+    ],
+    "communicationPatterns": {"dominantSpeakers": ["leader-12", "leader-16"], "engagementScore": 0.88},
+    "seriesContext": "Bi-weekly Industry leads cadence. Previous session reviewed Q2 pipeline by vertical and identified JPMorgan as a high-potential pursuit requiring further analysis."
   },
   {
     "id": "meeting-06",
@@ -69,7 +127,18 @@
     "attendees": ["leader-18", "leader-19", "leader-20"],
     "status": "processed",
     "extractedActionItems": 9,
-    "keyDecisions": ["Approved cross-center resource sharing protocol go-live", "Prioritized Novartis and Philips contract closings", "Agreed to present resource allocation recommendation at next meeting"]
+    "keyDecisions": ["Approved cross-center resource sharing protocol go-live", "Prioritized Novartis and Philips contract closings", "Agreed to present resource allocation recommendation at next meeting"],
+    "templateId": "operating-cadence",
+    "executiveSummary": "Engines leadership approved the go-live of the cross-center resource sharing protocol, a key enabler for practice-wide delivery flexibility. Novartis and Philips contract closings were prioritized to secure Q2 revenue, with a resource allocation recommendation planned for the following week.",
+    "operationsSummary": "Cross-center resource sharing protocol goes live immediately, enabling real-time bench sharing across delivery centers. Novartis and Philips closings require contract finalization support this week. Resource allocation recommendation will address the growing demand-supply imbalance across APAC and EMEA.",
+    "strategySummary": "Cross-center resource sharing directly supports the practice's scalability objectives and addresses delivery constraints flagged across multiple market cadences. Novartis and Philips closings contribute to the Health and EMEA market strategies respectively.",
+    "topicSegments": [
+      {"topic": "Cross-Center Resource Sharing Go-Live", "startMin": 2, "endMin": 16, "summary": "O'Brien presented the resource sharing protocol final design and the team approved immediate go-live across all delivery centers."},
+      {"topic": "Novartis and Philips Contract Prioritization", "startMin": 17, "endMin": 28, "summary": "Al-Rashid flagged Novartis and Philips as the highest-priority contract closings for the week, with managed services terms nearly finalized."},
+      {"topic": "Resource Allocation Recommendation", "startMin": 29, "endMin": 40, "summary": "Tanaka outlined the demand-supply imbalance and committed to presenting a formal resource allocation recommendation at the next weekly cadence."}
+    ],
+    "communicationPatterns": {"dominantSpeakers": ["leader-18", "leader-20"], "engagementScore": 0.82},
+    "seriesContext": "Weekly Engines cadence. Previous session finalized the cross-center resource sharing protocol design and reviewed pending contract closings."
   },
   {
     "id": "meeting-07",
@@ -81,7 +150,19 @@
     "attendees": ["leader-21", "leader-22", "leader-23", "leader-27"],
     "status": "processed",
     "extractedActionItems": 7,
-    "keyDecisions": ["Approved Microsoft partnership announcement plan", "Agreed to prioritize client innovation showcase planning", "Escalated GTM campaign approval to Carolee"]
+    "keyDecisions": ["Approved Microsoft partnership announcement plan", "Agreed to prioritize client innovation showcase planning", "Escalated GTM campaign approval to Carolee"],
+    "templateId": "operating-cadence",
+    "executiveSummary": "Growth & Strategy team approved the Microsoft partnership announcement plan and prioritized the client innovation showcase, while escalating the GTM campaign to Carolee for executive approval due to budget implications. Microsoft partnership represents a significant market signal for the practice.",
+    "operationsSummary": "Microsoft partnership announcement requires coordinated communications by end of month. Client innovation showcase planning kicks off immediately with a target date in Q3. GTM campaign budget escalation to Carolee needed before campaign development can proceed.",
+    "strategySummary": "Microsoft partnership announcement strengthens the alliances pillar of the growth strategy and creates co-sell opportunities across all markets. Client innovation showcase and GTM campaign are critical to the practice's market positioning and demand generation objectives.",
+    "topicSegments": [
+      {"topic": "Microsoft Partnership Announcement", "startMin": 2, "endMin": 14, "summary": "Kowalski presented the Microsoft partnership announcement plan and secured approval, with Morrison confirming client-facing messaging alignment."},
+      {"topic": "Client Innovation Showcase Planning", "startMin": 15, "endMin": 25, "summary": "Mitchell proposed the client innovation showcase concept and the team agreed to prioritize planning, targeting a Q3 event."},
+      {"topic": "GTM Campaign Escalation", "startMin": 26, "endMin": 36, "summary": "Obi presented the GTM campaign plan but budget requirements exceeded the team's approval authority, necessitating escalation to Carolee."},
+      {"topic": "Client Relationship Updates", "startMin": 37, "endMin": 44, "summary": "Morrison provided updates on key client relationships and flagged two accounts requiring proactive outreach."}
+    ],
+    "communicationPatterns": {"dominantSpeakers": ["leader-21", "leader-23"], "engagementScore": 0.80},
+    "seriesContext": "Weekly Growth & Strategy cadence. Previous session reviewed partnership pipeline and began scoping the Microsoft announcement and GTM campaign strategy."
   },
   {
     "id": "meeting-08",
@@ -93,7 +174,18 @@
     "attendees": ["leader-24"],
     "status": "processed",
     "extractedActionItems": 5,
-    "keyDecisions": ["Approved APAC compensation adjustment in principle", "Committed to intervening on LATAM lease and hiring", "Scheduled cross-functional GTM dependency meeting"]
+    "keyDecisions": ["Approved APAC compensation adjustment in principle", "Committed to intervening on LATAM lease and hiring", "Scheduled cross-functional GTM dependency meeting"],
+    "templateId": "strategy-review",
+    "executiveSummary": "Carolee approved the APAC compensation adjustment in principle to unblock critical hiring, committed to personal intervention on the LATAM lease and hiring situation, and scheduled a cross-functional meeting to resolve GTM campaign dependencies blocking Obi's team.",
+    "operationsSummary": "APAC compensation adjustment approved in principle; HR and finance alignment still required before implementation. LATAM intervention covers both the office lease negotiation and stalled hiring for Mendez's team. Cross-functional GTM meeting scheduled for the following week.",
+    "strategySummary": "Executive decisions directly address the two highest-risk markets (APAC and LATAM) flagged in the Market Leads Monthly. GTM dependency resolution is critical to the practice's H2 demand generation strategy and connects to multiple offering and industry workstreams.",
+    "topicSegments": [
+      {"topic": "APAC Compensation Adjustment", "startMin": 2, "endMin": 12, "summary": "Carolee reviewed the APAC compensation escalation from Zhang and approved the adjustment in principle, pending HR and finance sign-off."},
+      {"topic": "LATAM Intervention Commitment", "startMin": 13, "endMin": 22, "summary": "Carolee committed to personally intervening on the LATAM lease negotiation and hiring blockers affecting Mendez's market growth."},
+      {"topic": "Cross-Functional GTM Dependencies", "startMin": 23, "endMin": 30, "summary": "Scheduled a cross-functional meeting to resolve the five content dependencies blocking Obi's GTM campaign, connecting offering leads with the GTM team."}
+    ],
+    "communicationPatterns": {"dominantSpeakers": ["leader-24"], "engagementScore": 0.40},
+    "seriesContext": "Weekly executive leadership sync with Carolee. Previous session covered practice-wide Q2 planning priorities and initial APAC escalation review."
   },
   {
     "id": "meeting-09",
@@ -105,7 +197,19 @@
     "attendees": ["leader-06", "leader-07", "leader-08", "leader-09", "leader-10", "leader-11"],
     "status": "processed",
     "extractedActionItems": 8,
-    "keyDecisions": ["Reviewed Q3 revenue performance across all markets", "Identified APAC and LATAM as critical intervention areas", "Agreed to joint APAC hiring strategy between markets and delivery"]
+    "keyDecisions": ["Reviewed Q3 revenue performance across all markets", "Identified APAC and LATAM as critical intervention areas", "Agreed to joint APAC hiring strategy between markets and delivery"],
+    "templateId": "strategy-review",
+    "executiveSummary": "All market leads reviewed Q3 revenue performance and identified APAC and LATAM as critical intervention areas requiring executive attention. A joint APAC hiring strategy between markets and delivery was agreed upon, reflecting the severity of capacity constraints in the region.",
+    "operationsSummary": "Q3 revenue tracked below plan in APAC and LATAM; Americas and EMEA on or above target. Joint APAC hiring strategy requires coordination between Zhang, Nakamura, and Engines leadership. LATAM lease and hiring issues remain unresolved and were flagged for escalation.",
+    "strategySummary": "Market-level performance review confirmed the practice's geographic concentration risk, with two of five market regions requiring intervention. Joint hiring strategy represents a new cross-functional operating model that could be replicated in other regions if successful.",
+    "topicSegments": [
+      {"topic": "Q3 Revenue Performance Review", "startMin": 3, "endMin": 20, "summary": "Each market lead presented Q3 revenue performance, revealing strong results in Americas and EMEA but significant shortfalls in APAC and LATAM."},
+      {"topic": "APAC and LATAM Intervention Discussion", "startMin": 21, "endMin": 38, "summary": "Zhang and Mendez detailed the root causes of underperformance, with hiring and compensation gaps identified as the primary blockers."},
+      {"topic": "Joint APAC Hiring Strategy", "startMin": 39, "endMin": 52, "summary": "Team agreed to a joint hiring strategy for APAC that combines market and delivery resources, with Nakamura and Ishikawa as co-leads."},
+      {"topic": "Cross-Market Opportunity Sharing", "startMin": 53, "endMin": 60, "summary": "Laurent and Hassan identified three cross-market opportunities between UK&I and EMEA that could be jointly pursued in Q3."}
+    ],
+    "communicationPatterns": {"dominantSpeakers": ["leader-06", "leader-07"], "engagementScore": 0.90},
+    "seriesContext": "Monthly Market Leads review. Previous month focused on Q2 close-out and initial Q3 pipeline assessment, with APAC first flagged as a concern."
   },
   {
     "id": "meeting-10",
@@ -117,7 +221,18 @@
     "attendees": ["leader-03", "leader-21"],
     "status": "processed",
     "extractedActionItems": 4,
-    "keyDecisions": ["Confirmed Workday technical architecture review date", "Approved SAP SuccessConnect demonstration plan", "Identified 5 joint partner pipeline opportunities"]
+    "keyDecisions": ["Confirmed Workday technical architecture review date", "Approved SAP SuccessConnect demonstration plan", "Identified 5 joint partner pipeline opportunities"],
+    "templateId": "operating-cadence",
+    "executiveSummary": "Williams and Kowalski advanced two key partnership workstreams: Workday technical architecture review confirmed for next month and SAP SuccessConnect demo plan approved. Five joint partner pipeline opportunities identified, representing significant co-sell revenue potential.",
+    "operationsSummary": "Workday architecture review requires technical staff allocation in April. SAP SuccessConnect demonstration needs demo environment setup within two weeks. Five joint pipeline opportunities total approximately $4-6M in potential revenue across three markets.",
+    "strategySummary": "Partnership acceleration with Workday and SAP reinforces the HR Technology offering's competitive positioning. Joint pipeline opportunities span Banking, Health, and EMEA markets, demonstrating the alliance strategy's cross-practice revenue impact.",
+    "topicSegments": [
+      {"topic": "Workday Technical Architecture Review", "startMin": 2, "endMin": 12, "summary": "Williams confirmed the Workday technical architecture review date and outlined the preparation requirements for the HR Technology team."},
+      {"topic": "SAP SuccessConnect Demonstration", "startMin": 13, "endMin": 22, "summary": "Kowalski presented the SAP SuccessConnect demonstration plan and secured approval, with Williams providing technical feasibility validation."},
+      {"topic": "Joint Partner Pipeline Opportunities", "startMin": 23, "endMin": 32, "summary": "Together they identified five joint pipeline opportunities across Workday, SAP, and Microsoft partnerships with combined revenue potential of $4-6M."}
+    ],
+    "communicationPatterns": {"dominantSpeakers": ["leader-21", "leader-03"], "engagementScore": 0.75},
+    "seriesContext": "Bi-weekly Partnerships Review. Previous session reviewed Microsoft partnership announcement timing and initiated the SAP SuccessConnect planning."
   },
   {
     "id": "meeting-11",
@@ -129,7 +244,18 @@
     "attendees": ["leader-01", "leader-04", "leader-22", "leader-23"],
     "status": "processed",
     "extractedActionItems": 5,
-    "keyDecisions": ["Identified 5 content dependencies blocking GTM campaign", "Agreed to provide GenAI methodology inputs by April 1", "Committed to competitive analysis delivery by April 15"]
+    "keyDecisions": ["Identified 5 content dependencies blocking GTM campaign", "Agreed to provide GenAI methodology inputs by April 1", "Committed to competitive analysis delivery by April 15"],
+    "templateId": "standup",
+    "executiveSummary": "Cross-functional team identified five specific content dependencies blocking the GTM campaign launch and secured commitments from offering leads to deliver GenAI methodology inputs by April 1 and competitive analysis by April 15, creating a critical path to campaign readiness.",
+    "operationsSummary": "Five content dependencies require deliverables from Patel (GenAI methodology) and Sharma (talent strategy framework) by April 1. Mitchell committed competitive analysis by April 15. Campaign launch timeline depends on all inputs arriving on schedule.",
+    "strategySummary": "GTM campaign is central to the practice's H2 demand generation strategy. Cross-functional alignment between Offerings (Patel, Sharma), Innovation (Mitchell), and GTM (Obi) is essential to deliver a unified market message across all service lines.",
+    "topicSegments": [
+      {"topic": "GTM Campaign Dependency Mapping", "startMin": 2, "endMin": 12, "summary": "Obi walked through the five content dependencies blocking the GTM campaign, mapping each to a responsible offering lead."},
+      {"topic": "GenAI Methodology Input Commitment", "startMin": 13, "endMin": 22, "summary": "Patel and Sharma committed to providing GenAI methodology and talent strategy inputs by April 1 to unblock campaign content development."},
+      {"topic": "Competitive Analysis Timeline", "startMin": 23, "endMin": 30, "summary": "Mitchell committed to delivering the competitive analysis by April 15, noting the need for additional research support from Bradley's team."}
+    ],
+    "communicationPatterns": {"dominantSpeakers": ["leader-23", "leader-01"], "engagementScore": 0.82},
+    "seriesContext": null
   },
   {
     "id": "meeting-12",
@@ -141,7 +267,18 @@
     "attendees": ["leader-10"],
     "status": "processed",
     "extractedActionItems": 4,
-    "keyDecisions": ["Prioritized Barclays contract closing", "Approved Vodafone scope workshop plan", "Confirmed managed services UK expansion targets"]
+    "keyDecisions": ["Prioritized Barclays contract closing", "Approved Vodafone scope workshop plan", "Confirmed managed services UK expansion targets"],
+    "templateId": "operating-cadence",
+    "executiveSummary": "Laurent prioritized the Barclays contract closing as the top UK&I revenue target for the month and approved the Vodafone scope workshop plan to advance a new engagement. Managed services UK expansion targets were confirmed, signaling growth in recurring revenue.",
+    "operationsSummary": "Barclays contract closing requires final commercial terms this week. Vodafone scope workshop scheduled for early April with two senior consultants allocated. Managed services UK expansion targets align with Al-Rashid's capacity planning.",
+    "strategySummary": "Barclays and Vodafone pursuits reinforce the UK&I market's strong positioning in Banking and Communications verticals. Managed services expansion in the UK directly supports the Engines growth strategy and the practice's shift toward recurring revenue models.",
+    "topicSegments": [
+      {"topic": "Barclays Contract Closing", "startMin": 2, "endMin": 12, "summary": "Laurent reviewed the Barclays commercial terms and prioritized closing as the top UK&I objective for March."},
+      {"topic": "Vodafone Scope Workshop", "startMin": 13, "endMin": 22, "summary": "Approved the Vodafone scope workshop plan, targeting early April with a team drawn from UK&I and Communications & Media expertise."},
+      {"topic": "Managed Services UK Expansion", "startMin": 23, "endMin": 30, "summary": "Confirmed managed services UK expansion targets aligned with practice-wide recurring revenue objectives and Engines capacity."}
+    ],
+    "communicationPatterns": {"dominantSpeakers": ["leader-10"], "engagementScore": 0.42},
+    "seriesContext": "Bi-weekly UK&I cadence. Previous session reviewed the Barclays negotiation status and initiated the Vodafone opportunity assessment."
   },
   {
     "id": "meeting-13",
@@ -153,7 +290,14 @@
     "attendees": ["leader-01", "leader-02", "leader-03", "leader-04", "leader-05", "leader-06", "leader-07", "leader-08", "leader-09", "leader-10", "leader-11", "leader-12", "leader-13", "leader-14", "leader-15", "leader-16", "leader-17", "leader-18", "leader-19", "leader-20", "leader-21", "leader-22", "leader-23", "leader-24", "leader-25", "leader-26", "leader-27"],
     "status": "scheduled",
     "extractedActionItems": 0,
-    "keyDecisions": []
+    "keyDecisions": [],
+    "templateId": null,
+    "executiveSummary": null,
+    "operationsSummary": null,
+    "strategySummary": null,
+    "topicSegments": null,
+    "communicationPatterns": null,
+    "seriesContext": null
   },
   {
     "id": "meeting-14",
@@ -165,6 +309,13 @@
     "attendees": ["leader-01", "leader-05", "leader-12", "leader-22"],
     "status": "pending_review",
     "extractedActionItems": 4,
-    "keyDecisions": ["Aligned GenAI playbook and change framework timelines", "Confirmed Park will provide methodology inputs to Bletcher by April 10", "Mitchell allocated researcher to support Bradley's media offering"]
+    "keyDecisions": ["Aligned GenAI playbook and change framework timelines", "Confirmed Park will provide methodology inputs to Bletcher by April 10", "Mitchell allocated researcher to support Bradley's media offering"],
+    "templateId": null,
+    "executiveSummary": null,
+    "operationsSummary": null,
+    "strategySummary": null,
+    "topicSegments": null,
+    "communicationPatterns": null,
+    "seriesContext": null
   }
 ]
