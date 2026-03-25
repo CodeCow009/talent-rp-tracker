@@ -7,8 +7,82 @@ const GROUP_COLORS = {
   Offerings: '#2563EB', Markets: '#7C3AED', Industries: '#059669',
   Engines: '#D97706', 'Growth & Strategy': '#DC2626',
 };
-
+const GROUP_ORDER = ['Offerings', 'Markets', 'Industries', 'Engines', 'Growth & Strategy'];
 const THEMES = ['All', 'GenAI', 'FSI', 'APAC', 'Workforce', 'Methodology', 'Banking', 'HRTech', 'Messaging', 'Delivery', 'Profitability'];
+
+// Clustered layout: each group gets a sector of the circle, nodes fan within that sector
+function computeLayout(involved, width, height) {
+  const cx = width / 2, cy = height / 2;
+  const outerR = Math.min(cx, cy) - 70; // main ring radius
+  const positions = {};
+
+  // Group members
+  const grouped = {};
+  GROUP_ORDER.forEach(g => { grouped[g] = []; });
+  involved.forEach(l => {
+    if (grouped[l.group]) grouped[l.group].push(l);
+  });
+
+  const activeGroups = GROUP_ORDER.filter(g => grouped[g].length > 0);
+  const gapAngle = 0.28; // radians gap between groups
+  const totalGap = gapAngle * activeGroups.length;
+  const totalArc = 2 * Math.PI - totalGap;
+
+  // How much arc each group gets, proportional to member count
+  const totalMembers = involved.length || 1;
+  let currentAngle = -Math.PI / 2; // start at top
+
+  const groupLabelPositions = {};
+
+  activeGroups.forEach(g => {
+    const members = grouped[g];
+    const arcLen = (members.length / totalMembers) * totalArc;
+    const startAngle = currentAngle;
+    const endAngle = currentAngle + arcLen;
+    const midAngle = (startAngle + endAngle) / 2;
+
+    // Group label position (further out)
+    groupLabelPositions[g] = {
+      x: cx + (outerR + 48) * Math.cos(midAngle),
+      y: cy + (outerR + 48) * Math.sin(midAngle),
+      angle: midAngle,
+    };
+
+    if (members.length === 1) {
+      positions[members[0].id] = {
+        x: cx + outerR * Math.cos(midAngle),
+        y: cy + outerR * Math.sin(midAngle),
+        labelAngle: midAngle,
+      };
+    } else {
+      members.forEach((l, i) => {
+        const t = members.length > 1 ? i / (members.length - 1) : 0.5;
+        const angle = startAngle + t * arcLen;
+        positions[l.id] = {
+          x: cx + outerR * Math.cos(angle),
+          y: cy + outerR * Math.sin(angle),
+          labelAngle: angle,
+        };
+      });
+    }
+
+    currentAngle = endAngle + gapAngle;
+  });
+
+  return { positions, groupLabelPositions };
+}
+
+// Curved edge path: quadratic bezier curving toward center
+function edgePath(x1, y1, x2, y2, cx, cy) {
+  const mx = (x1 + x2) / 2;
+  const my = (y1 + y2) / 2;
+  // Pull control point toward center by 30%
+  const cpx = mx + (cx - mx) * 0.35;
+  const cpy = my + (cy - my) * 0.35;
+  return `M${x1},${y1} Q${cpx},${cpy} ${x2},${y2}`;
+}
+
+const W = 780, H = 620;
 
 export default function StrategyMap() {
   const [themeFilter, setThemeFilter] = useState('All');
@@ -26,31 +100,9 @@ export default function StrategyMap() {
   const involvedIds = [...new Set(filtered.flatMap(i => [i.leaderAId, i.leaderBId]))];
   const involved = involvedIds.map(id => getLeader(id)).filter(Boolean);
 
-  // Network layout: position nodes in a circle grouped by their group
-  const nodePositions = useMemo(() => {
-    const cx = 350, cy = 280, radius = 220;
-    const positions = {};
-    const grouped = {};
-    involved.forEach(l => {
-      if (!grouped[l.group]) grouped[l.group] = [];
-      grouped[l.group].push(l);
-    });
-    const groups = Object.keys(grouped);
-    let idx = 0;
-    const total = involved.length;
-    groups.forEach((g, gi) => {
-      const members = grouped[g];
-      members.forEach((l, li) => {
-        const angle = (2 * Math.PI * idx / total) - Math.PI / 2;
-        positions[l.id] = {
-          x: cx + radius * Math.cos(angle),
-          y: cy + radius * Math.sin(angle),
-        };
-        idx++;
-      });
-    });
-    return positions;
-  }, [involved]);
+  const { positions: nodePositions, groupLabelPositions } = useMemo(
+    () => computeLayout(involved, W, H), [involved]
+  );
 
   const connectionCounts = useMemo(() => {
     const counts = {};
@@ -61,7 +113,6 @@ export default function StrategyMap() {
     return counts;
   }, [filtered]);
 
-  const strongCount = intersections.filter(i => i.strength === 'strong').length;
   const identifiedCount = intersections.filter(i => i.status === 'identified').length;
   const coordinatingCount = intersections.filter(i => i.status === 'coordinating').length;
   const uncoordinatedLeaderIds = [...new Set(intersections.filter(i => i.status === 'identified').flatMap(i => [i.leaderAId, i.leaderBId]))];
@@ -75,13 +126,11 @@ export default function StrategyMap() {
     if (id === selectedNode) return true;
     return filtered.some(i => (i.leaderAId === selectedNode && i.leaderBId === id) || (i.leaderBId === selectedNode && i.leaderAId === id));
   };
-
   const isEdgeHighlighted = (edge) => {
     if (!selectedNode) return true;
     return edge.leaderAId === selectedNode || edge.leaderBId === selectedNode;
   };
 
-  const selectedDetail = selectedEdge ? filtered.find(i => i.id === selectedEdge) : null;
   const selectedNodeConnections = selectedNode ? filtered.filter(i => i.leaderAId === selectedNode || i.leaderBId === selectedNode) : [];
 
   // Matrix data
@@ -93,6 +142,8 @@ export default function StrategyMap() {
       intensity[lid][t] = filtered.filter(i => (i.leaderAId === lid || i.leaderBId === lid) && i.sharedThemes.includes(t)).length;
     });
   });
+
+  const cx = W / 2, cy = H / 2;
 
   return (
     <div className="p-6 max-w-[1400px] mx-auto">
@@ -132,7 +183,7 @@ export default function StrategyMap() {
       </div>
 
       {/* Filters */}
-      <div className="flex gap-3 mb-4 flex-wrap">
+      <div className="flex gap-3 mb-4 flex-wrap items-center">
         <select value={themeFilter} onChange={e => setThemeFilter(e.target.value)} className="text-sm border border-gray-200 rounded-lg px-3 py-2">
           {THEMES.map(t => <option key={t}>{t}</option>)}
         </select>
@@ -157,76 +208,122 @@ export default function StrategyMap() {
       </div>
 
       <div className="grid grid-cols-[1fr_380px] gap-6">
-        {/* Main visualization */}
         <div className="bg-white rounded-xl border border-gray-200 p-4">
           {viewMode === 'network' ? (
             <div>
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center justify-between mb-2">
                 <h2 className="text-sm font-semibold text-gray-700">Network Graph</h2>
-                <div className="text-[10px] text-gray-400">Click a node to highlight connections</div>
+                <div className="text-[10px] text-gray-400">Click a node to highlight its connections</div>
               </div>
-              <svg viewBox="0 0 700 560" className="w-full" style={{ minHeight: 500 }}>
-                {/* Edges */}
+              <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minHeight: 520 }}>
+                <defs>
+                  <filter id="glow">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+
+                {/* Group sector arcs (subtle background) */}
+                {Object.entries(groupLabelPositions).map(([g, pos]) => {
+                  const color = GROUP_COLORS[g] || '#6B7280';
+                  return (
+                    <text key={`glbl-${g}`} x={pos.x} y={pos.y}
+                      textAnchor="middle" dominantBaseline="middle"
+                      fill={color} fontSize="11" fontWeight="700" opacity="0.5"
+                      className="pointer-events-none select-none">
+                      {g === 'Growth & Strategy' ? 'G & S' : g}
+                    </text>
+                  );
+                })}
+
+                {/* Edges — curved */}
                 {filtered.map(edge => {
                   const posA = nodePositions[edge.leaderAId];
                   const posB = nodePositions[edge.leaderBId];
                   if (!posA || !posB) return null;
                   const highlighted = isEdgeHighlighted(edge);
                   const strokeColor = edge.status === 'identified' ? '#DC2626' : edge.status === 'coordinating' ? '#16A34A' : '#9CA3AF';
-                  const strokeWidth = edge.strength === 'strong' ? 3 : edge.strength === 'moderate' ? 2 : 1;
+                  const strokeWidth = edge.strength === 'strong' ? 2.5 : edge.strength === 'moderate' ? 1.5 : 0.8;
+                  const dashArray = edge.strength === 'weak' ? '4,3' : 'none';
                   return (
-                    <line key={edge.id} x1={posA.x} y1={posA.y} x2={posB.x} y2={posB.y}
-                      stroke={strokeColor} strokeWidth={strokeWidth}
-                      opacity={highlighted ? 0.6 : 0.08}
-                      className="cursor-pointer transition-opacity duration-200"
+                    <path key={edge.id}
+                      d={edgePath(posA.x, posA.y, posB.x, posB.y, cx, cy)}
+                      fill="none" stroke={strokeColor} strokeWidth={strokeWidth}
+                      strokeDasharray={dashArray}
+                      opacity={highlighted ? 0.5 : 0.06}
+                      className="cursor-pointer transition-opacity duration-300"
                       onClick={() => { setSelectedEdge(selectedEdge === edge.id ? null : edge.id); setSelectedNode(null); }}
                     />
                   );
                 })}
+
                 {/* Nodes */}
                 {involved.map(leader => {
                   const pos = nodePositions[leader.id];
                   if (!pos) return null;
                   const count = connectionCounts[leader.id] || 1;
-                  const r = Math.max(16, Math.min(30, 12 + count * 4));
+                  const r = Math.max(14, Math.min(26, 10 + count * 3));
                   const color = GROUP_COLORS[leader.group] || '#6B7280';
                   const highlighted = isHighlighted(leader.id);
                   const isSelected = selectedNode === leader.id;
+
+                  // Label placement: radiate outward from center
+                  const labelDist = r + 10;
+                  const labelAngle = pos.labelAngle ?? 0;
+                  const lx = pos.x + labelDist * Math.cos(labelAngle);
+                  const ly = pos.y + labelDist * Math.sin(labelAngle);
+                  // Text anchor: left/right based on which half
+                  const anchor = Math.abs(labelAngle) > Math.PI / 2 ? 'end' : 'start';
+                  const lastName = leader.name.split(' ').pop();
+                  const firstName = leader.name.split(' ')[0]?.[0] + '.';
+
                   return (
-                    <g key={leader.id} className="cursor-pointer" onClick={() => { setSelectedNode(selectedNode === leader.id ? null : leader.id); setSelectedEdge(null); }}>
+                    <g key={leader.id} className="cursor-pointer"
+                      onClick={() => { setSelectedNode(selectedNode === leader.id ? null : leader.id); setSelectedEdge(null); }}>
+                      {/* Hover ring */}
+                      {isSelected && (
+                        <circle cx={pos.x} cy={pos.y} r={r + 5} fill="none" stroke={color} strokeWidth={2} opacity={0.3} filter="url(#glow)" />
+                      )}
                       <circle cx={pos.x} cy={pos.y} r={r} fill={color}
-                        opacity={highlighted ? 0.85 : 0.15}
-                        stroke={isSelected ? '#1a1d23' : 'white'} strokeWidth={isSelected ? 3 : 2}
-                        className="transition-opacity duration-200"
+                        opacity={highlighted ? 0.9 : 0.12}
+                        stroke={isSelected ? '#1a1d23' : '#fff'} strokeWidth={isSelected ? 2.5 : 1.5}
+                        className="transition-opacity duration-300"
                       />
-                      <text x={pos.x} y={pos.y + r + 14} textAnchor="middle" className="text-[10px] fill-gray-600 font-medium pointer-events-none"
-                        opacity={highlighted ? 1 : 0.2}>
-                        {leader.name.split(' ').pop()}
-                      </text>
-                      <text x={pos.x} y={pos.y + 4} textAnchor="middle" className="text-[10px] fill-white font-bold pointer-events-none"
-                        opacity={highlighted ? 1 : 0.2}>
+                      {/* Count inside node */}
+                      <text x={pos.x} y={pos.y + 4} textAnchor="middle"
+                        fill="white" fontSize="10" fontWeight="700"
+                        opacity={highlighted ? 1 : 0.15}
+                        className="pointer-events-none select-none">
                         {count}
+                      </text>
+                      {/* Name label outside */}
+                      <text x={lx} y={ly} textAnchor={anchor} dominantBaseline="middle"
+                        fill="#374151" fontSize="9.5" fontWeight="600"
+                        opacity={highlighted ? 0.9 : 0.15}
+                        className="pointer-events-none select-none">
+                        {firstName} {lastName}
                       </text>
                     </g>
                   );
                 })}
               </svg>
+
               {/* Legend */}
-              <div className="flex items-center gap-6 mt-3 pt-3 border-t border-gray-100 flex-wrap">
-                <div className="text-[10px] font-semibold text-gray-400 uppercase">Groups:</div>
+              <div className="flex items-center gap-5 mt-2 pt-3 border-t border-gray-100 flex-wrap text-[10px]">
+                <span className="font-semibold text-gray-400 uppercase">Groups:</span>
                 {Object.entries(GROUP_COLORS).map(([g, c]) => (
-                  <div key={g} className="flex items-center gap-1.5">
-                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: c }} />
-                    <span className="text-[10px] text-gray-500">{g}</span>
+                  <div key={g} className="flex items-center gap-1">
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: c }} />
+                    <span className="text-gray-500">{g === 'Growth & Strategy' ? 'G&S' : g}</span>
                   </div>
                 ))}
-                <div className="w-px h-4 bg-gray-200" />
-                <div className="text-[10px] font-semibold text-gray-400 uppercase">Lines:</div>
-                <div className="flex items-center gap-1.5"><div className="w-4 h-0.5 bg-red-500" /><span className="text-[10px] text-gray-500">Needs Coordination</span></div>
-                <div className="flex items-center gap-1.5"><div className="w-4 h-0.5 bg-green-500" /><span className="text-[10px] text-gray-500">Coordinating</span></div>
-                <div className="flex items-center gap-1.5"><div className="w-4 h-0.5 bg-gray-400" /><span className="text-[10px] text-gray-500">Acknowledged</span></div>
-                <div className="w-px h-4 bg-gray-200" />
-                <div className="text-[10px] text-gray-400">Node size = # connections &middot; Line thickness = strength</div>
+                <span className="text-gray-200">|</span>
+                <span className="font-semibold text-gray-400 uppercase">Edges:</span>
+                <div className="flex items-center gap-1"><svg width="16" height="6"><line x1="0" y1="3" x2="16" y2="3" stroke="#DC2626" strokeWidth="2"/></svg><span className="text-gray-500">Needs Action</span></div>
+                <div className="flex items-center gap-1"><svg width="16" height="6"><line x1="0" y1="3" x2="16" y2="3" stroke="#16A34A" strokeWidth="2"/></svg><span className="text-gray-500">Coordinating</span></div>
+                <div className="flex items-center gap-1"><svg width="16" height="6"><line x1="0" y1="3" x2="16" y2="3" stroke="#9CA3AF" strokeWidth="1" strokeDasharray="4,3"/></svg><span className="text-gray-500">Acknowledged</span></div>
+                <span className="text-gray-200">|</span>
+                <span className="text-gray-400">Size = connections &middot; Thick = strong &middot; Thin/dashed = weak</span>
               </div>
             </div>
           ) : (
@@ -273,10 +370,8 @@ export default function StrategyMap() {
         {/* Detail Panel */}
         <div>
           <h2 className="text-sm font-semibold text-gray-700 mb-3">
-            {selectedNode ? `${getLeader(selectedNode)?.name}'s Connections` : selectedDetail ? 'Connection Detail' : 'All Connections'}
-            <span className="text-gray-400 font-normal ml-1">
-              ({selectedNode ? selectedNodeConnections.length : filtered.length})
-            </span>
+            {selectedNode ? `${getLeader(selectedNode)?.name}'s Connections` : 'All Connections'}
+            <span className="text-gray-400 font-normal ml-1">({selectedNode ? selectedNodeConnections.length : filtered.length})</span>
           </h2>
           <div className="space-y-2 max-h-[700px] overflow-y-auto pr-1">
             {(selectedNode ? selectedNodeConnections : filtered).map(c => {
@@ -284,7 +379,6 @@ export default function StrategyMap() {
               const b = getLeader(c.leaderBId);
               const isOpen = selectedEdge === c.id;
               const statusStyle = c.status === 'identified' ? 'border-l-red-400' : c.status === 'coordinating' ? 'border-l-green-400' : 'border-l-gray-300';
-
               return (
                 <button key={c.id} onClick={() => setSelectedEdge(isOpen ? null : c.id)}
                   className={`w-full text-left bg-white rounded-xl border border-l-4 ${statusStyle} p-4 transition-all ${isOpen ? 'ring-2 ring-accent border-accent' : 'border-gray-200 hover:border-gray-300'}`}>
