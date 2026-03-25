@@ -226,8 +226,11 @@ export default function StrategyMap() {
                 {/* Group sector arcs (subtle background) */}
                 {Object.entries(groupLabelPositions).map(([g, pos]) => {
                   const color = GROUP_COLORS[g] || '#6B7280';
+                  // Nudge specific labels away from nearby node names
+                  const nudgeX = g === 'Offerings' ? 15 : g === 'Growth & Strategy' ? -15 : 0;
+                  const nudgeY = g === 'Offerings' ? -12 : g === 'Growth & Strategy' ? -12 : 0;
                   return (
-                    <text key={`glbl-${g}`} x={pos.x} y={pos.y}
+                    <text key={`glbl-${g}`} x={pos.x + nudgeX} y={pos.y + nudgeY}
                       textAnchor="middle" dominantBaseline="middle"
                       fill={color} fontSize="11" fontWeight="700" opacity="0.5"
                       className="pointer-events-none select-none">
