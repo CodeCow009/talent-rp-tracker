@@ -1,8 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import StatusChip from '../components/StatusChip';
-import { getLeader, actionItems } from '../data';
+import { getLeader, actionItems, leaders } from '../data';
 import meetings from '../data/meetings.json';
+
+const GROUP_COLORS = {
+  Offerings: 'bg-blue-100 text-blue-700 border-blue-200',
+  Markets: 'bg-purple-100 text-purple-700 border-purple-200',
+  Industries: 'bg-green-100 text-green-700 border-green-200',
+  Engines: 'bg-amber-100 text-amber-700 border-amber-200',
+  'Growth & Strategy': 'bg-red-100 text-red-700 border-red-200',
+};
 
 const SAMPLE_TRANSCRIPT = `Irene mentioned that Citi's CHRO is very interested in the GenAI readiness framework but wants to see a 4-week pilot before committing to a full engagement. She's working with the Americas delivery team on the pilot proposal.
 
@@ -25,10 +33,23 @@ const EXTRACTED_ITEMS = [
   { description: 'Follow up with Citi CHRO on pilot timeline expectations', owner: 'Sarah Chen (Deputy)', due: '2026-04-01', topic: 'Client Developments', status: 'extracted' },
 ];
 
+const WEEK_DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+
+function getCadenceHealth(group) {
+  const groupMeetings = meetings.filter(m => m.group === group);
+  const processed = groupMeetings.filter(m => m.status === 'processed').length;
+  const total = groupMeetings.length;
+  const adherence = total > 0 ? Math.round((processed / total) * 100) : 0;
+  const avgActions = total > 0 ? (groupMeetings.reduce((s, m) => s + (m.extractedActionItems || 0), 0) / total).toFixed(1) : 0;
+  const health = adherence >= 80 ? 'green' : adherence >= 60 ? 'watch' : 'risk';
+  return { adherence, avgActions, health, total, processed };
+}
+
 export default function CadencesView() {
   const [showPipeline, setShowPipeline] = useState(false);
   const [confirmed, setConfirmed] = useState([]);
   const [pipelineText, setPipelineText] = useState(SAMPLE_TRANSCRIPT);
+  const [expandedMeeting, setExpandedMeeting] = useState(null);
 
   const handleConfirm = (idx) => {
     setConfirmed(prev => prev.includes(idx) ? prev.filter(i => i !== idx) : [...prev, idx]);
@@ -41,6 +62,19 @@ export default function CadencesView() {
   const sortedMeetings = [...meetings].sort((a, b) => new Date(b.date) - new Date(a.date));
   const totalExtracted = meetings.reduce((s, m) => s + (m.extractedActionItems || 0), 0);
 
+  // Calendar data — map meetings to weekday slots
+  const calendarMeetings = meetings.map(m => {
+    const dayIdx = WEEK_DAYS.indexOf(m.scheduledDay?.split(' ')[0]?.slice(0, 3) || '') ;
+    const shortDay = m.scheduledDay?.split(' ')[0] || '';
+    let wdIdx = -1;
+    if (shortDay.startsWith('Mon')) wdIdx = 0;
+    else if (shortDay.startsWith('Tue')) wdIdx = 1;
+    else if (shortDay.startsWith('Wed')) wdIdx = 2;
+    else if (shortDay.startsWith('Thu')) wdIdx = 3;
+    else if (shortDay.startsWith('Fri')) wdIdx = 4;
+    return { ...m, weekDay: wdIdx };
+  });
+
   return (
     <div className="p-6 max-w-[1400px] mx-auto">
       <div className="flex items-center justify-between mb-6">
@@ -48,31 +82,115 @@ export default function CadencesView() {
           <h1 className="text-2xl font-display font-bold text-gray-900">Operating Cadences</h1>
           <p className="text-sm text-gray-500 mt-0.5">Meeting rhythm, notes capture, and action item extraction</p>
         </div>
-        <button
-          onClick={() => setShowPipeline(!showPipeline)}
-          className="text-sm bg-accent text-white px-4 py-2 rounded-lg hover:bg-accent/90 font-medium"
-        >
+        <button onClick={() => setShowPipeline(!showPipeline)} className="text-sm bg-accent text-white px-4 py-2 rounded-lg hover:bg-accent/90 font-medium">
           {showPipeline ? 'Back to Cadences' : 'Demo: Meeting → Action Pipeline'}
         </button>
       </div>
 
       {!showPipeline ? (
         <>
-          {/* Cadence Schedule */}
+          {/* Weekly Calendar */}
           <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6">
-            <h2 className="text-sm font-semibold text-gray-700 mb-4">Cadence Schedule</h2>
+            <h2 className="text-sm font-semibold text-gray-700 mb-4">Weekly Cadence Calendar</h2>
+            <div className="grid grid-cols-5 gap-3">
+              {WEEK_DAYS.map((day, di) => {
+                const dayMeetings = calendarMeetings.filter(m => m.weekDay === di);
+                return (
+                  <div key={day} className="min-h-[120px]">
+                    <div className="text-xs font-semibold text-gray-500 text-center mb-2 pb-1 border-b border-gray-100">{day}</div>
+                    <div className="space-y-1.5">
+                      {dayMeetings.map(m => (
+                        <button key={m.id} onClick={() => setExpandedMeeting(expandedMeeting === m.id ? null : m.id)}
+                          className={`w-full text-left rounded-lg border p-2 text-[10px] transition-all ${GROUP_COLORS[m.group] || 'bg-gray-50 text-gray-600 border-gray-200'} ${expandedMeeting === m.id ? 'ring-2 ring-accent' : 'hover:shadow-sm'}`}>
+                          <div className="font-semibold line-clamp-1">{m.title.replace(/Cadence|Weekly|Bi-weekly/gi, '').trim()}</div>
+                          <div className="opacity-70 mt-0.5">{m.scheduledDay?.split(' ').slice(1).join(' ')}</div>
+                        </button>
+                      ))}
+                      {dayMeetings.length === 0 && <div className="text-[10px] text-gray-300 text-center py-4">No meetings</div>}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Meeting Detail (when expanded) */}
+          {expandedMeeting && (() => {
+            const m = meetings.find(x => x.id === expandedMeeting);
+            if (!m) return null;
+            const attendees = m.attendees.map(id => getLeader(id)).filter(Boolean);
+            return (
+              <div className="bg-white rounded-xl border border-accent/20 p-5 mb-6 shadow-sm">
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <h3 className="text-sm font-semibold text-gray-800">{m.title}</h3>
+                    <div className="text-xs text-gray-500 mt-0.5">{m.group} &middot; {m.cadence} &middot; {m.scheduledDay}</div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${m.status === 'processed' ? 'bg-green-50 text-green-600' : m.status === 'pending_review' ? 'bg-amber-50 text-amber-600' : 'bg-gray-50 text-gray-500'}`}>
+                      {m.status === 'processed' ? 'Processed' : m.status === 'pending_review' ? 'Pending Review' : 'Scheduled'}
+                    </span>
+                    <button onClick={() => setExpandedMeeting(null)} className="text-xs text-gray-400 hover:text-gray-600">Close</button>
+                  </div>
+                </div>
+                <div className="grid grid-cols-3 gap-4">
+                  <div>
+                    <div className="text-[10px] font-semibold text-gray-400 uppercase mb-2">Attendees ({attendees.length})</div>
+                    <div className="space-y-1">
+                      {attendees.map(a => (
+                        <Link key={a.id} to={`/leaders/${a.id}`} className="flex items-center gap-2 text-xs text-accent hover:underline">
+                          <div className="w-5 h-5 rounded-full bg-accent/10 text-accent flex items-center justify-center text-[8px] font-bold">{a.avatar}</div>
+                          {a.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-semibold text-gray-400 uppercase mb-2">Key Decisions</div>
+                    {m.keyDecisions?.length > 0 ? m.keyDecisions.map((d, i) => (
+                      <div key={i} className="text-xs text-gray-600 flex items-start gap-1.5 mb-1">
+                        <span className="text-accent shrink-0 mt-0.5">&#8226;</span>{d}
+                      </div>
+                    )) : <div className="text-xs text-gray-400">No decisions recorded</div>}
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-semibold text-gray-400 uppercase mb-2">Extracted Items</div>
+                    <div className="text-2xl font-bold text-accent">{m.extractedActionItems}</div>
+                    <div className="text-xs text-gray-500">action items extracted</div>
+                    <div className="text-xs text-gray-400 mt-1">Last meeting: {m.date}</div>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+
+          {/* Cadence Health Cards */}
+          <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6">
+            <h2 className="text-sm font-semibold text-gray-700 mb-4">Cadence Health by Group</h2>
             <div className="grid grid-cols-5 gap-3">
               {['Offerings', 'Markets', 'Industries', 'Engines', 'Growth & Strategy'].map(group => {
-                const groupMeetings = meetings.filter(m => m.group === group);
-                const cadences = [...new Set(groupMeetings.map(m => m.cadence))];
+                const h = getCadenceHealth(group);
+                const healthDot = h.health === 'green' ? 'bg-green-500' : h.health === 'watch' ? 'bg-amber-500' : 'bg-red-500';
                 return (
                   <div key={group} className="border border-gray-100 rounded-lg p-3">
-                    <div className="text-xs font-semibold text-gray-700 mb-2">{group}</div>
-                    {groupMeetings.slice(0, 3).map(m => (
-                      <div key={m.id} className="text-xs text-gray-500 mb-1">
-                        <span className="font-medium text-gray-600">{m.cadence}</span> &middot; {m.scheduledDay}
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className={`w-2.5 h-2.5 rounded-full ${healthDot}`} />
+                      <div className="text-xs font-semibold text-gray-700">{group}</div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[10px]">
+                        <span className="text-gray-400">Adherence</span>
+                        <span className="font-semibold text-gray-600">{h.adherence}%</span>
                       </div>
-                    ))}
+                      <div className="flex justify-between text-[10px]">
+                        <span className="text-gray-400">Avg Actions/Meeting</span>
+                        <span className="font-semibold text-gray-600">{h.avgActions}</span>
+                      </div>
+                      <div className="flex justify-between text-[10px]">
+                        <span className="text-gray-400">Meetings</span>
+                        <span className="font-semibold text-gray-600">{h.processed}/{h.total}</span>
+                      </div>
+                    </div>
                   </div>
                 );
               })}
@@ -107,7 +225,8 @@ export default function CadencesView() {
                 const statusColor = m.status === 'processed' ? 'bg-green-50 text-green-600' : m.status === 'pending_review' ? 'bg-amber-50 text-amber-600' : 'bg-gray-50 text-gray-500';
                 const statusLabel = m.status === 'processed' ? 'Processed' : m.status === 'pending_review' ? 'Pending Review' : 'Scheduled';
                 return (
-                  <div key={m.id} className="border border-gray-100 rounded-lg p-4 hover:bg-gray-50/50">
+                  <button key={m.id} onClick={() => setExpandedMeeting(expandedMeeting === m.id ? null : m.id)}
+                    className={`w-full text-left border border-gray-100 rounded-lg p-4 hover:bg-gray-50/50 transition-all ${expandedMeeting === m.id ? 'ring-2 ring-accent' : ''}`}>
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-3">
                         <div className="text-sm font-medium text-gray-800">{m.title}</div>
@@ -124,16 +243,13 @@ export default function CadencesView() {
                       <div className="mt-2 space-y-0.5">
                         {m.keyDecisions.slice(0, 2).map((d, i) => (
                           <div key={i} className="text-xs text-gray-500 flex items-start gap-1.5">
-                            <span className="text-accent shrink-0 mt-0.5">&#8226;</span>
-                            <span>{d}</span>
+                            <span className="text-accent shrink-0 mt-0.5">&#8226;</span><span>{d}</span>
                           </div>
                         ))}
-                        {m.keyDecisions.length > 2 && (
-                          <div className="text-[10px] text-gray-400">+{m.keyDecisions.length - 2} more decisions</div>
-                        )}
+                        {m.keyDecisions.length > 2 && <div className="text-[10px] text-gray-400">+{m.keyDecisions.length - 2} more decisions</div>}
                       </div>
                     )}
-                  </div>
+                  </button>
                 );
               })}
             </div>
@@ -146,18 +262,12 @@ export default function CadencesView() {
             This demo shows how meeting notes are captured and AI extracts structured action items — reducing manual work for leaders.
           </div>
           <div className="grid grid-cols-2 gap-6">
-            {/* Left: Raw Notes */}
             <div className="bg-white rounded-xl border border-gray-200 p-5">
               <h2 className="text-sm font-semibold text-gray-700 mb-3">Raw Meeting Notes</h2>
               <div className="text-[10px] text-gray-400 mb-2">Leadership Cadence — Mar 24, 2026</div>
-              <textarea
-                value={pipelineText}
-                onChange={e => setPipelineText(e.target.value)}
-                className="w-full text-sm border border-gray-200 rounded-lg p-3 h-[420px] resize-none focus:outline-none focus:ring-1 focus:ring-accent bg-gray-50 leading-relaxed text-gray-700"
-              />
+              <textarea value={pipelineText} onChange={e => setPipelineText(e.target.value)}
+                className="w-full text-sm border border-gray-200 rounded-lg p-3 h-[420px] resize-none focus:outline-none focus:ring-1 focus:ring-accent bg-gray-50 leading-relaxed text-gray-700" />
             </div>
-
-            {/* Right: Extracted Items */}
             <div className="bg-white rounded-xl border border-gray-200 p-5">
               <div className="flex items-center justify-between mb-3">
                 <h2 className="text-sm font-semibold text-gray-700">AI-Extracted Action Items</h2>
@@ -167,12 +277,7 @@ export default function CadencesView() {
                 {EXTRACTED_ITEMS.map((item, idx) => (
                   <div key={idx} className={`border rounded-lg p-3 transition-all ${confirmed.includes(idx) ? 'border-green-200 bg-green-50/50' : 'border-gray-100'}`}>
                     <div className="flex items-start gap-2">
-                      <input
-                        type="checkbox"
-                        checked={confirmed.includes(idx)}
-                        onChange={() => handleConfirm(idx)}
-                        className="rounded mt-0.5 shrink-0"
-                      />
+                      <input type="checkbox" checked={confirmed.includes(idx)} onChange={() => handleConfirm(idx)} className="rounded mt-0.5 shrink-0" />
                       <div className="flex-1">
                         <div className="text-sm text-gray-800">{item.description}</div>
                         <div className="flex items-center gap-3 mt-1 text-xs text-gray-400">
@@ -187,14 +292,7 @@ export default function CadencesView() {
               </div>
               <div className="flex items-center justify-between border-t border-gray-100 pt-3">
                 <div className="text-xs text-gray-400">{confirmed.length} of {EXTRACTED_ITEMS.length} confirmed</div>
-                <div className="flex gap-2">
-                  <button
-                    onClick={handleConfirmAll}
-                    className="text-xs bg-accent text-white px-3 py-1.5 rounded-lg hover:bg-accent/90 font-medium"
-                  >
-                    Confirm All
-                  </button>
-                </div>
+                <button onClick={handleConfirmAll} className="text-xs bg-accent text-white px-3 py-1.5 rounded-lg hover:bg-accent/90 font-medium">Confirm All</button>
               </div>
               {confirmed.length === EXTRACTED_ITEMS.length && (
                 <div className="mt-3 bg-green-50 border border-green-200 rounded-lg px-3 py-2 text-xs text-green-700 font-medium flex items-center gap-2">

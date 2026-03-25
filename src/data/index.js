@@ -5,6 +5,7 @@ import objectivesRaw from './objectives.json';
 import narrativesRaw from './narratives.json';
 import actionItemsRaw from './actionItems.json';
 import intersectionsRaw from './intersections.json';
+import meetingsRaw from './meetings.json';
 
 export const leaders = leadersRaw;
 export const financials = financialsRaw;
@@ -12,6 +13,7 @@ export const campaigns = campaignsRaw;
 export const narratives = narrativesRaw;
 export const actionItems = actionItemsRaw;
 export const intersections = intersectionsRaw;
+export const meetings = meetingsRaw;
 
 // Normalize objectives into a usable shape
 export const masterObjectives = objectivesRaw.masterObjectives || [];

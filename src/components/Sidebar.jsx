@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { actionItems, narratives, intersections } from '../data';
 import meetings from '../data/meetings.json';
+import NotificationBell from './NotificationBell';
 
 const overdueCount = actionItems.filter(a => a.status === 'overdue').length;
 const escalationCount = narratives.filter(n => n.sentiment === 'escalation').length;
@@ -48,6 +49,12 @@ export default function Sidebar({ persona, personas, onPersonaChange, currentPat
           );
         })}
       </nav>
+
+      {/* Notification Bell */}
+      <div className="border-t border-white/10 px-4 py-3 flex items-center gap-3">
+        <NotificationBell />
+        <span className="text-xs text-white/40">Alerts</span>
+      </div>
 
       {/* Persona Switcher */}
       <div className="border-t border-white/10 px-4 py-4">

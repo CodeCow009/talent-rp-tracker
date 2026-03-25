@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import KPICard from '../components/KPICard';
 import LeaderCard from '../components/LeaderCard';
 import StatusChip from '../components/StatusChip';
-import { leaders, financials, narratives, fmt, GROUPS, daysSinceUpdate } from '../data';
+import ProgressBar from '../components/ProgressBar';
+import { leaders, financials, narratives, keyResults, fmt, GROUPS, daysSinceUpdate, getLeader } from '../data';
 
 function getGroupHealth(group) {
   const gl = leaders.filter(l => l.group === group && l.id !== 'leader-24');
@@ -23,6 +24,7 @@ const SENTIMENT_FILTERS = [
 export default function ExecutiveDashboard() {
   const [groupFilter, setGroupFilter] = useState('All');
   const [sentimentFilter, setSentimentFilter] = useState('all');
+  const [hoveredLeader, setHoveredLeader] = useState(null);
 
   const activeLeaders = leaders.filter(l => l.id !== 'leader-24');
   const totalRevTarget = financials.reduce((s, f) => s + f.revenueTarget, 0);
@@ -32,8 +34,12 @@ export default function ExecutiveDashboard() {
   const updatedCount = activeLeaders.filter(l => daysSinceUpdate(l.lastUpdated) <= 7).length;
   const staleLeaders = activeLeaders.filter(l => daysSinceUpdate(l.lastUpdated) > 14)
     .sort((a, b) => new Date(a.lastUpdated) - new Date(b.lastUpdated));
-  const escalations = narratives.filter(n => n.sentiment === 'escalation');
   const filtered = groupFilter === 'All' ? activeLeaders : activeLeaders.filter(l => l.group === groupFilter);
+
+  const atRiskKRs = keyResults.filter(kr => kr.status === 'at_risk' || kr.status === 'behind')
+    .sort((a, b) => (a.progress || 0) - (b.progress || 0));
+
+  const healthBorder = (health) => health === 'green' ? 'border-l-green-400' : health === 'watch' ? 'border-l-amber-400' : 'border-l-red-400';
 
   return (
     <div className="p-6 max-w-[1400px] mx-auto">
@@ -69,11 +75,31 @@ export default function ExecutiveDashboard() {
         })}
       </div>
 
-      <div className="grid grid-cols-[1fr_320px] gap-6">
+      <div className="grid grid-cols-[1fr_340px] gap-6">
         <div>
           <h2 className="text-sm font-semibold text-gray-700 mb-3">Leader Health Grid</h2>
           <div className="grid grid-cols-4 gap-3">
-            {filtered.map(l => <LeaderCard key={l.id} leader={l} financial={financials.find(f => f.leaderId === l.id)} />)}
+            {filtered.map(l => {
+              const fin = financials.find(f => f.leaderId === l.id);
+              const isHovered = hoveredLeader === l.id;
+              return (
+                <div key={l.id} className={`relative border-l-4 ${healthBorder(l.overallHealth)} rounded-xl`}
+                  onMouseEnter={() => setHoveredLeader(l.id)}
+                  onMouseLeave={() => setHoveredLeader(null)}>
+                  <LeaderCard leader={l} financial={fin} />
+                  {isHovered && fin && (
+                    <div className="absolute z-20 left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg p-3 text-xs space-y-1.5">
+                      <div className="flex justify-between"><span className="text-gray-500">Revenue</span><span className="font-semibold">{fin.revenuePctToTarget}%</span></div>
+                      <div className="flex justify-between"><span className="text-gray-500">Pipeline</span><span className="font-semibold">{fmt(fin.pipelineValue)}</span></div>
+                      <div className="flex justify-between"><span className="text-gray-500">Win Rate</span><span className="font-semibold">{fin.winRate}%</span></div>
+                      <div className="flex justify-between"><span className="text-gray-500">Chargeability</span><span className="font-semibold">{fin.chargeability}%</span></div>
+                      <div className="flex justify-between"><span className="text-gray-500">Updated</span><span className="font-semibold">{daysSinceUpdate(l.lastUpdated)}d ago</span></div>
+                      <div className="flex justify-between"><span className="text-gray-500">Objectives</span><span className="font-semibold">{keyResults.filter(kr => kr.leaderId === l.id).length} KRs</span></div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -83,29 +109,20 @@ export default function ExecutiveDashboard() {
             <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Leader Updates</h3>
             <div className="flex flex-wrap gap-1.5 mb-3">
               {SENTIMENT_FILTERS.map(sf => (
-                <button
-                  key={sf.value}
-                  onClick={() => setSentimentFilter(sentimentFilter === sf.value ? 'all' : sf.value)}
+                <button key={sf.value} onClick={() => setSentimentFilter(sentimentFilter === sf.value ? 'all' : sf.value)}
                   className={`text-[10px] font-semibold px-2 py-1 rounded-full transition-all ${
-                    sentimentFilter === sf.value
-                      ? (sf.color || 'bg-accent text-white') + ' ring-1 ring-offset-1 ring-gray-300'
-                      : 'bg-gray-50 text-gray-400 hover:bg-gray-100'
-                  }`}
-                >
+                    sentimentFilter === sf.value ? (sf.color || 'bg-accent text-white') + ' ring-1 ring-offset-1 ring-gray-300' : 'bg-gray-50 text-gray-400 hover:bg-gray-100'
+                  }`}>
                   {sf.label}
-                  {sf.value !== 'all' && (
-                    <span className="ml-1 opacity-70">
-                      ({narratives.filter(n => n.sentiment === sf.value).length})
-                    </span>
-                  )}
+                  {sf.value !== 'all' && <span className="ml-1 opacity-70">({narratives.filter(n => n.sentiment === sf.value).length})</span>}
                 </button>
               ))}
             </div>
-            <div className="space-y-2 max-h-[320px] overflow-y-auto pr-1">
+            <div className="space-y-2 max-h-[280px] overflow-y-auto pr-1">
               {narratives
                 .filter(n => sentimentFilter === 'all' || n.sentiment === sentimentFilter)
                 .sort((a, b) => new Date(b.date) - new Date(a.date))
-                .slice(0, 15)
+                .slice(0, 12)
                 .map(n => {
                   const leader = leaders.find(l => l.id === n.leaderId);
                   return (
@@ -120,6 +137,28 @@ export default function ExecutiveDashboard() {
                     </Link>
                   );
                 })}
+            </div>
+          </div>
+
+          {/* At Risk Objectives */}
+          <div className="bg-white rounded-xl border border-red-100 p-4">
+            <h3 className="text-xs font-semibold text-red-400 uppercase tracking-wider mb-3">At Risk Objectives ({atRiskKRs.length})</h3>
+            <div className="space-y-2 max-h-[200px] overflow-y-auto pr-1">
+              {atRiskKRs.slice(0, 8).map(kr => {
+                const leader = getLeader(kr.leaderId);
+                return (
+                  <Link key={kr.id} to={`/leaders/${kr.leaderId}`} className="block hover:bg-red-50/50 -mx-2 px-2 py-1.5 rounded">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs text-gray-700 font-medium line-clamp-1 flex-1 mr-2">{kr.description}</span>
+                      <StatusChip status={kr.status} />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <ProgressBar value={kr.progress} size="sm" />
+                      <span className="text-[10px] text-gray-400 shrink-0">{leader?.name?.split(' ').pop()}</span>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
