@@ -1,5 +1,13 @@
 import { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
+import { getLeader, getLeaderCampaigns, getLeaderIntersections } from '../data';
+
+// Tag relevance per role
+const ROLE_TAGS = {
+  Executive: null, // sees everything
+  Operations: ['Strategy', 'Global', 'OperatingModel', 'Competitive', 'Benchmarking'],
+  Strategy: ['Strategy', 'GenAI', 'Methodology', 'Assessment', 'Framework', 'Global', 'Competitive'],
+};
 
 const MOCK_CONTENT = [
   { id: 1, title: 'GenAI Talent Transformation Playbook', category: 'Methodology', tags: ['GenAI', 'Workforce'], updated: '2026-03-20', status: 'Published', downloads: 245, description: 'Comprehensive guide for implementing GenAI-driven talent transformation across enterprise organizations. Includes frameworks, templates, and case studies.' },
@@ -19,7 +27,7 @@ const MOCK_CONTENT = [
 const CATEGORIES = ['All', ...new Set(MOCK_CONTENT.map(c => c.category))];
 const STATUSES = ['All', 'Published', 'Draft', 'In Review'];
 
-export default function ContentHub() {
+export default function ContentHub({ persona }) {
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('All');
   const [status, setStatus] = useState('All');
@@ -31,11 +39,40 @@ export default function ContentHub() {
   const [formDescription, setFormDescription] = useState('');
   const [formTags, setFormTags] = useState('');
 
-  const filtered = MOCK_CONTENT
+  const isLeaderOrDeputy = persona?.role === 'Leader' || persona?.role === 'Deputy';
+
+  // Compute relevant tags for leader/deputy based on their themes
+  let relevantTags = null;
+  if (isLeaderOrDeputy) {
+    const leader = getLeader(persona.leaderId);
+    const campaigns = getLeaderCampaigns(persona.leaderId);
+    const conns = getLeaderIntersections(persona.leaderId);
+    const campaignTags = campaigns.flatMap(c => c.tags || []);
+    const connThemes = conns.flatMap(c => c.sharedThemes || []);
+    relevantTags = [...new Set([...campaignTags, ...connThemes, leader?.group, leader?.subGroup].filter(Boolean))];
+  } else if (ROLE_TAGS[persona?.role]) {
+    relevantTags = ROLE_TAGS[persona.role];
+  }
+
+  // Score content by relevance
+  const scoredContent = MOCK_CONTENT.map(c => {
+    let relevance = 0;
+    if (relevantTags) {
+      relevance = c.tags.filter(t => relevantTags.some(rt => t.toLowerCase().includes(rt.toLowerCase()) || rt.toLowerCase().includes(t.toLowerCase()))).length;
+    }
+    return { ...c, relevance };
+  });
+
+  // Sort: relevant first for leader/deputy
+  const sortedContent = isLeaderOrDeputy
+    ? [...scoredContent].sort((a, b) => b.relevance - a.relevance)
+    : scoredContent;
+
+  const filtered = sortedContent
     .filter(c => category === 'All' || c.category === category)
     .filter(c => status === 'All' || c.status === status)
     .filter(c => !search || c.title.toLowerCase().includes(search.toLowerCase()) || c.tags.some(t => t.toLowerCase().includes(search.toLowerCase())) || c.category.toLowerCase().includes(search.toLowerCase()))
-    .concat(suggestions.map((s, i) => ({ ...s, id: `sug-${i}` })));
+    .concat(suggestions.map((s, i) => ({ ...s, id: `sug-${i}`, relevance: 0 })));
 
   const published = MOCK_CONTENT.filter(c => c.status === 'Published').length + suggestions.filter(s => s.status === 'Published').length;
   const totalDownloads = MOCK_CONTENT.reduce((s, c) => s + c.downloads, 0);
@@ -64,8 +101,8 @@ export default function ContentHub() {
     <div className="p-6 max-w-[1400px] mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-display font-bold text-gray-900">Content Hub</h1>
-          <p className="text-sm text-gray-500 mt-0.5">Centralized library for strategic frameworks, playbooks, and enablement materials</p>
+          <h1 className="text-2xl font-display font-bold text-gray-900">{isLeaderOrDeputy ? 'Resources' : persona?.role === 'Operations' ? 'Content Hub — Operations' : persona?.role === 'Strategy' ? 'Content Hub — Strategy' : 'Content Hub'}</h1>
+          <p className="text-sm text-gray-500 mt-0.5">{isLeaderOrDeputy ? 'Content relevant to your campaigns and themes — sorted by relevance' : 'Centralized library for strategic frameworks, playbooks, and enablement materials'}</p>
         </div>
         <button onClick={() => setShowUpload(!showUpload)} className="text-sm bg-accent text-white px-4 py-2 rounded-lg hover:bg-accent/90 font-medium">
           {showUpload ? 'Cancel' : '+ Suggest Content'}
@@ -139,6 +176,7 @@ export default function ContentHub() {
                   <div className="text-xs text-gray-400 mt-0.5">{item.category} &middot; Updated {item.updated}</div>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
+                  {item.relevance > 0 && <span className="text-[9px] font-bold text-accent bg-accent/10 px-1.5 py-0.5 rounded">Relevant</span>}
                   {stale && <span className="text-[9px] font-bold text-amber-500 bg-amber-50 px-1.5 py-0.5 rounded">Stale</span>}
                   <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
                     item.status === 'Published' ? 'bg-green-50 text-green-600' : item.status === 'Draft' ? 'bg-gray-100 text-gray-500' : 'bg-amber-50 text-amber-600'

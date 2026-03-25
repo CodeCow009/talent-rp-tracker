@@ -16,7 +16,7 @@ function dueDateToPct(d) {
   return Math.max(0, Math.min(100, (ms / 86400000) / TIMELINE_DAYS * 100));
 }
 
-export default function ActionItemsView() {
+export default function ActionItemsView({ persona }) {
   const [statusFilter, setStatusFilter] = useState('All');
   const [groupFilter, setGroupFilter] = useState('All');
   const [priorityFilter, setPriorityFilter] = useState('All');
@@ -25,7 +25,15 @@ export default function ActionItemsView() {
   const [completedLocal, setCompletedLocal] = useState(new Set());
   const [groupBySource, setGroupBySource] = useState(false);
 
-  const enriched = actionItems.map(a => {
+  const isLeaderOrDeputy = persona?.role === 'Leader' || persona?.role === 'Deputy';
+  const isOps = persona?.role === 'Operations';
+  const isStrategy = persona?.role === 'Strategy';
+
+  const baseItems = isLeaderOrDeputy
+    ? actionItems.filter(a => a.leaderId === persona.leaderId)
+    : actionItems;
+
+  const enriched = baseItems.map(a => {
     const leader = getLeader(a.leaderId);
     return {
       ...a,
@@ -73,8 +81,8 @@ export default function ActionItemsView() {
     <div className="p-6 max-w-[1400px] mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-display font-bold text-gray-900">Action Items</h1>
-          <p className="text-sm text-gray-500 mt-0.5">{actionItems.length} total across all leaders</p>
+          <h1 className="text-2xl font-display font-bold text-gray-900">{isLeaderOrDeputy ? 'My Action Items' : isOps ? 'Action Items — Operations View' : isStrategy ? 'Action Items — Strategy View' : 'Action Items'}</h1>
+          <p className="text-sm text-gray-500 mt-0.5">{baseItems.length} {isLeaderOrDeputy ? 'items assigned to you' : 'total across all leaders'}</p>
         </div>
         <div className="flex gap-2 items-center">
           <input type="text" placeholder="Search..." value={search} onChange={e => setSearch(e.target.value)}

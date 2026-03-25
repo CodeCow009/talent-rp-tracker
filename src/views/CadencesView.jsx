@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import StatusChip from '../components/StatusChip';
-import { getLeader, actionItems, leaders } from '../data';
-import meetings from '../data/meetings.json';
+import { getLeader, actionItems, leaders, meetings } from '../data';
 
 const GROUP_COLORS = {
   Offerings: 'bg-blue-100 text-blue-700 border-blue-200',
@@ -45,11 +44,17 @@ function getCadenceHealth(group) {
   return { adherence, avgActions, health, total, processed };
 }
 
-export default function CadencesView() {
+export default function CadencesView({ persona }) {
   const [showPipeline, setShowPipeline] = useState(false);
   const [confirmed, setConfirmed] = useState([]);
   const [pipelineText, setPipelineText] = useState(SAMPLE_TRANSCRIPT);
   const [expandedMeeting, setExpandedMeeting] = useState(null);
+
+  const isLeaderOrDeputy = persona?.role === 'Leader' || persona?.role === 'Deputy';
+
+  const baseMeetings = isLeaderOrDeputy
+    ? meetings.filter(m => m.attendees?.includes(persona.leaderId))
+    : meetings;
 
   const handleConfirm = (idx) => {
     setConfirmed(prev => prev.includes(idx) ? prev.filter(i => i !== idx) : [...prev, idx]);
@@ -59,11 +64,11 @@ export default function CadencesView() {
     setConfirmed(EXTRACTED_ITEMS.map((_, i) => i));
   };
 
-  const sortedMeetings = [...meetings].sort((a, b) => new Date(b.date) - new Date(a.date));
-  const totalExtracted = meetings.reduce((s, m) => s + (m.extractedActionItems || 0), 0);
+  const sortedMeetings = [...baseMeetings].sort((a, b) => new Date(b.date) - new Date(a.date));
+  const totalExtracted = baseMeetings.reduce((s, m) => s + (m.extractedActionItems || 0), 0);
 
   // Calendar data — map meetings to weekday slots
-  const calendarMeetings = meetings.map(m => {
+  const calendarMeetings = baseMeetings.map(m => {
     const dayIdx = WEEK_DAYS.indexOf(m.scheduledDay?.split(' ')[0]?.slice(0, 3) || '') ;
     const shortDay = m.scheduledDay?.split(' ')[0] || '';
     let wdIdx = -1;
@@ -79,8 +84,8 @@ export default function CadencesView() {
     <div className="p-6 max-w-[1400px] mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-display font-bold text-gray-900">Operating Cadences</h1>
-          <p className="text-sm text-gray-500 mt-0.5">Meeting rhythm, notes capture, and action item extraction</p>
+          <h1 className="text-2xl font-display font-bold text-gray-900">{isLeaderOrDeputy ? 'My Cadences' : 'Operating Cadences'}</h1>
+          <p className="text-sm text-gray-500 mt-0.5">{isLeaderOrDeputy ? `${baseMeetings.length} meetings you attend` : 'Meeting rhythm, notes capture, and action item extraction'}</p>
         </div>
         <button onClick={() => setShowPipeline(!showPipeline)} className="text-sm bg-accent text-white px-4 py-2 rounded-lg hover:bg-accent/90 font-medium">
           {showPipeline ? 'Back to Cadences' : 'Demo: Meeting → Action Pipeline'}
@@ -201,8 +206,8 @@ export default function CadencesView() {
           <div className="grid grid-cols-3 gap-4 mb-6">
             <div className="bg-white rounded-xl border border-gray-200 p-4">
               <div className="text-xs font-semibold text-gray-400 uppercase">Total Meetings</div>
-              <div className="text-2xl font-bold text-gray-900 mt-1">{meetings.length}</div>
-              <div className="text-xs text-gray-500">across 5 groups</div>
+              <div className="text-2xl font-bold text-gray-900 mt-1">{baseMeetings.length}</div>
+              <div className="text-xs text-gray-500">{isLeaderOrDeputy ? 'you attend' : 'across 5 groups'}</div>
             </div>
             <div className="bg-white rounded-xl border border-gray-200 p-4">
               <div className="text-xs font-semibold text-gray-400 uppercase">Action Items Extracted</div>
@@ -211,7 +216,7 @@ export default function CadencesView() {
             </div>
             <div className="bg-white rounded-xl border border-gray-200 p-4">
               <div className="text-xs font-semibold text-gray-400 uppercase">Pending Review</div>
-              <div className="text-2xl font-bold text-amber-600 mt-1">{meetings.filter(m => m.status === 'pending_review').length}</div>
+              <div className="text-2xl font-bold text-amber-600 mt-1">{baseMeetings.filter(m => m.status === 'pending_review').length}</div>
               <div className="text-xs text-gray-500">meetings with unconfirmed items</div>
             </div>
           </div>

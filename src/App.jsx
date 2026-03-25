@@ -7,6 +7,7 @@ import StrategyDashboard from './views/StrategyDashboard';
 import LeaderPage from './views/LeaderPage';
 import AllLeaders from './views/AllLeaders';
 import StrategyMap from './views/StrategyMap';
+import MyConnections from './views/MyConnections';
 import ActionItemsView from './views/ActionItemsView';
 import CadencesView from './views/CadencesView';
 import ContentHub from './views/ContentHub';
@@ -33,6 +34,8 @@ export default function App() {
     }
   };
 
+  const isLeaderOrDeputy = persona.role === 'Leader' || persona.role === 'Deputy';
+
   return (
     <div className="flex h-screen overflow-hidden">
       <Sidebar
@@ -53,15 +56,24 @@ export default function App() {
             element={
               persona.role === 'Operations' ? <OperationsDashboard /> :
               persona.role === 'Strategy' ? <StrategyDashboard /> :
+              isLeaderOrDeputy ? <LeaderPage persona={persona} /> :
               <ExecutiveDashboard />
             }
           />
-          <Route path="/leaders" element={<AllLeaders />} />
+          <Route path="/leaders" element={
+            isLeaderOrDeputy
+              ? <AllLeaders persona={persona} />
+              : <AllLeaders persona={persona} />
+          } />
           <Route path="/leaders/:leaderId" element={<LeaderPage persona={persona} />} />
-          <Route path="/strategy-map" element={<StrategyMap />} />
-          <Route path="/action-items" element={<ActionItemsView />} />
-          <Route path="/cadences" element={<CadencesView />} />
-          <Route path="/content" element={<ContentHub />} />
+          <Route path="/strategy-map" element={
+            isLeaderOrDeputy
+              ? <MyConnections persona={persona} />
+              : <StrategyMap />
+          } />
+          <Route path="/action-items" element={<ActionItemsView persona={persona} />} />
+          <Route path="/cadences" element={<CadencesView persona={persona} />} />
+          <Route path="/content" element={<ContentHub persona={persona} />} />
         </Routes>
       </main>
     </div>
