@@ -135,7 +135,7 @@ export default function Sidebar({ persona, personas, onPersonaChange, currentPat
       </nav>
 
       <div className="border-t border-white/10 px-4 py-3 flex items-center gap-3">
-        <NotificationBell />
+        <NotificationBell persona={persona} />
         <span className="text-xs text-white/40">Alerts</span>
       </div>
 
